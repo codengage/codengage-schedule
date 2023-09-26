@@ -1,31 +1,33 @@
-import React, { useRef, useCallback } from "react";
+import React, { useCallback, useRef } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { usePocket } from "../contexts/PocketContext";
 
-export const SignIn = () => {
+export const SignUp = () => {
   const emailRef = useRef();
   const passwordRef = useRef();
-  const { login } = usePocket();
+  const { register } = usePocket();
   const navigate = useNavigate();
 
   const handleOnSubmit = useCallback(
     async (evt) => {
       evt?.preventDefault();
-      await login(emailRef.current.value, passwordRef.current.value);
-      navigate("/demoapp");
+      await register(emailRef.current.value, passwordRef.current.value);
+      navigate("/sign-in");
     },
-    [login]
+    [register]
   );
 
   return (
     <section>
-      <h2>Login</h2>
+      <h2>Registro</h2>
       <form onSubmit={handleOnSubmit}>
         <input placeholder="Email" type="email" ref={emailRef} />
         <input placeholder="Senha" type="password" ref={passwordRef} />
-        <button type="submit">Logar</button>
+        <button type="submit">Criar</button>
         <br></br>
-        <Link to="/">Registrar</Link>
+        <Link to="/sign-in">Ir para login</Link>
+        <br></br>
+        <Link to="/demoapp">Ir Calendario</Link>
       </form>
     </section>
   );

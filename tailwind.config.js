@@ -1,3 +1,4 @@
+const { blackA, violet, mauve } = require('@radix-ui/colors');
 /** @type {import('tailwindcss').Config} */
 export default {
   content: [
@@ -5,7 +6,8 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    colors: {
+    extend: {
+      colors: {
       'dark': {
         100: '#4A4E5C',
         200: '#3C424E',
@@ -18,10 +20,29 @@ export default {
         900: '#10141A',
       },
       'light-dark': '#313341',
-      'white': '#fff', 
+      'white': '#fff',
+      ...blackA,
+      ...violet,
+      ...mauve,
     },
-    extend: {},
+    keyframes: {
+      overlayShow: {
+        from: { opacity: 0 },
+        to: { opacity: 1 },
+      },
+      contentShow: {
+        from: { opacity: 0, transform: 'translate(-50%, -48%) scale(0.96)' },
+        to: { opacity: 1, transform: 'translate(-50%, -50%) scale(1)' },
+      },
+    },
+    animation: {
+      overlayShow: 'overlayShow 150ms cubic-bezier(0.16, 1, 0.3, 1)',
+      contentShow: 'contentShow 150ms cubic-bezier(0.16, 1, 0.3, 1)',
+    },
   },
-  plugins: [],
+  },
+  plugins: [
+    require('@tailwindcss/forms'),
+  ],
   darkMode: "class",
 }

@@ -42,10 +42,8 @@ b { /* used for event dates/times */
 
 
 
-
 .demo-app {
   display: flex;
-  
   font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
   font-size: 14px;
 }
@@ -53,13 +51,13 @@ b { /* used for event dates/times */
 .demo-app-main{
   flex-grow: 1;
   padding: 3em;
-
 }
 
 .fc { /* the calendar root */
-  min-width: 100%;
-  max-height: 78%;
+  max-width: 100%;
+  max-height: 76%;
   margin: 0 auto;
+ 
 }
 
 .fc .fc-col-header-cell-cushion { /* needs to be same precedence */
