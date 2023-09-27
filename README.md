@@ -14,24 +14,24 @@ The project is coded using a simple and intuitive structure presented below:
 ┣ 📂assets
 ┃ ┗ 📜react.svg		
 ┣ 📂components
-┃ ┣ 📜RequireAuth.jsx          	#Defines logged to access demoapp	
-┃ ┗ 📜SwitchTheme.jsx		        #Darkside component
+┃ ┣ 📜RequireAuth.jsx 	  	        # Defines logged to access demoapp	
+┃ ┗ 📜SwitchTheme.jsx		        # Darkside component
 ┣ 📂contexts
-┃ ┗ 📜PocketContext.jsx		      #Connects to PocketBase
+┃ ┗ 📜PocketContext.jsx		        # Connects to PocketBase
 ┣ 📂pages
-┃ ┣ 📜DemoApp.jsx		            #Calendar
-┃ ┣ 📜Protected.jsx		          #Logged page return information
-┃ ┣ 📜SignIn.jsx		            #Login page	
-┃ ┗ 📜SignUp.jsx		            #Register page
+┃ ┣ 📜DemoApp.jsx		        # Calendar
+┃ ┣ 📜Protected.jsx		        # Logged page return information
+┃ ┣ 📜SignIn.jsx		        # Login page	
+┃ ┗ 📜SignUp.jsx		        # Register page
 ┣ 📂styles
-┃ ┣ 📜demoApp.css		            #Style for demoApp
-┃ ┗ 📜modal.css		              #Style mode
+┃ ┣ 📜demoApp.css		        # Style for demoApp
+┃ ┗ 📜modal.css		                # Style mode
 ┣ 📂utils
-┃ ┣ 📜event-utils.js		        #Return events to Calendar
-┃ ┗ 📜useDarkSide.js		        #Darkside component  
-┣ 📜App.jsx		                  #Main defines and call routes 
-┣ 📜index.css		                #Tailwind component
-┗ 📜main.jsx		                #Call App
+┃ ┣ 📜event-utils.js		        # Return events to Calendar
+┃ ┗ 📜useDarkSide.js		        # Darkside component  
+┣ 📜App.jsx		                # Main defines and call routes 
+┣ 📜index.css		                # Tailwind component
+┗ 📜main.jsx		                # Call App
 ```
 
 ### Default development server:
