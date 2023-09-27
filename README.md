@@ -27,7 +27,7 @@ The project is coded using a simple and intuitive structure presented below:
 ┃ ┗ 📜modal.css		              #Style mode
 ┣ 📂utils
 ┃ ┣ 📜event-utils.js		        #Return events to Calendar
-┃ ┗ 📜useDarkSide.js		        #Darkside component
+┃ ┗ 📜useDarkSide.js		        #Darkside component  
 ┣ 📜App.jsx		                  #Main defines and call routes 
 ┣ 📜index.css		                #Tailwind component
 ┗ 📜main.jsx		                #Call App
