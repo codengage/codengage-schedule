@@ -23,6 +23,8 @@ export const PocketProvider = ({ children }) => {
   const [token, setToken] = useState(pb.authStore.token);
   const [user, setUser] = useState(pb.authStore.model);
 
+
+
   useEffect(() => {
     return pb.authStore.onChange((token, model) => {
       setToken(token);
@@ -43,6 +45,11 @@ export const PocketProvider = ({ children }) => {
   const logout = useCallback(() => {
     pb.authStore.clear();
   }, []);
+  const registerReserve = useCallback(async (title, start, end, backgroundColor) => {
+    return await pb
+      .collection('ReserveCalendar')
+      .create({title, start, end, backgroundColor, textColor: '#fff', borderColor: backgroundColor });
+  }, []);
 
   const refreshSession = useCallback(async () => {
     if (!pb.authStore.isValid) return;
@@ -58,7 +65,7 @@ export const PocketProvider = ({ children }) => {
 
   return (
     <PocketContext.Provider
-      value={{ register, login, logout, user, token, pb }}
+      value={{ register, login, logout, registerReserve, user, token, pb }}
     >
       {children}
     </PocketContext.Provider>

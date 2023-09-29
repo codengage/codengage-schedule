@@ -1,6 +1,7 @@
 import React, { useCallback, useRef } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { usePocket } from "../contexts/PocketContext";
+import SwitchTheme from "../components/SwitchTheme";
 
 export const SignUp = () => {
   const emailRef = useRef();
@@ -29,6 +30,8 @@ export const SignUp = () => {
         <br></br>
         <Link to="/demoapp">Ir Calendario</Link>
       </form>
+
+      <SwitchTheme/>
     </section>
   );
 };

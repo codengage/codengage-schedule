@@ -16,6 +16,7 @@
     height: 500px;
     transform: translate(-50%, -50%);
     background: #fff;
+    border: 2px solid  !important;
     border-radius: 5px;
     padding: 30px;
     z-index: 5555555 !important;
