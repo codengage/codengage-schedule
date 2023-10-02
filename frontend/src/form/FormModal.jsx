@@ -24,6 +24,7 @@ export default function FormModal(props){
             endRef.current.value,
             backgroundColor
             );
+          
             window.location.reload();
         },
         [registerReserve]
@@ -32,10 +33,7 @@ export default function FormModal(props){
        
     return(
 
-        <Form.Root className="w-[260px]" 
-        // `onSubmit` only triggered if it passes client-side validation
-        onSubmit={handleOnSubmit}
-    >
+        <Form.Root className="w-[260px]" onSubmit={handleOnSubmit}>
       <Form.Field className="grid mb-[10px]" name="title">
         <div className="flex items-baseline justify-between">
           <Form.Label className="text-[15px] font-medium leading-[35px] ">Título</Form.Label>
@@ -97,7 +95,7 @@ export default function FormModal(props){
         </Form.Label>
 
         <RadioGroup.Root
-      className="flex pt-1 gap-2.5"
+      className="flex pt-1 gap-2.5 justify-center align-middle"
       defaultValue="#0ae8f0"
       aria-label="View density"
       onValueChange={(value)=>{
@@ -152,8 +150,8 @@ export default function FormModal(props){
  
 <div className="flex items-center">
   <RadioGroup.Item
-    className="bg-[#0ae8f0] w-[25px] h-[25px] rounded-full shadow-[0_2px_10px] shadow-blackA7 focus:shadow-[0_0_0_2px] focus:shadow-black outline-none cursor-default"
-    value="#0ae8f0"
+    className="bg-[#60ffff] w-[25px] h-[25px] rounded-full shadow-[0_2px_10px] shadow-blackA7 focus:shadow-[0_0_0_2px] focus:shadow-black outline-none cursor-default"
+    value="#60ffff"
     id={4}
   >
     <RadioGroup.Indicator className="flex items-center justify-center w-full h-full relative after:content-[''] after:block after:w-[11px] after:h-[11px] after:rounded-[100%] after:bg-white"></RadioGroup.Indicator>
@@ -184,8 +182,8 @@ export default function FormModal(props){
         
       </Form.Field>
       <Form.Submit asChild>
-        <button className="box-border w-full text-violet11 shadow-blackA7 hover:bg-mauve3 inline-flex h-[35px] items-center justify-center rounded-[4px] bg-white px-[15px] font-medium leading-none shadow-[0_2px_10px] focus:shadow-[0_0_0_2px] focus:shadow-black focus:outline-none mt-[10px]" >
-          Post 
+        <button className='dark:bg-dark-900 my-2 box-border w-full dark:text-white shadow-blackA7 dark:shadow-slate-500 hover:bg-mauve3 inline-flex h-[35px] items-center justify-center rounded-[4px] bg-white px-[15px] font-medium leading-none shadow-[0_2px_10px] focus:shadow-[0_0_0_2px] focus:shadow-black focus:outline-none' >
+          Criar
         </button>
       </Form.Submit>
     </Form.Root>

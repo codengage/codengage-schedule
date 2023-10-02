@@ -8,8 +8,8 @@ export default function Router(){
     return(
         <BrowserRouter>
         <Routes>
-          <Route index element={<SignUp />} />
-          <Route path="/sign-in" element={<SignIn />} />
+          <Route index element={<SignIn />} />
+          <Route path="/sign-up" element={<SignUp />} />
           <Route element={<RequireAuth />}>
             <Route exact  path="/demoapp" element={<DemoApp />} />
             <Route path="/protected" element={<Protected />} />

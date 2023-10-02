@@ -27,11 +27,11 @@ b { /* used for event dates/times */
 
 :root{
   --fc-button-text-color: #fff;
-  --fc-button-bg-color: #214cf4;
+  --fc-button-bg-color: #712cf9;
   --fc-button-border-color: #000000;
-  --fc-button-hover-bg-color: #163fbd ;
+  --fc-button-hover-bg-color: #5f33c5;
   --fc-button-hover-border-color: #000000;
-  --fc-button-active-bg-color: #163fbd;
+  --fc-button-active-bg-color: #5f33c5;
   --fc-button-active-border-color: #000000;
   --fc-neutral-text-color: #808080;
   --fc-border-color: black;

@@ -32,10 +32,10 @@ export const PocketProvider = ({ children }) => {
     });
   }, []);
 
-  const register = useCallback(async (email, password) => {
+  const register = useCallback(async (email, password, passwordConfirm) => {
     return await pb
       .collection("users")
-      .create({ email, password, passwordConfirm: password });
+      .create({ email, password, passwordConfirm });
   }, []);
 
   const login = useCallback(async (email, password) => {
@@ -49,7 +49,7 @@ export const PocketProvider = ({ children }) => {
     return await pb
       .collection('ReserveCalendar')
       .create({title, start, end, backgroundColor, textColor: '#fff', borderColor: backgroundColor });
-  }, []);
+  }, [token]);
 
   const refreshSession = useCallback(async () => {
     if (!pb.authStore.isValid) return;

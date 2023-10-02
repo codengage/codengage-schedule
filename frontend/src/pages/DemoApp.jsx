@@ -89,29 +89,31 @@ export default class DemoApp extends React.Component {
   renderModal(){
     return(
       <div className="modal__wrapper">
-      <div className="single__modal dark:bg-dark-600 border dark:border-white">
+      <div className="single__modal  dark:bg-dark-400 border dark:border-white">
         <span className="close__modal p-2">
 
           <AiOutlineClose 
-          className="bg-blue-600 rounded-lg  text-white"
+          className="bg-[#0d6efd] rounded-lg  text-white"
           onClick={() => {
            this.setState({
              showModal: false
              })}}/> 
           
         </span>
+        <div className="bg-[#e2e8f0] dark:bg-dark-600 p-3 rounded-md">
         <h6 className="text-center mt-2">
         
          <b>{formatDate(this.state.modalInfo.start,{timeZone: 'UTC',locale:"pt-br", weekday: 'long', omitCommas: true })}</b>
          <br/><b>{formatDate(this.state.modalInfo.start,{timeZone: 'UTC',locale:"pt-br"})}</b>
         
         </h6>
-      <div className='flex justify-center'>
+      <div className='flex justify-center '>
 
       
              <FormModal modalInfo={this.state.modalInfo}/>
   
          
+        </div>
         </div>
       </div>
     </div>
@@ -122,7 +124,7 @@ export default class DemoApp extends React.Component {
 
   renderSidebar() {
     return (
-      <div className='w-[18%] bg-slate-300  dark:bg-dark-400  border-r-2 dark:text-white'>
+      <div className='w-[18%] bg-[#e2e8f0] rounded-tr-xl dark:bg-dark-300  shadow-xl shadow-black dark:shadow-white dark:text-white'>
         
         <div className='p-[2rem]'>
           
@@ -150,9 +152,8 @@ export default class DemoApp extends React.Component {
         Mostrar Fim de semana
         </label>
         <Switch.Root
-          className="w-[42px] h-[25px] bg-blackA9 rounded-full relative shadow-[0_2px_10px] shadow-blackA7 focus:shadow-[0_0_0_2px] focus:shadow-black data-[state=checked]:bg-black outline-none cursor-default"
+          className="w-[42px] h-[25px] bg-blackA9 dark:bg-slate-400 rounded-full relative shadow-md shadow-black dark:shadow-white focus:shadow-[0_0_0_2px] focus:shadow-black data-[state=checked]:bg-black dark:data-[state=checked]:bg-[#e2e8f0] outline-none cursor-default"
           id="Toggle-Weekends"
-          style={{ '-webkit-tap-highlight-color': 'rgba(0, 0, 0, 0)' }}
           checked={this.state.weekendsVisible}
           onCheckedChange={() => {
             this.setState({
