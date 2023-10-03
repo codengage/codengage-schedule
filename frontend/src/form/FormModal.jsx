@@ -43,7 +43,7 @@ export default function FormModal(props){
         </div>
         <Form.Control asChild>
           <input
-            className="w-full dark:bg-dark-800 inline-flex h-[35px] appearance-none items-center justify-center rounded-md"
+            className="w-full bg-[#e2e8f0] dark:bg-dark-800 inline-flex h-10 appearance-none items-center justify-center rounded-md"
             type="text"
             required
             ref={titleRef}
@@ -63,7 +63,7 @@ export default function FormModal(props){
         <input 
         type="datetime-local" 
         defaultValue={modalInfo.startStr}
-        className="w-full dark:bg-dark-800 rounded-md"
+        className="w-full h-10 p-2 bg-[#e2e8f0] dark:bg-dark-800 rounded-md"
         required
         ref={startRef}
         />
@@ -82,8 +82,8 @@ export default function FormModal(props){
         <Form.Control asChild>
         <input 
         type="datetime-local" 
-        defaultValue={modalInfo.startStr}
-        className="w-full dark:bg-dark-800 rounded-md"
+        defaultValue={modalInfo.endStr}
+        className="w-full bg-[#e2e8f0] h-10 p-2 dark:bg-dark-800 rounded-md"
         required
         ref={endRef}
         />
@@ -182,7 +182,7 @@ export default function FormModal(props){
         
       </Form.Field>
       <Form.Submit asChild>
-        <button className='dark:bg-dark-900 my-2 box-border w-full dark:text-white shadow-blackA7 dark:shadow-slate-500 hover:bg-mauve3 inline-flex h-[35px] items-center justify-center rounded-[4px] bg-white px-[15px] font-medium leading-none shadow-[0_2px_10px] focus:shadow-[0_0_0_2px] focus:shadow-black focus:outline-none' >
+        <button className='mt-3 dark:bg-dark-900 my-2 box-border w-full dark:text-white shadow-blackA7 dark:shadow-slate-500 hover:bg-mauve3 inline-flex h-[35px] items-center justify-center rounded-[4px] bg-white px-[15px] font-medium leading-none shadow-[0_2px_10px] focus:shadow-[0_0_0_2px] focus:shadow-black focus:outline-none' >
           Criar
         </button>
       </Form.Submit>

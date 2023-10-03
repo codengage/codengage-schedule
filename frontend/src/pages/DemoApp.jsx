@@ -89,18 +89,18 @@ export default class DemoApp extends React.Component {
   renderModal(){
     return(
       <div className="modal__wrapper">
-      <div className="single__modal  dark:bg-dark-400 border dark:border-white">
+      <div className="single__modal  dark:bg-dark-400 border-2 border-[#712cf9] dark:border-white">
         <span className="close__modal p-2">
 
           <AiOutlineClose 
-          className="bg-[#0d6efd] rounded-lg  text-white"
+          className="bg-[#712cf9] rounded-lg  text-white"
           onClick={() => {
            this.setState({
              showModal: false
              })}}/> 
           
         </span>
-        <div className="bg-[#e2e8f0] dark:bg-dark-600 p-3 rounded-md">
+        <div className="p-3 rounded-md">
         <h6 className="text-center mt-2">
         
          <b>{formatDate(this.state.modalInfo.start,{timeZone: 'UTC',locale:"pt-br", weekday: 'long', omitCommas: true })}</b>

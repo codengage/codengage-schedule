@@ -19,7 +19,7 @@ export default {
         800: '#161A22',
         900: '#10141A',
       },
-      'light-dark': '#313341',
+      'light-dark': '#e2e8f0',
       'white': '#fff',
       ...blackA,
       ...violet,
