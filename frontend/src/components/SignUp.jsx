@@ -1,24 +1,22 @@
 import React, { useCallback, useRef, useState} from "react";
-import { useNavigate, Link } from "react-router-dom";
 import { usePocket } from "../contexts/PocketContext";
-import SwitchTheme from "../components/SwitchTheme";
+import SwitchTheme from "./ui/SwitchTheme";
 import * as Form from '@radix-ui/react-form';
-import Panel from "../components/Panel";
-import {ChevronLeftIcon} from '@radix-ui/react-icons'
 import { Logo } from "../assets/Logo";
 import { EyeClosedIcon, EyeOpenIcon } from "@radix-ui/react-icons";
 import * as Toggle from '@radix-ui/react-toggle';
-import AlertDanger from "../components/alerts/AlertDanger";
-import AlertSuccess from "../components/alerts/AlertSuccess";
+import AlertDanger from "./alerts/AlertDanger";
 import { ClientResponseError } from "pocketbase";
 
-export default function SignUp () {
+export default function SignUp (props) {
+  const {setShowSignUp} = props;
+  const {setShowSuccessAlert} = props;
+
   const usernameRef = useRef();
   const emailRef = useRef();
   const passwordRef = useRef();
   const passwordConfirmRef = useRef();
   const { register } = usePocket();
-  const navigate = useNavigate();
 
   const handleOnSubmit = useCallback(
     async (evt) => {
@@ -30,7 +28,8 @@ export default function SignUp () {
         passwordRef.current.value, 
         passwordConfirmRef.current.value
         );
-      navigate('/')
+      setShowSuccessAlert(true);
+      setShowSignUp(false);
     }
       catch(e){
         setShowAlert(true)
@@ -49,7 +48,7 @@ export default function SignUp () {
   const [showPassword, setShowPassword] = useState(false);
   const [showAlert, setShowAlert] = useState(false);
   return (
-    <div className="grid xl:grid-cols-2  h-screen bg-gray-100 dark:bg-dark-600">
+    <div>
     <div className="xl:hidden absolute ml-[90%] mt-[3%]  ">
        <SwitchTheme/>
     </div>
@@ -170,14 +169,19 @@ export default function SignUp () {
        className='mb-[5%] h-12 bg-purple-500 dark:bg-purple-700 dark:hover:bg-purple-900 text-white hover:bg-purple-900 my-2 box-border w-full shadow-blackA7 dark:shadow-slate-500 inline-flex items-center justify-center rounded-lg px-[15px] font-medium leading-none shadow-[0_2px_10px] focus:shadow-[0_0_0_2px] focus:shadow-black focus:outline-none' >
          Criar Usuário
         </button>
-        <Link to="/">Ir para login</Link>
+        <button 
+        onClick={()=>
+        setShowSignUp(false)
+        }
+        >
+        Ir para login
+        </button>
         
         </div>
         </Form.Root>
         </main>
         </div>
         
-      <Panel/>
     </div>
   );
 };

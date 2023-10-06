@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 export default function AlertDanger(props){
   const {message} = props;
   const {signIn} = props;
+  const {setShowSignUp} = props;
   return(
     <div class="flex items-center p-4 my-4 text-sm text-red-800 border border-red-300 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400 dark:border-red-800" role="alert">
   <svg class="flex-shrink-0 inline w-4 h-4 mr-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
@@ -9,7 +10,18 @@ export default function AlertDanger(props){
   </svg>
   <span class="sr-only">Info</span>
   <div>
-    <label>{message}</label> {signIn && <Link to='/sign-up' ><strong> Crie seu usuário</strong></Link>}
+    <label>{message}</label>
+    {
+    signIn
+     && 
+    <button
+    onClick={()=>{
+      setShowSignUp(true)
+    }}
+    >
+    <strong> Crie seu usuário!</strong>
+    </button>
+    }
   </div>
   </div>
  )

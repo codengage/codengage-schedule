@@ -1,6 +1,6 @@
 import {AiOutlineClose} from '@react-icons/all-files/ai/AiOutlineClose.esm'
 import { formatDate } from '@fullcalendar/core'
-import FormModal from './form/FormModal';
+import FormModal from '../form/FormModal';
 
 export default function ModalCalendar(props){
     const {modalInfo} = props;
@@ -9,10 +9,9 @@ export default function ModalCalendar(props){
     return(
         <div className="modal__wrapper">
       <div className="single__modal  dark:bg-dark-400 border-2 border-[#712cf9] dark:border-white">
-        <span className="close__modal p-2">
+        <span className="close__modal p-2 ">
 
           <AiOutlineClose 
-          className="bg-[#712cf9] rounded-lg  text-white"
           onClick={() => {
             setShowModal(false)
              }}/> 

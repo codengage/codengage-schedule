@@ -7,17 +7,26 @@ import timeGridPlugin from '@fullcalendar/timegrid'
 import interactionPlugin from '@fullcalendar/interaction'
 import {records} from '../utils/event-utils'
 import "../styles/modal.css";
-import ModalCalendar from "../components/ModalCalendar";
-import Sidebar from "../components/Sidebar";
+import ModalCalendar from "../components/ui/ModalCalendar";
+import Sidebar from "../components/ui/Sidebar";
+import { usePocket } from "../contexts/PocketContext";
+import { useNavigate } from "react-router-dom";
 
 
 
 export default function Schedule(){
-    
+      const {user} = usePocket();
+      const navigate = useNavigate();
+      if(!user){
+        navigate('/')
+      } 
+      
       const [ weekendsVisible, setWeekendsVisible] = useState(false)
       const [ showModal, setShowModal] = useState(false)
       const [currentEvents, setCurrentEvents] = useState(records)
       const [modalInfo, setModalInfo] = useState({})
+       
+      
 
     return(
         <div className='flex font-bold'>

@@ -33,10 +33,10 @@ export const PocketProvider = ({ children }) => {
     });
   }, []);
 
-  const register = useCallback(async (email, password, name) => {
+  const register = useCallback(async (username, email, password, passwordConfirm) => {
     return await pb
      .collection("users")
-     .create({ email, password, passwordConfirm: password, name });
+     .create({username, email, password, passwordConfirm });
   }, []);
 
   const login = useCallback(async (email, password) => {

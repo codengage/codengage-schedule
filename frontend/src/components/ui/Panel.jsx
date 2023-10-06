@@ -1,6 +1,7 @@
 import React from "react";
-import SwitchTheme from '../components/SwitchTheme'
-import PanelLogo from '../assets/panel-logo.svg';
+import SwitchTheme from './SwitchTheme'
+import PanelLogo from '../../assets/panel-logo.svg';
+
 
 
 

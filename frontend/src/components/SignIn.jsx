@@ -3,17 +3,20 @@ import { useNavigate, Link } from "react-router-dom";
 import { usePocket } from "../contexts/PocketContext";
 import * as Form from '@radix-ui/react-form';
 import * as Toggle from '@radix-ui/react-toggle';
-import SwitchTheme from '../components/SwitchTheme'
+import SwitchTheme from './ui/SwitchTheme'
 import useDarkSide from "../utils/useDarkSide";
 import { Logo } from "../assets/Logo";
-import Panel  from "../components/Panel";
+import Panel  from "./ui/Panel";
 import { EyeClosedIcon, EyeOpenIcon } from "@radix-ui/react-icons";
-import AlertDanger from "../components/alerts/AlertDanger";
+import AlertDanger from "./alerts/AlertDanger";
 import { ClientResponseError } from "pocketbase";
+import AlertSuccess from "./alerts/AlertSuccess";
 
 
 
-export default function SignIn() {
+export default function SignIn(props) {
+  const {setShowSignUp} = props;
+  const {showSuccessAlert} = props;
   const emailRef = useRef();
   const passwordRef = useRef();
   const { login } = usePocket();
@@ -29,7 +32,7 @@ export default function SignIn() {
       }catch(e){
         setShowAlert(true)
         if(e instanceof ClientResponseError){
-          setMessageAlert("E-mail ou senha incorreta. Tente novamente ou")
+          setMessageAlert("E-mail ou senha incorreta. Tente novamente ou ")
           
         }else{
         setMessageAlert(e.message)
@@ -41,15 +44,29 @@ export default function SignIn() {
   );
   const [messageAlert, setMessageAlert] = useState("");
   const [showPassword, setShowPassword] = useState(false);
-  const [showAlert, setShowAlert] = useState(false);
+  const [showDangerAlert, setShowAlert] = useState(false);
   return (
-    <div className="grid xl:grid-cols-2  h-[100%] bg-gray-100 dark:bg-dark-600">
+    <div>
      <div className="xl:hidden absolute ml-[90%] mt-[3%] ">
         <SwitchTheme/>
      </div>
       <div className="mt-[20%] mx-4 xl:mt-[26%] xl:mx-[26%] ">
        <Logo/>
-       {showAlert && <AlertDanger message={messageAlert} signIn={true}/>}
+       
+       {
+        showSuccessAlert && <AlertSuccess message="Usuário cadastrado"/>
+       }
+       
+       
+       {
+       showDangerAlert 
+       && 
+       <AlertDanger
+        message={messageAlert} 
+       signIn={true}
+       setShowSignUp={setShowSignUp}
+       />
+       }
         <main className="flex flex-col mt-3 gap-10 w-full ">
           <header className="flex flex-col gap-4 w-full ">
             <h1 className="font-sans text-4xl font-bol ">
@@ -110,9 +127,15 @@ export default function SignIn() {
     <button className='mb-[5%] h-12 bg-purple-500 dark:bg-purple-700 dark:hover:bg-purple-900 text-white hover:bg-purple-900 my-2 box-border w-full shadow-blackA7 dark:shadow-slate-500 inline-flex items-center justify-center rounded-lg px-[15px] font-medium leading-none shadow-[0_2px_10px] focus:shadow-[0_0_0_2px] focus:shadow-black focus:outline-none' >
          Fazer Login
         </button>
-        <br></br>
-        Ainda não é usuário?
-        <Link className="text-purple-700 hover:text-purple-500" to='/sign-up' ><strong> Crie seu usuário!</strong></Link>
+        <label>Ainda não é usuário? </label>
+        <button 
+        className="text-purple-700 hover:text-purple-500" 
+        onClick={()=>{
+          setShowSignUp(true)
+        }}
+        >
+          <strong>Crie seu usuário!</strong>
+          </button>
 
         </div>
         
@@ -120,7 +143,7 @@ export default function SignIn() {
     </main>
     </div>
     
-     <Panel/>
+
    
   </div>
   );
