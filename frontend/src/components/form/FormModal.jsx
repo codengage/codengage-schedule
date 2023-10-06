@@ -1,13 +1,16 @@
 import React, { useCallback, useRef } from "react";
 import { useNavigate} from "react-router-dom";
-import { usePocket } from "../contexts/PocketContext";
+import { usePocket } from "../../contexts/PocketContext";
 import * as Form from '@radix-ui/react-form';
 import * as RadioGroup from '@radix-ui/react-radio-group';
+import { records } from "../../utils/event-utils";
 
 
 
 export default function FormModal(props){
     const {modalInfo} = props;
+    const {setShowModal} = props;
+    const {setCurrentEvents} = props;
     const titleRef = useRef();
     const startRef = useRef();
     const endRef = useRef();
@@ -17,6 +20,7 @@ export default function FormModal(props){
 
     const handleOnSubmit =  useCallback(
         async (evt) => {
+          try{
           evt?.preventDefault();
           await registerReserve(
             titleRef.current.value, 
@@ -24,8 +28,12 @@ export default function FormModal(props){
             endRef.current.value,
             backgroundColor
             );
+          setShowModal(false)
+          setCurrentEvents(records)
+          }catch(e){
+          console.log(e.message)
+          }
           
-            window.location.reload();
         },
         [registerReserve]
       );

@@ -19,6 +19,7 @@ export default {
         800: '#161A22',
         900: '#10141A',
       },
+      'codengage-purple': '#712cf9',
       'light-dark': '#e2e8f0',
       'white': '#fff',
       ...blackA,

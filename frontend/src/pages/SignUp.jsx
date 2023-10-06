@@ -1,12 +1,19 @@
-import React, { useCallback, useRef } from "react";
+import React, { useCallback, useRef, useState} from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { usePocket } from "../contexts/PocketContext";
 import SwitchTheme from "../components/SwitchTheme";
 import * as Form from '@radix-ui/react-form';
 import Panel from "../components/Panel";
 import {ChevronLeftIcon} from '@radix-ui/react-icons'
+import { Logo } from "../assets/Logo";
+import { EyeClosedIcon, EyeOpenIcon } from "@radix-ui/react-icons";
+import * as Toggle from '@radix-ui/react-toggle';
+import AlertDanger from "../components/alerts/AlertDanger";
+import AlertSuccess from "../components/alerts/AlertSuccess";
+import { ClientResponseError } from "pocketbase";
 
 export default function SignUp () {
+  const usernameRef = useRef();
   const emailRef = useRef();
   const passwordRef = useRef();
   const passwordConfirmRef = useRef();
@@ -16,27 +23,42 @@ export default function SignUp () {
   const handleOnSubmit = useCallback(
     async (evt) => {
       evt?.preventDefault();
+      try{
       await register(
+        usernameRef.current.value,
         emailRef.current.value, 
         passwordRef.current.value, 
         passwordConfirmRef.current.value
         );
-      navigate("/");
+      navigate('/')
+    }
+      catch(e){
+        setShowAlert(true)
+        if(e instanceof ClientResponseError){
+        setMessageAlert('Nome de usuário ou Email ja cadastrado')
+      }else{
+        setMessageAlert(e.message)
+      }
+      }
+     
     },
     [register]
   );
 
+  const [messageAlert, setMessageAlert] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+  const [showAlert, setShowAlert] = useState(false);
   return (
-    
-    <div className="grid grid-cols-2 h-screen bg-gray-50 dark:bg-dark-600">
-   
-    <div>
-       <ChevronLeftIcon />
-      <div className="my-[16%] mx-[26%]">
-       
-        <main className="flex flex-col mt-28 gap-10 w-full ">
-          <header className="flex flex-col gap-4 w-full text-center ">
-            <h1 className="font-sans text-4xl font-bol ">
+    <div className="grid xl:grid-cols-2  h-screen bg-gray-100 dark:bg-dark-600">
+    <div className="xl:hidden absolute ml-[90%] mt-[3%]  ">
+       <SwitchTheme/>
+    </div>
+     <div className=" mx-4 mt-[10%] xl:mt-[18%] xl:mx-[26%] ">
+      <Logo/> 
+      {showAlert && <AlertDanger message={messageAlert} signIn={false}/>}
+       <main className="flex flex-col mt-3 gap-10 w-full ">
+         <header className="flex flex-col gap-4 w-full ">
+           <h1 className="font-sans text-4xl font-bol ">
               Criar Usuário
             </h1>
             <p className="font-sans font-normal text-base text-gray-600 dark:text-gray-300">
@@ -44,6 +66,28 @@ export default function SignUp () {
             </p>
           </header>
       <Form.Root onSubmit={handleOnSubmit} className="bg-[#e2e8f0] dark:bg-dark-700 rounded-xl relative p-[30px]">
+      <Form.Field className="grid mb-[5%]" name="email">
+      <div className="flex items-baseline justify-between">
+        <Form.Label className="text-[15px] font-medium leading-[35px] dark:text-white">Nome de usuário</Form.Label>
+        <Form.Message className="text-[13px] text-red-500 opacity-[0.8]" match="valueMissing">
+          * Please enter your Username
+        </Form.Message>
+        <Form.Message className="text-[13px] text-red-500 opacity-[0.8]" match="typeMismatch">
+          * This Username is invalid
+        </Form.Message>
+      </div>
+      
+      <Form.Control asChild >
+       
+        <input
+          className="box-border w-full bg-blackA5 shadow-blackA9 inline-flex h-12 focus:border-[2px] focus:border-purple-600 appearance-none items-center justify-center rounded-lg px-[10px] text-[15px] leading-none outline-none hover:shadow-[0_0_0_1px_black] focus:shadow-md focus:shadow-purple-900 selection:color-white selection:bg-blackA9"
+          type="text"
+          required
+          ref={usernameRef}
+          
+        />
+      </Form.Control>
+    </Form.Field>
       <Form.Field className="grid mb-[5%]" name="email">
       <div className="flex items-baseline justify-between">
         <Form.Label className="text-[15px] font-medium leading-[35px] dark:text-white">Email</Form.Label>
@@ -67,36 +111,63 @@ export default function SignUp () {
       <div className="flex items-baseline justify-between">
         <Form.Label className="text-[15px] font-medium leading-[35px] dark:text-white">Senha</Form.Label>
         <Form.Message className="text-[13px] text-red-500 opacity-[0.8]" match="valueMissing">
-          * Please enter your password
+          * Please enter your password.
+        </Form.Message>
+        <Form.Message className="text-[13px] text-red-500 opacity-[0.8]" match={(value, formData)=> value.length < 8 || value.length > 72}>
+          * The length must be between 8 and 72.
         </Form.Message>
       </div>
+      <div className="flex items-baseline justify-between">
       <Form.Control asChild>
         <input
+        name="password"
           className="box-border w-full bg-blackA5 shadow-blackA9 inline-flex h-12 focus:border-[2px] focus:border-purple-600 appearance-none items-center justify-center rounded-lg px-[10px] text-[15px] leading-none outline-none hover:shadow-[0_0_0_1px_black] focus:shadow-md focus:shadow-purple-900 selection:color-white selection:bg-blackA9"
-          type="password"
+          type={showPassword ? 'text' : 'password'}
           required
           ref={passwordRef}
         />
       </Form.Control>
+      <Toggle.Root
+      className="flex items-center justify-center w-10 h-10"
+      onClick={() => setShowPassword(!showPassword)}
+      >
+        {showPassword ? <EyeOpenIcon/> : <EyeClosedIcon/>}
+      </Toggle.Root>  
+      </div>
     </Form.Field>
-    <Form.Field className="grid mb-[10px]" name="password">
+    <Form.Field className="grid mb-[10px]" name="passwordConfirm">
       <div className="flex items-baseline justify-between">
         <Form.Label className="text-[15px] font-medium leading-[35px] dark:text-white">Confirmar senha</Form.Label>
         <Form.Message className="text-[13px] text-red-500 opacity-[0.8]" match="valueMissing">
-          * Please confirm your password
+          * Please confirm your password.
         </Form.Message>
+        <Form.Message className="text-[13px] text-red-500 opacity-[0.8]" match={(value, formData)=> value !== passwordRef.current.value}>
+          * Values don't match.
+        </Form.Message>
+        {}
       </div>
+      <div className="flex items-baseline justify-between">
       <Form.Control asChild>
         <input
+        name="passwordConfirm"
           className="box-border w-full bg-blackA5 shadow-blackA9 inline-flex h-12 focus:border-[2px] focus:border-purple-600 appearance-none items-center justify-center rounded-lg px-[10px] text-[15px] leading-none outline-none hover:shadow-[0_0_0_1px_black] focus:shadow-md focus:shadow-purple-900 selection:color-white selection:bg-blackA9"
-          type="password"
+          type={showPassword ? 'text' : 'password'}
           required
           ref={passwordConfirmRef}
         />
       </Form.Control>
+      <Toggle.Root
+      className="flex items-center justify-center w-10 h-10"
+      onClick={() => setShowPassword(!showPassword)}
+      >
+        {showPassword ? <EyeOpenIcon/> : <EyeClosedIcon/>}
+      </Toggle.Root> 
+      </div>
     </Form.Field>
        <div className="text-center grid">
-       <button className='mb-[5%] h-12 bg-purple-500 dark:bg-purple-700 dark:hover:bg-purple-900 text-white hover:bg-purple-900 my-2 box-border w-full shadow-blackA7 dark:shadow-slate-500 inline-flex items-center justify-center rounded-lg px-[15px] font-medium leading-none shadow-[0_2px_10px] focus:shadow-[0_0_0_2px] focus:shadow-black focus:outline-none' >
+       <button
+       type="submit"
+       className='mb-[5%] h-12 bg-purple-500 dark:bg-purple-700 dark:hover:bg-purple-900 text-white hover:bg-purple-900 my-2 box-border w-full shadow-blackA7 dark:shadow-slate-500 inline-flex items-center justify-center rounded-lg px-[15px] font-medium leading-none shadow-[0_2px_10px] focus:shadow-[0_0_0_2px] focus:shadow-black focus:outline-none' >
          Criar Usuário
         </button>
         <Link to="/">Ir para login</Link>
@@ -106,7 +177,6 @@ export default function SignUp () {
         </main>
         </div>
         
-        </div>
       <Panel/>
     </div>
   );

@@ -1,9 +1,9 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import DemoApp from '../pages/DemoApp'
 import  SignIn  from "../pages/SignIn";
 import  SignUp  from "../pages/SignUp";
 import { Protected } from "../pages/Protected";
 import { RequireAuth } from "../components/RequireAuth";
+import Schedule from "../pages/Schedule";
 export default function Router(){
     return(
         <BrowserRouter>
@@ -11,7 +11,7 @@ export default function Router(){
           <Route index element={<SignIn />} />
           <Route path="/sign-up" element={<SignUp />} />
           <Route element={<RequireAuth />}>
-            <Route exact  path="/demoapp" element={<DemoApp />} />
+            <Route exact  path="/schedule" element={<Schedule/>} />
             <Route path="/protected" element={<Protected />} />
           </Route>
         </Routes>
