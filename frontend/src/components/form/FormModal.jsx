@@ -12,11 +12,14 @@ export default function FormModal(props){
     const {setShowModal} = props;
     const {setCurrentEvents} = props;
     const titleRef = useRef();
+    const salaRef = useRef();
     const startRef = useRef();
     const endRef = useRef();
      let backgroundColor = ''
     const { registerReserve } = usePocket();
     const navigate = useNavigate();
+    const { user } = usePocket();
+    const creator = user.id;
 
     const handleOnSubmit =  useCallback(
         async (evt) => {
@@ -24,12 +27,15 @@ export default function FormModal(props){
           evt?.preventDefault();
           await registerReserve(
             titleRef.current.value, 
+            creator, 
+            salaRef.current.value,
             startRef.current.value,
             endRef.current.value,
             backgroundColor
             );
           setShowModal(false)
           setCurrentEvents(records)
+          window.location.reload();
           }catch(e){
           console.log(e.message)
           }
@@ -56,6 +62,21 @@ export default function FormModal(props){
             required
             ref={titleRef}
           />
+        </Form.Control>
+      </Form.Field>
+      <Form.Field className="grid mb-[10px]" name="title">
+        <div className="flex items-baseline justify-between">
+          <Form.Label className="text-[15px] font-medium leading-[35px] ">Sala</Form.Label>
+          <Form.Message className="text-[13px]  opacity-[0.8]" match="valueMissing">
+             adicione uma sala
+          </Form.Message>
+        </div>
+        <Form.Control asChild>
+        <select ref = {salaRef} className="w-full dark:bg-dark-800 inline-flex h-[35px] appearance-none items-center justify-center rounded-md">
+            <option type="nome" value="Sala1" >Sala1 </option>
+            <option type="nome" value="Sala2" >Sala2</option>
+            <option type="nome" value="Sala3" >Sala3</option>
+          </select>
         </Form.Control>
       </Form.Field>
       <Form.Field className="grid mb-[10px]" name="start">
