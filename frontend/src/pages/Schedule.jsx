@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 import { formatDate } from '@fullcalendar/core'
 import '../styles/schedule.css'
 import FullCalendar from '@fullcalendar/react'
@@ -8,7 +8,10 @@ import interactionPlugin from '@fullcalendar/interaction'
 import {records} from '../utils/event-utils'
 import "../styles/modal.css";
 import ModalCalendar from "../components/ModalCalendar";
+import Delet from "../components/form/Delet";
+import Drag from "../components/form/Drag";
 import Sidebar from "../components/Sidebar";
+import { usePocket } from "../contexts/PocketContext";
 
 
 
@@ -16,6 +19,8 @@ export default function Schedule(){
     
       const [ weekendsVisible, setWeekendsVisible] = useState(false)
       const [ showModal, setShowModal] = useState(false)
+      const [ showDelet, setShowDelet] = useState(false)
+      const [ showDrag, setShowDrag] = useState(false)
       const [currentEvents, setCurrentEvents] = useState(records)
       const [modalInfo, setModalInfo] = useState({})
 
@@ -60,12 +65,19 @@ export default function Schedule(){
             weekends={weekendsVisible}
             initialEvents={currentEvents} 
             select={(selectInfo)=>{
-                setShowModal(true)
-                setModalInfo(selectInfo)
+                setShowModal(true);
+                setModalInfo(selectInfo);
             }}
             eventContent={renderEventContent} 
-            eventClick={handleEventClick}
+            eventClick={(clickInfo)=>{
+               setShowDelet(true);
+               setModalInfo(clickInfo);
+            }}
             eventsSet={(events)=>{setCurrentEvents(events)}} 
+            eventChange={(eventInfo)=>{
+              setShowDrag(true);
+              setModalInfo(eventInfo);
+            }}
             /*
             eventAdd={function(){}} 
             eventChange={function(){}}
@@ -77,24 +89,19 @@ export default function Schedule(){
           setShowModal={setShowModal}
           setCurrentEvents={setCurrentEvents}
           />}
+          {showDelet && <Delet 
+          modalInfo={modalInfo}
+          setShowDelet={setShowDelet}
+          />}
+           {showDrag && <Drag 
+          modalInfo={modalInfo}
+          setShowDrag={setShowDrag}
+          />}
         </div> 
         
       </div>
     )
 }
-
-function handleEventClick  (clickInfo){
-  const id = clickInfo.event.id
-    if (confirm(`Tem certeza que quer cancelar a reserva? '${clickInfo.event.title}'`)) {
-      /*this.setState({
-        showDel: true,
-        modalInfo: id
-      })*/
-    }
-   console.log(clickInfo.event.extendedProps.sala)
-}
-
-
 
 function renderEventContent(eventInfo) {
     return (
