@@ -84,7 +84,14 @@ export default function Schedule(){
 }
 
 function handleEventClick  (clickInfo){
-   console.log(clickInfo)
+  const id = clickInfo.event.id
+    if (confirm(`Tem certeza que quer cancelar a reserva? '${clickInfo.event.title}'`)) {
+      /*this.setState({
+        showDel: true,
+        modalInfo: id
+      })*/
+    }
+   console.log(clickInfo.event.extendedProps.sala)
 }
 
 
@@ -94,6 +101,7 @@ function renderEventContent(eventInfo) {
       <>
         <b>{eventInfo.timeText}</b>
         <i>{eventInfo.event.title}</i>
+        <b>{eventInfo.event.extendedProps.sala}</b>
         <>{eventInfo.eventColor}</>
       </>
     )
