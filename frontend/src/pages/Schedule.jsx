@@ -36,7 +36,7 @@ export default function Schedule(){
          setWeekendsVisible={setWeekendsVisible}
          renderSidebarEvent= {renderSidebarEvent}
          />
-        <div className='demo-app-main font-light px-[2%] pt-[2%] '>
+        <div className='demo-app-main border-l-2 border-black dark:border-white rounded-l-3xl font-light px-[2%] pt-[2%] shadow-xl shadow-black dark:shadow-white'>
         
           <FullCalendar
             plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}

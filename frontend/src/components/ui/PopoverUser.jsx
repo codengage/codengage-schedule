@@ -1,7 +1,8 @@
 import * as Popover from '@radix-ui/react-popover';
-import { MixerHorizontalIcon, Cross2Icon } from '@radix-ui/react-icons';
-import { BiUser } from '@react-icons/all-files/bi/BiUser'
-import { usePocket } from "../../contexts/PocketContext";
+import { Cross2Icon} from '@radix-ui/react-icons';
+import { RxAvatar, RxCrossCircled} from 'react-icons/rx'
+import { usePocket } from "../../contexts/PocketContext"; 
+
 
 export default function PopoverUser(){
     const { logout, user } = usePocket();
@@ -10,9 +11,9 @@ export default function PopoverUser(){
 <Popover.Root>
     <Popover.Trigger asChild>
       <button
-        className="cursor-default items-center"
+        className=" items-center"
       >
-        <BiUser size={30}/>
+        <RxAvatar size={40}/>
       </button>
     </Popover.Trigger>
     <Popover.Portal>
@@ -35,10 +36,10 @@ export default function PopoverUser(){
           </fieldset>
         </div>
         <Popover.Close
-          className="rounded-full h-[25px] w-[25px] inline-flex items-center justify-center text-codengage-purple dark:text-white absolute top-[5px] right-[5px] hover:bg-violet4 dark:hover:bg-dark-200 focus:shadow-[0_0_0_2px] focus:shadow-violet7 outline-none cursor-default"
+          className="rounded-full h-[25px] w-[25px] inline-flex items-center justify-center text-codengage-purple dark:text-white absolute top-[5px] right-[5px] hover:bg-violet4 dark:hover:bg-dark-200"
           aria-label="Close"
         >
-          <Cross2Icon />
+          <RxCrossCircled size={30} />
         </Popover.Close>
         <Popover.Arrow className="fill-white dark:fill-dark-100" />
       </Popover.Content>

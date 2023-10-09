@@ -3,6 +3,7 @@ import * as Toggle from '@radix-ui/react-toggle';
 import { Link } from 'react-router-dom';
 import { BsCalendar } from '@react-icons/all-files/bs/BsCalendar'
 import { BsCalendarFill } from '@react-icons/all-files/bs/BsCalendarFill'
+import { RxListBullet } from 'react-icons/rx';
 import PopoverUser from './PopoverUser';
 
 export default function Sidebar(props){
@@ -11,12 +12,13 @@ export default function Sidebar(props){
     const {setWeekendsVisible} = props;
     const {renderSidebarEvent} = props;
    return( 
-   <div className='w-[18%] block bg-[#e2e8f0] rounded-tr-xl dark:bg-dark-300  shadow-xl shadow-black dark:shadow-white dark:text-white'>
+   <div className='w-[5%] block dark:text-white'>
         
-    <div className='mt-[13%] flex items-baseline justify-around'>
+    <div className='mt-[20%] flex flex-col items-center justify-between h-screen'>
       
+    <PopoverUser/>
+  
     <Toggle.Root
-    className=''
     defaultPressed={weekendsVisible}
     onPressedChange={(pressed)=>{
     setWeekendsVisible(!pressed);
@@ -25,9 +27,10 @@ export default function Sidebar(props){
     {weekendsVisible ? <BsCalendarFill size={30}/>:<BsCalendar size={30}/>}
   </Toggle.Root>
 
-  <PopoverUser/>
-  
+  <RxListBullet size={30}/>
+ 
   <SwitchTheme/>
+  
 
     </div>
     <div className='p-[2rem]'>
