@@ -1,17 +1,18 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import  SignIn  from "../pages/SignIn";
-import  SignUp  from "../pages/SignUp";
+import  SignIn  from "../components/SignIn";
+import  SignUp  from "../components/SignUp";
 import { Protected } from "../pages/Protected";
 import { RequireAuth } from "../components/RequireAuth";
 import Schedule from "../pages/Schedule";
+import Sign from "../pages/Sign";
 export default function Router(){
     return(
         <BrowserRouter>
         <Routes>
-          <Route index element={<SignIn />} />
-          <Route path="/sign-up" element={<SignUp />} />
+          <Route index element={<Sign />} /> 
+          <Route exact  path="/schedule" element={<Schedule/>} />
           <Route element={<RequireAuth />}>
-            <Route exact  path="/schedule" element={<Schedule/>} />
+            
             <Route path="/protected" element={<Protected />} />
           </Route>
         </Routes>

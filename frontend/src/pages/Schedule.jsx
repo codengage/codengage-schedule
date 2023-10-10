@@ -16,13 +16,20 @@ import { usePocket } from "../contexts/PocketContext";
 
 
 export default function Schedule(){
-    
+      const {user} = usePocket();
+      const navigate = useNavigate();
+      if(!user){
+        navigate('/')
+      } 
+      
       const [ weekendsVisible, setWeekendsVisible] = useState(false)
       const [ showModal, setShowModal] = useState(false)
       const [ showDelet, setShowDelet] = useState(false)
       const [ showDrag, setShowDrag] = useState(false)
       const [currentEvents, setCurrentEvents] = useState(records)
       const [modalInfo, setModalInfo] = useState({})
+       
+      
 
     return(
         <div className='flex font-bold'>
@@ -32,7 +39,7 @@ export default function Schedule(){
          setWeekendsVisible={setWeekendsVisible}
          renderSidebarEvent= {renderSidebarEvent}
          />
-        <div className='demo-app-main font-light px-[2%] pt-[2%] '>
+        <div className='demo-app-main border-l-2 border-black dark:border-white rounded-l-3xl font-light px-[2%] pt-[2%] shadow-xl shadow-black dark:shadow-white'>
         
           <FullCalendar
             plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}

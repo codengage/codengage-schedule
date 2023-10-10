@@ -1,4 +1,5 @@
-export default function AlertSuccess(){
+export default function AlertSuccess(props){
+  const {message} = props;
     return(
    <div class="flex items-center p-4 mb-4 text-sm text-green-800 border border-green-300 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400 dark:border-green-800" role="alert">
     <svg class="flex-shrink-0 inline w-4 h-4 mr-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
@@ -6,7 +7,7 @@ export default function AlertSuccess(){
     </svg>
     <span class="sr-only">Info</span>
     <div>
-      <span class="font-medium">Success alert!</span> Change a few things up and try submitting again.
+      <span class="font-medium">Sucesso!</span> <label>{message}</label>
     </div>
   </div>
   )
