@@ -80,6 +80,12 @@ export const PocketProvider = ({ children }) => {
     .delete(idRef);
   }, []);
 
+  const update = useCallback(async (title, creator, sala, start, end, backgroundColor) => {
+    return await pb
+      .collection('ReserveCalendar')
+      .update({id, title, creator, sala, start, end, backgroundColor, textColor: '#fff', borderColor: backgroundColor}) 
+  }, []);
+
   const refreshSession = useCallback(async () => {
     if (!pb.authStore.isValid) return;
       const decoded = jwtDecode(token);
@@ -94,7 +100,7 @@ export const PocketProvider = ({ children }) => {
 
   return (
     <PocketContext.Provider
-      value={{ register, login, logout, drag, ler, show, del, registerReserve, user, token, pb }}
+      value={{ register, login, logout, drag, ler, show, del, update, registerReserve, user, token, pb }}
     >
       {children}
     </PocketContext.Provider>

@@ -3,8 +3,8 @@ import { usePocket } from "../../contexts/PocketContext";
 
 export default function Drag(props) {
     const {modalInfo} = props;
-    const {setShowDrag} = props;
     const { drag } = usePocket();
+    
 
     const faz = useCallback(
         async (evt) => {
@@ -16,6 +16,6 @@ export default function Drag(props) {
     )
 
     return( 
-        faz()
+        <div>{faz()}</div>
     );
 };
