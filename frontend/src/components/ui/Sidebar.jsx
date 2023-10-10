@@ -5,12 +5,15 @@ import { BsCalendar } from '@react-icons/all-files/bs/BsCalendar'
 import { BsCalendarFill } from '@react-icons/all-files/bs/BsCalendarFill'
 import { RxListBullet } from 'react-icons/rx';
 import PopoverUser from './PopoverUser';
+import { useState } from 'react';
+import ModalList from './modal/ModalList';
 
 export default function Sidebar(props){
     const {currentEvents} = props;
     const {weekendsVisible} = props;
     const {setWeekendsVisible} = props;
     const {renderSidebarEvent} = props;
+    const [showModalList,  setShowModalList] = useState()
    return( 
    <div className='w-[5%] block dark:text-white'>
         
@@ -26,9 +29,19 @@ export default function Sidebar(props){
   >
     {weekendsVisible ? <BsCalendarFill size={30}/>:<BsCalendar size={30}/>}
   </Toggle.Root>
-
+<button
+onClick={()=>{
+  setShowModalList(true);
+}}
+>
   <RxListBullet size={30}/>
- 
+ </button>
+
+ {showModalList && <ModalList 
+ setShowModalList={setShowModalList}
+ currentEvents={currentEvents}
+ renderSidebarEvent={renderSidebarEvent}
+ />}
   <SwitchTheme/>
   
 

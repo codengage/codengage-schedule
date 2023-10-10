@@ -7,10 +7,11 @@ import timeGridPlugin from '@fullcalendar/timegrid'
 import interactionPlugin from '@fullcalendar/interaction'
 import {records} from '../utils/event-utils'
 import "../styles/modal.css";
-import ModalCalendar from "../components/ui/ModalCalendar";
+import ModalCalendar from "../components/ui/modal/ModalCalendar";
 import Sidebar from "../components/ui/Sidebar";
 import { usePocket } from "../contexts/PocketContext";
 import { useNavigate } from "react-router-dom";
+import ModalEvent from "../components/ui/modal/ModalReserve";
 
 
 
@@ -21,11 +22,11 @@ export default function Schedule(){
         navigate('/')
       } 
       
-      const [ weekendsVisible, setWeekendsVisible] = useState(false)
-      const [ showModal, setShowModal] = useState(false)
-      const [currentEvents, setCurrentEvents] = useState(records)
-      const [modalInfo, setModalInfo] = useState({})
-       
+      const [ weekendsVisible, setWeekendsVisible] = useState(false);
+      const [ showModal, setShowModal] = useState(false);
+      const [currentEvents, setCurrentEvents] = useState(records);
+      const [modalInfo, setModalInfo] = useState({});
+       const [showModalEvent, setShowModalEvent] = useState(false);
       
 
     return(
@@ -73,7 +74,10 @@ export default function Schedule(){
                 setModalInfo(selectInfo)
             }}
             eventContent={renderEventContent} 
-            eventClick={handleEventClick}
+            eventClick={(clickInfo)=>{
+              setShowModalEvent(true)
+              setModalInfo(clickInfo)
+            }}
             eventsSet={(events)=>{setCurrentEvents(events)}} 
             /*
             eventAdd={function(){}} 
@@ -86,14 +90,14 @@ export default function Schedule(){
           setShowModal={setShowModal}
           setCurrentEvents={setCurrentEvents}
           />}
+          {showModalEvent && <ModalEvent
+           setShowModalEvent={setShowModalEvent}
+           modalInfo={modalInfo}
+           />}
         </div> 
         
       </div>
     )
-}
-
-function handleEventClick  (clickInfo){
-   console.log(clickInfo)
 }
 
 
