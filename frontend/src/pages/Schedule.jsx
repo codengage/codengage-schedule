@@ -7,9 +7,10 @@ import timeGridPlugin from '@fullcalendar/timegrid'
 import interactionPlugin from '@fullcalendar/interaction'
 import {records} from '../utils/event-utils'
 import "../styles/modal.css";
-import ModalCalendar from "../components/ui/ModalCalendar";
+import ModalCalendar from "../components/ui/modal/ModalCalendar";
 import Delet from "../components/form/Delet";
 import Drag from "../components/form/Drag";
+import Update from "../components/form/Update"
 import Sidebar from "../components/ui/Sidebar";
 import { usePocket } from "../contexts/PocketContext";
 
@@ -22,10 +23,9 @@ export default function Schedule(){
       const [ showModal, setShowModal] = useState(false)
       const [ showDelet, setShowDelet] = useState(false)
       const [ showDrag, setShowDrag] = useState(false)
+      const [ showUpdate, setShowUpdate] = useState(false)
       const [currentEvents, setCurrentEvents] = useState(records)
       const [modalInfo, setModalInfo] = useState({})
-       
-      
 
     return(
         <div className='flex font-bold'>
@@ -99,6 +99,10 @@ export default function Schedule(){
            {showDrag && <Drag 
           modalInfo={modalInfo}
           setShowDrag={setShowDrag}
+          />}
+          {showUpdate && <Update 
+          modalInfo={modalInfo}
+          setShowUpdate={setShowUpdate}
           />}
         </div> 
         

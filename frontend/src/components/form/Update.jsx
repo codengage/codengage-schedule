@@ -7,17 +7,14 @@ import { records } from "../../utils/event-utils";
 
 
 
-export default function FormModal(props){
+export default function Update(props){
     const {modalInfo} = props;
     const {setShowModal} = props;
     const {setCurrentEvents} = props;
     const titleRef = useRef();
     const salaRef = useRef();
-    const startRef = useRef();
-    const endRef = useRef();
      let backgroundColor = ''
-    const { registerReserve } = usePocket();
-    const navigate = useNavigate();
+    const { update } = usePocket();
     const { user } = usePocket();
     const creator = user.id;
 
@@ -29,11 +26,9 @@ export default function FormModal(props){
             titleRef.current.value, 
             creator, 
             salaRef.current.value,
-            startRef.current.value,
-            endRef.current.value,
             backgroundColor
             );
-          setShowModal(false)
+        setShowModal(false)
           setCurrentEvents(records)
           window.location.reload();
           }catch(e){
@@ -51,7 +46,7 @@ export default function FormModal(props){
         <div className="flex items-baseline justify-between">
           <Form.Label className="text-[15px] font-medium leading-[35px] ">Título</Form.Label>
           <Form.Message className="text-[13px]  opacity-[0.8]" match="valueMissing">
-             adicione um Título
+             Renomeie
           </Form.Message>
         </div>
         <Form.Control asChild>
@@ -67,7 +62,7 @@ export default function FormModal(props){
         <div className="flex items-baseline justify-between">
           <Form.Label className="text-[15px] font-medium leading-[35px] ">Sala</Form.Label>
           <Form.Message className="text-[13px]  opacity-[0.8]" match="valueMissing">
-             adicione uma sala
+             Modifique uma sala
           </Form.Message>
         </div>
         <Form.Control asChild>
@@ -76,45 +71,6 @@ export default function FormModal(props){
             <option type="nome" value="Sala2" >Sala2</option>
             <option type="nome" value="Sala3" >Sala3</option>
           </select>
-        </Form.Control>
-      </Form.Field>
-      <Form.Field className="grid mb-[10px]" name="start">
-      <div className="flex items-baseline justify-between">
-        <Form.Label className="text-[15px] font-medium leading-[35px] ">
-          Inicio
-        </Form.Label>
-        <Form.Message className="text-[13px]  opacity-[0.8]" match="valueMissing">
-            Adicione uma Data de Inicio
-        </Form.Message>
-        </div>
-        <Form.Control asChild>
-        <input 
-        type="datetime-local" 
-        defaultValue={modalInfo.startStr}
-        className="w-full h-10 p-2 bg-[#e2e8f0] dark:bg-dark-800 rounded-md"
-        required
-        ref={startRef}
-        />
-        </Form.Control>
-        
-      </Form.Field>
-       <Form.Field className="grid mb-[10px]" name="end">
-       <div className="flex items-baseline justify-between">
-      <Form.Label className="text-[15px] font-medium leading-[35px] ">
-         Fim 
-        </Form.Label>
-        <Form.Message className="text-[13px]  opacity-[0.8]" match="valueMissing">
-             Adicione uma Data Final
-          </Form.Message>
-          </div>
-        <Form.Control asChild>
-        <input 
-        type="datetime-local" 
-        defaultValue={modalInfo.endStr}
-        className="w-full bg-[#e2e8f0] h-10 p-2 dark:bg-dark-800 rounded-md"
-        required
-        ref={endRef}
-        />
         </Form.Control>
       </Form.Field>
       <Form.Field>

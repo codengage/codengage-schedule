@@ -48,8 +48,7 @@ export const PocketProvider = ({ children }) => {
   }, []);
   
   const registerReserve = useCallback(async (title, creator, sala, start, end, backgroundColor) => {
-    const id = (Math.random().toString(36)+'0000000000000000').slice(2, 15+2);
-    id.substring(0,14)
+    const id = Array(15+1).join((Math.random().toString(36)+'00000000000000000').slice(2, 18)).slice(0, 15)
     return await pb
       .collection('ReserveCalendar')
       .create({id, title, creator, sala, start, end, backgroundColor, textColor: '#fff', borderColor: backgroundColor})
@@ -80,10 +79,10 @@ export const PocketProvider = ({ children }) => {
     .delete(idRef);
   }, []);
 
-  const update = useCallback(async (title, creator, sala, start, end, backgroundColor) => {
+  const update = useCallback(async (title, creator, sala, backgroundColor) => {
     return await pb
       .collection('ReserveCalendar')
-      .update({id, title, creator, sala, start, end, backgroundColor, textColor: '#fff', borderColor: backgroundColor}) 
+      .update({id, title, creator, sala, backgroundColor, textColor: '#fff', borderColor: backgroundColor}) 
   }, []);
 
   const refreshSession = useCallback(async () => {
