@@ -16,7 +16,6 @@ export default function Drag(props) {
     )
 
     return( 
-        //console.log(props.modalInfo.event.start)
         faz()
     );
 };

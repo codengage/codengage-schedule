@@ -71,8 +71,11 @@ export const PocketProvider = ({ children }) => {
  }, []);
 
  const drag = useCallback(async (idRef, startRef, endRef) => {
-  await pb.collection('ReserveCalendar')
+  try{await pb.collection('ReserveCalendar')
   .update(idRef,{"start": startRef, "end": endRef});
+ }catch(e){
+  alert('Sala Ocupada');
+ }
 }, []);
 
   const del = useCallback(async (idRef) => {
