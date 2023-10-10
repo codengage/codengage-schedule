@@ -7,20 +7,16 @@ import timeGridPlugin from '@fullcalendar/timegrid'
 import interactionPlugin from '@fullcalendar/interaction'
 import {records} from '../utils/event-utils'
 import "../styles/modal.css";
-import ModalCalendar from "../components/ModalCalendar";
+import ModalCalendar from "../components/ui/ModalCalendar";
 import Delet from "../components/form/Delet";
 import Drag from "../components/form/Drag";
-import Sidebar from "../components/Sidebar";
+import Sidebar from "../components/ui/Sidebar";
 import { usePocket } from "../contexts/PocketContext";
 
 
 
 export default function Schedule(){
       const {user} = usePocket();
-      const navigate = useNavigate();
-      if(!user){
-        navigate('/')
-      } 
       
       const [ weekendsVisible, setWeekendsVisible] = useState(false)
       const [ showModal, setShowModal] = useState(false)
