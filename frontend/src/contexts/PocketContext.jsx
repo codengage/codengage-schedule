@@ -67,22 +67,22 @@ export const PocketProvider = ({ children }) => {
     await pb.collection("ReserveCalendar")
     .getFirstListItem(idRef,{expand: 'relField1,relField2.subRelField',})
     .then((res) => console.log(res));
- }, []);
+  }, []);
 
  const drag = useCallback(async (idRef, startRef, endRef) => {
   await pb.collection('ReserveCalendar')
   .update(idRef,{"start": startRef, "end": endRef});
-}, []);
+  }, []);
 
   const del = useCallback(async (idRef) => {
     await pb.collection('ReserveCalendar')
     .delete(idRef);
   }, []);
 
-  const update = useCallback(async (title, creator, sala, backgroundColor) => {
+  const update = useCallback(async (id, title, sala) => {
     return await pb
       .collection('ReserveCalendar')
-      .update({id, title, creator, sala, backgroundColor, textColor: '#fff', borderColor: backgroundColor}) 
+      .update(id, {title, sala}) 
   }, []);
 
   const refreshSession = useCallback(async () => {

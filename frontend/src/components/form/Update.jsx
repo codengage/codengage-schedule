@@ -24,9 +24,7 @@ export default function Update(props){
           evt?.preventDefault();
           await update(
             titleRef.current.value, 
-            creator, 
             salaRef.current.value,
-            backgroundColor
             );
         setShowModal(false)
           setCurrentEvents(records)

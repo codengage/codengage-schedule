@@ -46,15 +46,6 @@ onClick={()=>{
   
 
     </div>
-    <div className='p-[2rem]'>
-      <h2>Todas as Reservas ({currentEvents.length})</h2>
-      <ul>
-        {currentEvents.map(renderSidebarEvent)}
-      </ul>
-    </div>
-    <div className='p-[2rem]'>
-  
-    </div>
   </div>
   )
 }
