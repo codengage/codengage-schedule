@@ -63,15 +63,16 @@ export default function Delet(props) {
                 </Form.Control>
                 </Form.Field>
             </Form.Root>
-
+            <div className="flex items-baseline justify-between">
                 <Form.Root className="" onSubmit={handleOnSubmit}>
                     <Form.Field className="grid mb-[10px]" name="title">
-                        <div className="flex items-baseline justify-between">
-                            <Form.Submit asChild>
-                                <button className='mt-3 dark:bg-dark-900 my-2 box-border w-full dark:text-white shadow-blackA7 dark:shadow-slate-500 hover:bg-mauve3 inline-flex h-[35px] items-center justify-center rounded-[4px] bg-white px-[15px] font-medium leading-none shadow-[0_2px_10px] focus:shadow-[0_0_0_2px] focus:shadow-black focus:outline-none' >
-                                    Deletar
-                                </button>
-                            </Form.Submit>
+                        <Form.Submit asChild>
+                            <button className='mt-3 dark:bg-dark-900 my-2 box-border w-full dark:text-white shadow-blackA7 dark:shadow-slate-500 hover:bg-mauve3 inline-flex h-[35px] items-center justify-center rounded-[4px] bg-white px-[15px] font-medium leading-none shadow-[0_2px_10px] focus:shadow-[0_0_0_2px] focus:shadow-black focus:outline-none' >
+                                Deletar
+                            </button>
+                        </Form.Submit>
+                    </Form.Field>
+                </Form.Root>
                             <button onClick={() => {
                                 up()
                             }}className='mt-3 dark:bg-dark-900 my-2 box-border w-full dark:text-white shadow-blackA7 dark:shadow-slate-500 hover:bg-mauve3 inline-flex h-[35px] items-center justify-center rounded-[4px] bg-white px-[15px] font-medium leading-none shadow-[0_2px_10px] focus:shadow-[0_0_0_2px] focus:shadow-black focus:outline-none' >
@@ -83,8 +84,7 @@ export default function Delet(props) {
                                 Voltar
                             </button>
                         </div>
-                    </Form.Field>
-                </Form.Root>
+                    
             </div>
         </div>
     );
