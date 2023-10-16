@@ -13,8 +13,6 @@ import Drag from "../components/form/Drag";
 import Sidebar from "../components/ui/Sidebar";
 import { usePocket } from "../contexts/PocketContext";
 
-
-
 export default function Schedule(){
       const {user} = usePocket();
       
@@ -72,7 +70,7 @@ export default function Schedule(){
             eventContent={renderEventContent} 
             eventClick={(clickInfo)=>{
                setShowDelet(true);
-               setModalInfo(clickInfo);
+               setModalInfo(clickInfo)
             }}
             eventsSet={(events)=>{setCurrentEvents(events)}} 
             eventDrop={(eventInfo)=>{
@@ -107,7 +105,7 @@ function renderEventContent(eventInfo) {
     return (
       <>
         <b>{eventInfo.timeText}</b>
-        <i>{eventInfo.event.title}</i>
+        <b>/</b>
         <b>{eventInfo.event.extendedProps.sala}</b>
         <>{eventInfo.eventColor}</>
       </>
@@ -118,9 +116,7 @@ function renderSidebarEvent(event) {
   return (
     <li key={event.id}>
       <b>{ 
-        
-      formatDate(event.start, {timeZone: 'UTC',locale:"pt-br", hour: 'numeric', month: 'short',minute: '2-digit', day: 'numeric', meridiem: 'short'}
-      
+        formatDate(event.start, {timeZone: 'UTC',locale:"pt-br", hour: 'numeric', month: 'short',minute: '2-digit', day: 'numeric', meridiem: 'short'}
       )}</b>
       <i>{event.title}</i>
     </li>

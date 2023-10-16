@@ -12,14 +12,14 @@ export default function Drag(props) {
         async (evt) => {
             evt?.preventDefault();
             await drag(id, sta, end);
-            window.location.reload(true);
+            location.reload(false);
         },
         [drag]
     )
 
-    return( 
-        
+    return(         
         <div>
-        {faz()}</div>
+            {faz()}
+        </div>
     );
 };

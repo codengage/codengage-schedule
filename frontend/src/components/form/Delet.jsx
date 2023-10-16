@@ -11,31 +11,27 @@ export default function Delet(props) {
     const salaRef = useRef();
     const { del , update} = usePocket();
 
+
     const handleOnSubmit = useCallback(
         async (evt) => {
             evt?.preventDefault();
             await del(props.modalInfo.event.id);
-            window.location.reload(true);
+            location.reload(false);
         },
         [del]
     )
 
     const up =  useCallback(
         async (evt) => {
-          try{
           evt?.preventDefault();
           await update(
             props.modalInfo.event.id,
             titleRef.current.value, 
             salaRef.current.value,
-            );
-          window.location.reload();
-          }catch(e){
-          console.log(e.message)
-          }
-        },
+          )
+          location.reload(false);
         [update]
-      );
+          });
 
     return( 
         <div className="modal__wrapper">

@@ -12,6 +12,7 @@ import { useInterval } from "usehooks-ts";
 import jwtDecode from "jwt-decode";
 import ms from "ms";
 
+
 const BASE_URL = "http://192.168.1.184:8090";
 const fiveMinutesInMs = ms("5 minutes");
 const twoMinutesInMs = ms("2 minutes");
@@ -52,7 +53,7 @@ export const PocketProvider = ({ children }) => {
     return await pb
       .collection('ReserveCalendar')
       .create({id, title, creator, sala, start, end, backgroundColor, textColor: '#fff', borderColor: backgroundColor})
-      .then (await pb
+      .then (pb
         .collection("users")
         .update(creator, {"reserva+": id}))
   }, []);
@@ -98,6 +99,7 @@ export const PocketProvider = ({ children }) => {
   useInterval(refreshSession, token ? twoMinutesInMs : null);
 
   return (
+    //{queryFn: update, queryKey: ["up",id]},
     <PocketContext.Provider
       value={{ register, login, logout, drag, ler, show, del, update, registerReserve, user, token, pb }}
     >
