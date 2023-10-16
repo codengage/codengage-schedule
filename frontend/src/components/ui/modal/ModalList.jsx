@@ -11,8 +11,7 @@ export default function ModalList(props){
   return (
         <div className="modal__wrapper">
       <div className="single__modal  dark:bg-dark-400 border-2 border-[#712cf9] dark:border-white">
-        <span className="close__modal p-2">
-          
+        <span className="close__modal -top-3 -right-3 bg-white dark:bg-dark-400 rounded-full">
          <RxCrossCircled
          size={30} 
           onClick={() => {

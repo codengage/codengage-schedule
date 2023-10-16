@@ -1,10 +1,10 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import  SignIn  from "../components/SignIn";
-import  SignUp  from "../components/SignUp";
 import { Protected } from "../pages/Protected";
 import { RequireAuth } from "../components/RequireAuth";
 import Schedule from "../pages/Schedule";
 import Sign from "../pages/Sign";
+
+
 export default function Router(){
     return(
         <BrowserRouter>

@@ -5,7 +5,7 @@ import * as Form from '@radix-ui/react-form';
 import { Logo } from "../assets/Logo";
 import { EyeClosedIcon, EyeOpenIcon } from "@radix-ui/react-icons";
 import * as Toggle from '@radix-ui/react-toggle';
-import AlertDanger from "./alerts/AlertDanger";
+import AlertDanger from "./ui/alerts/AlertDanger";
 import { ClientResponseError } from "pocketbase";
 
 export default function SignUp (props) {
@@ -52,7 +52,7 @@ export default function SignUp (props) {
     <div className="xl:hidden absolute ml-[90%] mt-[3%]  ">
        <SwitchTheme/>
     </div>
-     <div className=" mx-4 mt-[10%] xl:mt-[18%] xl:mx-[26%] ">
+     <div className=" mx-4 mt-[10%] xl:mt-[10%] xl:mx-[6%] ">
       <Logo/> 
       {showAlert && <AlertDanger message={messageAlert} signIn={false}/>}
        <main className="flex flex-col mt-3 gap-10 w-full ">
@@ -64,7 +64,7 @@ export default function SignUp (props) {
               Dados do Usuário
             </p>
           </header>
-      <Form.Root onSubmit={handleOnSubmit} className="bg-[#e2e8f0] dark:bg-dark-700 rounded-xl relative p-[30px]">
+      <Form.Root onSubmit={handleOnSubmit} className="rounded-xl relative p-[30px]">
       <Form.Field className="grid mb-[5%]" name="email">
       <div className="flex items-baseline justify-between">
         <Form.Label className="text-[15px] font-medium leading-[35px] dark:text-white">Nome de usuário</Form.Label>
@@ -79,7 +79,7 @@ export default function SignUp (props) {
       <Form.Control asChild >
        
         <input
-          className="box-border w-full bg-blackA5 shadow-blackA9 inline-flex h-12 focus:border-[2px] focus:border-purple-600 appearance-none items-center justify-center rounded-lg px-[10px] text-[15px] leading-none outline-none hover:shadow-[0_0_0_1px_black] focus:shadow-md focus:shadow-purple-900 selection:color-white selection:bg-blackA9"
+          className="box-border w-full bg-[#e2e8f0] dark:bg-blackA6  shadow-blackA9 inline-flex h-12 focus:border-[2px] focus:border-purple-600 appearance-none items-center justify-center rounded-lg px-[10px] text-[15px] leading-none outline-none hover:shadow-[0_0_0_1px_black] focus:shadow-md focus:shadow-purple-900"
           type="text"
           required
           ref={usernameRef}
@@ -99,7 +99,7 @@ export default function SignUp (props) {
       </div>
       <Form.Control asChild >
         <input
-          className="box-border w-full bg-blackA5 shadow-blackA9 inline-flex h-12 focus:border-[2px] focus:border-purple-600 appearance-none items-center justify-center rounded-lg px-[10px] text-[15px] leading-none outline-none hover:shadow-[0_0_0_1px_black] focus:shadow-md focus:shadow-purple-900 selection:color-white selection:bg-blackA9"
+          className="box-border w-full bg-[#e2e8f0] dark:bg-blackA6  shadow-blackA9 inline-flex h-12 focus:border-[2px] focus:border-purple-600 appearance-none items-center justify-center rounded-lg px-[10px] text-[15px] leading-none outline-none hover:shadow-[0_0_0_1px_black] focus:shadow-md focus:shadow-purple-900"
           type="email"
           required
           ref={emailRef}
@@ -120,7 +120,7 @@ export default function SignUp (props) {
       <Form.Control asChild>
         <input
         name="password"
-          className="box-border w-full bg-blackA5 shadow-blackA9 inline-flex h-12 focus:border-[2px] focus:border-purple-600 appearance-none items-center justify-center rounded-lg px-[10px] text-[15px] leading-none outline-none hover:shadow-[0_0_0_1px_black] focus:shadow-md focus:shadow-purple-900 selection:color-white selection:bg-blackA9"
+        className="box-border w-full bg-[#e2e8f0] dark:bg-blackA6  shadow-blackA9 inline-flex h-12 focus:border-[2px] focus:border-purple-600 appearance-none items-center justify-center rounded-lg px-[10px] text-[15px] leading-none outline-none hover:shadow-[0_0_0_1px_black] focus:shadow-md focus:shadow-purple-900"
           type={showPassword ? 'text' : 'password'}
           required
           ref={passwordRef}
@@ -149,7 +149,7 @@ export default function SignUp (props) {
       <Form.Control asChild>
         <input
         name="passwordConfirm"
-          className="box-border w-full bg-blackA5 shadow-blackA9 inline-flex h-12 focus:border-[2px] focus:border-purple-600 appearance-none items-center justify-center rounded-lg px-[10px] text-[15px] leading-none outline-none hover:shadow-[0_0_0_1px_black] focus:shadow-md focus:shadow-purple-900 selection:color-white selection:bg-blackA9"
+        className="box-border w-full bg-[#e2e8f0] dark:bg-blackA6  shadow-blackA9 inline-flex h-12 focus:border-[2px] focus:border-purple-600 appearance-none items-center justify-center rounded-lg px-[10px] text-[15px] leading-none outline-none hover:shadow-[0_0_0_1px_black] focus:shadow-md focus:shadow-purple-900"
           type={showPassword ? 'text' : 'password'}
           required
           ref={passwordConfirmRef}

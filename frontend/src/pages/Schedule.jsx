@@ -1,18 +1,18 @@
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import { formatDate } from '@fullcalendar/core'
 import '../styles/schedule.css'
 import FullCalendar from '@fullcalendar/react'
 import dayGridPlugin from '@fullcalendar/daygrid'
 import timeGridPlugin from '@fullcalendar/timegrid'
 import interactionPlugin from '@fullcalendar/interaction'
-import {records} from '../utils/event-utils'
 import "../styles/modal.css";
 import ModalCalendar from "../components/ui/modal/ModalCalendar";
 import Sidebar from "../components/ui/Sidebar";
 import { usePocket } from "../contexts/PocketContext";
 import { useNavigate } from "react-router-dom";
-import ModalEvent from "../components/ui/modal/ModalReserve";
-
+import Delet from "../components/ui/modal/Delet";
+import Drag from "../components/Drag";
+import { records } from "../utils/event-utils";
 
 
 export default function Schedule(){
@@ -20,29 +20,30 @@ export default function Schedule(){
       const navigate = useNavigate();
       if(!user){
         navigate('/')
-      } 
+      }
       
       const [ weekendsVisible, setWeekendsVisible] = useState(false);
       const [ showModal, setShowModal] = useState(false);
-      const [currentEvents, setCurrentEvents] = useState(records);
       const [modalInfo, setModalInfo] = useState({});
-       const [showModalEvent, setShowModalEvent] = useState(false);
+      const [ showDelet, setShowDelet] = useState(false)
+      const [ showDrag, setShowDrag] = useState(false)
+      const [currentEvents, setCurrentEvents] = useState(records)
       
 
     return(
-        <div className='flex font-bold'>
-         <Sidebar 
+       
+        <div className='flex flex-bold '>
+               <Sidebar 
          currentEvents={currentEvents} 
          weekendsVisible={weekendsVisible}
          setWeekendsVisible={setWeekendsVisible}
-         renderSidebarEvent= {renderSidebarEvent}
          />
-        <div className='demo-app-main border-l-2 border-black dark:border-white rounded-l-3xl font-light px-[2%] pt-[2%] shadow-xl shadow-black dark:shadow-white'>
-        
+          <div className='demo-app-main w-[100%] border-l-2 border-black dark:border-white rounded-l-3xl font-light px-[2%] pt-[2%] shadow-xl shadow-black dark:shadow-white'>
           <FullCalendar
             plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
             slotMinTime={'06:00:00'}
             slotMaxTime={'19:00:00'}
+            height='90%'
             headerToolbar={{
               left: 'prev,next today',
               center: 'title',
@@ -75,52 +76,53 @@ export default function Schedule(){
             }}
             eventContent={renderEventContent} 
             eventClick={(clickInfo)=>{
-              setShowModalEvent(true)
-              setModalInfo(clickInfo)
+            console.log(clickInfo)
+              setShowDelet(true);
+              setModalInfo(clickInfo);
+           }}
+            eventsSet={(events)=>setCurrentEvents(events)} 
+            eventDrop={(eventInfo)=>{
+              setShowDrag(true);
+              setModalInfo(eventInfo);
             }}
-            eventsSet={(events)=>{setCurrentEvents(events)}} 
             /*
             eventAdd={function(){}} 
             eventChange={function(){}}
             eventRemove={function(){}}
             */
           />
+         
           {showModal && <ModalCalendar 
           modalInfo={modalInfo} 
           setShowModal={setShowModal}
-          setCurrentEvents={setCurrentEvents}
           />}
-          {showModalEvent && <ModalEvent
-           setShowModalEvent={setShowModalEvent}
-           modalInfo={modalInfo}
-           />}
+          {showDelet && <Delet 
+          modalInfo={modalInfo}
+          setShowDelet={setShowDelet}
+          />}
+           {showDrag && <Drag 
+          modalInfo={modalInfo}
+          setShowDrag={setShowDrag}
+          />}
+          
         </div> 
-        
-      </div>
+        </div>
     )
 }
 
 
 
 function renderEventContent(eventInfo) {
+
     return (
-      <>
-        <b>{eventInfo.timeText}</b>
-        <i>{eventInfo.event.title}</i>
+      
+     <>
+           <b>{eventInfo.timeText}</b>
+           <b> {eventInfo.event.extendedProps.sala}</b>
+        <i> {eventInfo.event.title} </i>
+        
         <>{eventInfo.eventColor}</>
       </>
     )
 }
 
-function renderSidebarEvent(event) {
-  return (
-    <li key={event.id}>
-      <b>{ 
-        
-      formatDate(event.start, {timeZone: 'UTC',locale:"pt-br", hour: 'numeric', month: 'short',minute: '2-digit', day: 'numeric', meridiem: 'short'}
-      
-      )}</b>
-      <i>{event.title}</i>
-    </li>
-  )
-}
