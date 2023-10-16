@@ -1,7 +1,7 @@
 import React, { useCallback, useRef } from "react";
 import { usePocket } from "../../contexts/PocketContext";
 import * as Form from '@radix-ui/react-form';
-import {AiOutlineClose} from '@react-icons/all-files/ai/AiOutlineClose.esm'
+import {AiOutlineClose} from '@react-icons/all-files/ai/AiOutlineClose.esm';
 import "../../styles/modal.css";
 
 export default function Delet(props) {

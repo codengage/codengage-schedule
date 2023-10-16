@@ -12,8 +12,6 @@ import Drag from "../components/form/Drag";
 import Sidebar from "../components/ui/Sidebar";
 import { usePocket } from "../contexts/PocketContext";
 import { useNavigate } from "react-router-dom";
-import Delet from "../components/ui/modal/Delet";
-import Drag from "../components/Drag";
 import { records } from "../utils/event-utils";
 
 
