@@ -12,20 +12,15 @@ import { useInterval } from "usehooks-ts";
 import jwtDecode from "jwt-decode";
 import ms from "ms";
 
-
 const BASE_URL = "http://192.168.1.184:8090";
 const fiveMinutesInMs = ms("5 minutes");
 const twoMinutesInMs = ms("2 minutes");
-
 const PocketContext = createContext({});
 
 export const PocketProvider = ({ children }) => {
   const pb = useMemo(() => new PocketBase(BASE_URL), []);
-
   const [token, setToken] = useState(pb.authStore.token);
   const [user, setUser] = useState(pb.authStore.model);
-
-
 
   useEffect(() => {
     return pb.authStore.onChange((token, model) => {
@@ -34,10 +29,10 @@ export const PocketProvider = ({ children }) => {
     });
   }, []);
 
-  const register = useCallback(async (username, email, password, name) => {
+  const register = useCallback(async (username, email, password) => {
     return await pb
      .collection("users")
-     .create({ username, email, password, passwordConfirm: password, name });
+     .create({ username, email, password, passwordConfirm: password });
   }, []);
 
   const login = useCallback(async (email, password) => {
@@ -102,7 +97,7 @@ export const PocketProvider = ({ children }) => {
     //{queryFn: update, queryKey: ["up",id]},
     <PocketContext.Provider
       value={{ register, login, logout, drag, records, show, del, update, registerReserve, user, token, pb }}
-    >
+      >
       {children}
     </PocketContext.Provider>
   );

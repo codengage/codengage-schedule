@@ -18,8 +18,6 @@ export default function Drag(props) {
     )
 
     return( 
-        
-        <div>
-        {handleFunction()}</div>
+        <div>{handleFunction()}</div>
     );
 };

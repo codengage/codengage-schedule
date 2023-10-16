@@ -75,7 +75,6 @@ export default function Schedule(){
             }}
             eventContent={renderEventContent} 
             eventClick={(clickInfo)=>{
-            console.log(clickInfo)
               setShowDelet(true);
               setModalInfo(clickInfo);
            }}
