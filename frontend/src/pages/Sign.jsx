@@ -16,7 +16,10 @@ export default function Sign(){
     const [showForgotPassword, setShowForgotPassword] = useState(false);
    return(
      <div className="grid xl:grid-cols-3  h-screen bg-gray-100 dark:bg-dark-600">
-        {showForgotPassword ? <ForgotPassword/> 
+        {showForgotPassword ? 
+        <ForgotPassword
+        setShowForgotPassword={setShowForgotPassword}
+        /> 
         :
         showSignUp ? 
         <SignUp

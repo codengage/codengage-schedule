@@ -38,7 +38,7 @@ export default function Schedule(){
          weekendsVisible={weekendsVisible}
          setWeekendsVisible={setWeekendsVisible}
          />
-          <div className='demo-app-main w-[100%] border-l-2 border-black dark:border-white rounded-l-3xl font-light px-[2%] pt-[2%] shadow-xl shadow-black dark:shadow-white'>
+          <div className='demo-app-main w-[100%] border-l-2 border-black dark:border-white rounded-l-3xl font-light px-[2%] pt-[6%] shadow-xl shadow-black dark:shadow-white'>
           <FullCalendar
             plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
             slotMinTime={'06:00:00'}
