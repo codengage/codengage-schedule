@@ -58,10 +58,10 @@ export const PocketProvider = ({ children }) => {
         .update(creator, {"reserva+": id}))
   }, []);
 
-  const ler = useCallback(async () => {
-     await pb.collection('ReserveCalendar').getFullList({
-     })
-      .then((res) => console.log(res));
+  const records = useCallback(async () => {
+    await pb.collection('ReserveCalendar').getFullList({
+      sort: 'start',
+  });
   }, []);
 
   const show = useCallback(async (idRef) => {
@@ -80,10 +80,10 @@ export const PocketProvider = ({ children }) => {
     .delete(idRef);
   }, []);
 
-  const update = useCallback(async (id, title, sala) => {
+  const update = useCallback(async (id, title, sala, start, end, backgroundColor) => {
     return await pb
       .collection('ReserveCalendar')
-      .update(id, {title, sala}) 
+      .update(id, {title, sala, start, end, backgroundColor, borderColor: backgroundColor}) 
   }, []);
 
   const refreshSession = useCallback(async () => {
@@ -101,7 +101,7 @@ export const PocketProvider = ({ children }) => {
   return (
     //{queryFn: update, queryKey: ["up",id]},
     <PocketContext.Provider
-      value={{ register, login, logout, drag, ler, show, del, update, registerReserve, user, token, pb }}
+      value={{ register, login, logout, drag, records, show, del, update, registerReserve, user, token, pb }}
     >
       {children}
     </PocketContext.Provider>

@@ -1,20 +1,28 @@
-import React, { useState, useCallback } from "react";
+import React, { useCallback, useState } from "react";
 import { formatDate } from '@fullcalendar/core'
 import '../styles/schedule.css'
 import FullCalendar from '@fullcalendar/react'
 import dayGridPlugin from '@fullcalendar/daygrid'
 import timeGridPlugin from '@fullcalendar/timegrid'
 import interactionPlugin from '@fullcalendar/interaction'
-import {records} from '../utils/event-utils'
 import "../styles/modal.css";
 import ModalCalendar from "../components/ui/modal/ModalCalendar";
 import Delet from "../components/form/Delet";
 import Drag from "../components/form/Drag";
 import Sidebar from "../components/ui/Sidebar";
 import { usePocket } from "../contexts/PocketContext";
+import { useNavigate } from "react-router-dom";
+import Delet from "../components/ui/modal/Delet";
+import Drag from "../components/Drag";
+import { records } from "../utils/event-utils";
+
 
 export default function Schedule(){
       const {user} = usePocket();
+      const navigate = useNavigate();
+      if(!user){
+        navigate('/')
+      }
       
       const [ weekendsVisible, setWeekendsVisible] = useState(false)
       const [ showModal, setShowModal] = useState(false)
@@ -24,19 +32,19 @@ export default function Schedule(){
       const [modalInfo, setModalInfo] = useState({})
 
     return(
-        <div className='flex font-bold'>
-         <Sidebar 
+       
+        <div className='flex flex-bold '>
+               <Sidebar 
          currentEvents={currentEvents} 
          weekendsVisible={weekendsVisible}
          setWeekendsVisible={setWeekendsVisible}
-         renderSidebarEvent= {renderSidebarEvent}
          />
-        <div className='demo-app-main border-l-2 border-black dark:border-white rounded-l-3xl font-light px-[2%] pt-[2%] shadow-xl shadow-black dark:shadow-white'>
-        
+          <div className='demo-app-main w-[100%] border-l-2 border-black dark:border-white rounded-l-3xl font-light px-[2%] pt-[2%] shadow-xl shadow-black dark:shadow-white'>
           <FullCalendar
             plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
             slotMinTime={'06:00:00'}
             slotMaxTime={'19:00:00'}
+            height='90%'
             headerToolbar={{
               left: 'prev,next today',
               center: 'title',
@@ -69,10 +77,11 @@ export default function Schedule(){
             }}
             eventContent={renderEventContent} 
             eventClick={(clickInfo)=>{
-               setShowDelet(true);
-               setModalInfo(clickInfo)
-            }}
-            eventsSet={(events)=>{setCurrentEvents(events)}} 
+            console.log(clickInfo)
+              setShowDelet(true);
+              setModalInfo(clickInfo);
+           }}
+            eventsSet={(events)=>setCurrentEvents(events)} 
             eventDrop={(eventInfo)=>{
               setShowDrag(true);
               setModalInfo(eventInfo);
@@ -83,10 +92,10 @@ export default function Schedule(){
             eventRemove={function(){}}
             */
           />
+         
           {showModal && <ModalCalendar 
           modalInfo={modalInfo} 
           setShowModal={setShowModal}
-          setCurrentEvents={setCurrentEvents}
           />}
           {showDelet && <Delet 
           modalInfo={modalInfo}
@@ -96,29 +105,23 @@ export default function Schedule(){
           modalInfo={modalInfo}
           setShowDrag={setShowDrag}
           />}
+          
         </div> 
-      </div>
+        </div>
     )
 }
 
 function renderEventContent(eventInfo) {
+
     return (
-      <>
-        <b>{eventInfo.timeText}</b>
-        <b>/</b>
-        <b>{eventInfo.event.extendedProps.sala}</b>
+      
+     <>
+           <b>{eventInfo.timeText}</b>
+           <b> {eventInfo.event.extendedProps.sala}</b>
+        <i> {eventInfo.event.title} </i>
+        
         <>{eventInfo.eventColor}</>
       </>
     )
 }
 
-function renderSidebarEvent(event) {
-  return (
-    <li key={event.id}>
-      <b>{ 
-        formatDate(event.start, {timeZone: 'UTC',locale:"pt-br", hour: 'numeric', month: 'short',minute: '2-digit', day: 'numeric', meridiem: 'short'}
-      )}</b>
-      <i>{event.title}</i>
-    </li>
-  )
-}

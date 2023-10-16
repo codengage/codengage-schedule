@@ -4,19 +4,18 @@ import { usePocket } from "../contexts/PocketContext";
 import * as Form from '@radix-ui/react-form';
 import * as Toggle from '@radix-ui/react-toggle';
 import SwitchTheme from './ui/SwitchTheme'
-import useDarkSide from "../utils/useDarkSide";
 import { Logo } from "../assets/Logo";
-import Panel  from "./ui/Panel";
 import { EyeClosedIcon, EyeOpenIcon } from "@radix-ui/react-icons";
-import AlertDanger from "./alerts/AlertDanger";
+import AlertDanger from "./ui/alerts/AlertDanger";
 import { ClientResponseError } from "pocketbase";
-import AlertSuccess from "./alerts/AlertSuccess";
+import AlertSuccess from "./ui/alerts/AlertSuccess";
 
 
 
 export default function SignIn(props) {
   const {setShowSignUp} = props;
   const {showSuccessAlert} = props;
+  const {setShowForgotPassword} = props;
   const emailRef = useRef();
   const passwordRef = useRef();
   const { login } = usePocket();
@@ -50,7 +49,7 @@ export default function SignIn(props) {
      <div className="xl:hidden absolute ml-[90%] mt-[3%] ">
         <SwitchTheme/>
      </div>
-      <div className="mt-[20%] mx-4 xl:mt-[26%] xl:mx-[26%] ">
+      <div className="mt-[20%] mx-4 xl:mt-[26%] xl:mx-[6%] ">
        <Logo/>
        
        {
@@ -123,6 +122,7 @@ export default function SignIn(props) {
       </Toggle.Root>  
       </div>
     </Form.Field>
+  
     <div className="text-center">
     <button className='mb-[5%] h-12 bg-purple-500 dark:bg-purple-700 dark:hover:bg-purple-900 text-white hover:bg-purple-900 my-2 box-border w-full shadow-blackA7 dark:shadow-slate-500 inline-flex items-center justify-center rounded-lg px-[15px] font-medium leading-none shadow-[0_2px_10px] focus:shadow-[0_0_0_2px] focus:shadow-black focus:outline-none' >
          Fazer Login
@@ -136,10 +136,19 @@ export default function SignIn(props) {
         >
           <strong>Crie seu usuário!</strong>
           </button>
-
+          
         </div>
         
       </Form.Root>
+   
+    <button className="text-purple-700 hover:text-purple-500"
+        onClick={()=>{
+          setShowForgotPassword(true)
+        }}
+        >
+          Esqueci minha senha
+          </button>
+         
     </main>
     </div>
     

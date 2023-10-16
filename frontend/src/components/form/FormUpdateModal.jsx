@@ -3,42 +3,54 @@ import { useNavigate} from "react-router-dom";
 import { usePocket } from "../../contexts/PocketContext";
 import * as Form from '@radix-ui/react-form';
 import * as RadioGroup from '@radix-ui/react-radio-group';
+import { formatDate } from "@fullcalendar/core";
 
 
 
-export default function FormModal(props){
+export default function FormUpdateModal(props){
     const {modalInfo} = props;
     const titleRef = useRef();
     const salaRef = useRef();
     const startRef = useRef();
     const endRef = useRef();
-     let backgroundColor = '#8247f5'
-    const { registerReserve } = usePocket();
+     let backgroundColor = modalInfo.event._def.ui.backgroundColor
     const navigate = useNavigate();
-    const { user } = usePocket();
-    const creator = user.id;
-
-    const handleOnSubmit =  useCallback(
-        async (evt) => {
+    const { del, update } = usePocket();
+    
+    const deleteEvent = useCallback(
+      async (evt) => {
           evt?.preventDefault();
-          await registerReserve(
-            titleRef.current.value,
-            creator, 
-            salaRef.current.value,
-            startRef.current.value,
-            endRef.current.value,
-            backgroundColor
-            );
-          
-            window.location.reload();
-        },
-        [registerReserve]
-      );
+          await del(props.modalInfo.event.id);
+          window.location.reload();
+          navigate('/schedule')
+      },
+      [del]
+  )
+    const updateOnSubmit =  useCallback(
+      async (evt) => {
+        try{
+        evt?.preventDefault();
+        await update(
+          props.modalInfo.event.id,
+          titleRef.current.value, 
+          salaRef.current.value,
+          startRef.current.value,
+          endRef.current.value,
+          backgroundColor
+          );
+        window.location.reload();
+        }catch(e){
+        console.log(e.message)
+        }
+      },
+      [update]
+    );
+
 
        
     return(
-
-        <Form.Root className="w-[260px]" onSubmit={handleOnSubmit}>
+  <div>
+        <Form.Root className="w-[260px]" onSubmit={updateOnSubmit}>
       <Form.Field className="grid mb-[10px]" name="title">
         <div className="flex items-baseline justify-between">
           <Form.Label className="text-[15px] font-medium leading-[35px] ">Título</Form.Label>
@@ -53,6 +65,7 @@ export default function FormModal(props){
           <input
             className="box-border w-full bg-[#e2e8f0] dark:bg-blackA6  shadow-blackA9 inline-flex h-10 focus:border-[2px] focus:border-purple-600 appearance-none items-center justify-center rounded-lg px-[10px] text-[15px] leading-none outline-none hover:shadow-[0_0_0_1px_black] focus:shadow-md focus:shadow-purple-900"
             type="text"
+            defaultValue={modalInfo.event._def.title}
             required
             ref={titleRef}
           />
@@ -66,7 +79,7 @@ export default function FormModal(props){
           </Form.Message>
         </div>
         <Form.Control asChild>
-        <select ref = {salaRef} className="box-border w-full bg-[#e2e8f0] dark:bg-blackA6  shadow-blackA9 inline-flex h-10 focus:border-[2px] focus:border-purple-600 appearance-none items-center justify-center rounded-lg px-[10px] text-[15px] leading-none outline-none hover:shadow-[0_0_0_1px_black] focus:shadow-md focus:shadow-purple-900">
+        <select ref = {salaRef} defaultValue={modalInfo.event._def.extendedProps.sala} className="box-border w-full bg-[#e2e8f0] dark:bg-blackA6  shadow-blackA9 inline-flex h-10 focus:border-[2px] focus:border-purple-600 appearance-none items-center justify-center rounded-lg px-[10px] text-[15px] leading-none outline-none hover:shadow-[0_0_0_1px_black] focus:shadow-md focus:shadow-purple-900">
             <option type="nome" value="Sala1" >Sala1 </option>
             <option type="nome" value="Sala2" >Sala2</option>
             <option type="nome" value="Sala3" >Sala3</option>
@@ -85,7 +98,8 @@ export default function FormModal(props){
         <Form.Control asChild>
         <input 
         type="datetime-local" 
-        defaultValue={modalInfo.startStr}
+        defaultValue={modalInfo.el.fcSeg.start.toISOString().slice(0, 16)}
+        
         className="box-border w-full bg-[#e2e8f0] dark:bg-blackA6  shadow-blackA9 inline-flex h-10 focus:border-[2px] focus:border-purple-600 appearance-none items-center justify-center rounded-lg px-[10px] text-[15px] leading-none outline-none hover:shadow-[0_0_0_1px_black] focus:shadow-md focus:shadow-purple-900"
         required
         ref={startRef}
@@ -105,7 +119,7 @@ export default function FormModal(props){
         <Form.Control asChild>
         <input 
         type="datetime-local" 
-        defaultValue={modalInfo.endStr}
+        defaultValue={modalInfo.el.fcSeg.end.toISOString().slice(0, 16)}
         className="box-border w-full bg-[#e2e8f0] dark:bg-blackA6  shadow-blackA9 inline-flex h-10 focus:border-[2px] focus:border-purple-600 appearance-none items-center justify-center rounded-lg px-[10px] text-[15px] leading-none outline-none hover:shadow-[0_0_0_1px_black] focus:shadow-md focus:shadow-purple-900"
         required
         ref={endRef}
@@ -118,8 +132,9 @@ export default function FormModal(props){
         </Form.Label>
 
         <RadioGroup.Root
-      className="flex pt-1 gap-2.5 justify-center align-middle outline-none cursor-default"
+      className="flex pt-1 gap-2.5 my-2 justify-center align-middle outline-none cursor-default"
       aria-label="View density"
+      defaultValue={backgroundColor}
       onValueChange={(value)=>{
         if(value){
         backgroundColor = value;
@@ -206,11 +221,19 @@ export default function FormModal(props){
         
       </Form.Field>
       <Form.Submit asChild>
-        <button className='dark:bg-dark-900 my-2 box-border w-full dark:text-white shadow-blackA7 dark:shadow-slate-500 hover:bg-mauve3 inline-flex h-[35px] items-center justify-center rounded-lg bg-white px-[15px] font-medium leading-none shadow-[0_2px_10px] focus:shadow-[0_0_0_2px] focus:shadow-black focus:outline-none' >
-          Criar
+        <button className='dark:bg-dark-900 my-2 box-border w-full dark:text-white shadow-blackA7 hover:dark:shadow-slate-500  inline-flex h-[35px] items-center justify-center rounded-lg bg-white px-[15px] font-medium leading-none shadow-[0_2px_10px] focus:shadow-[0_0_0_2px] focus:shadow-black focus:outline-none' >
+          Atualizar
         </button>
       </Form.Submit>
     </Form.Root>
+    <button 
+    className='bg-red-600 my-2 box-border w-full text-white shadow-blackA7 hover:dark:shadow-slate-500  inline-flex h-[35px] items-center justify-center rounded-lg px-[15px] font-medium leading-none shadow-[0_2px_10px] focus:shadow-[0_0_0_2px] focus:shadow-black focus:outline-none' 
+    onClick={deleteEvent}
+    >
+         
+          deletar
+        </button>
+  </div>
       )
 
 }
