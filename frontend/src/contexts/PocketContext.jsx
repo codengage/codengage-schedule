@@ -5,7 +5,6 @@ import {
   useState,
   useEffect,
   useMemo,
-  useRef,
 } from "react";
 import PocketBase from "pocketbase";
 import { useInterval } from "usehooks-ts";
@@ -43,6 +42,11 @@ export const PocketProvider = ({ children }) => {
      pb.authStore.clear();
   }, []);
   
+  const retrive = useCallback(async (email) => {
+    console.log(email);
+    return await pb.collection("users").requestPasswordReset(email);
+  }, []);
+
   const registerReserve = useCallback(async (title, creator, sala, start, end, backgroundColor) => {
     const id = Array(15+1).join((Math.random().toString(36)+'00000000000000000').slice(2, 18)).slice(0, 15)
     return await pb
@@ -59,20 +63,20 @@ export const PocketProvider = ({ children }) => {
   });
   }, []);
 
-  const show = useCallback(async (idRef) => {
+  const show = useCallback(async (id) => {
     await pb.collection("ReserveCalendar")
-    .getFirstListItem(idRef,{expand: 'relField1,relField2.subRelField',})
+    .getFirstListItem(id,{expand: 'relField1,relField2.subRelField',})
     .then((res) => console.log(res));
   }, []);
 
- const drag = useCallback(async (idRef, startRef, endRef) => {
+ const drag = useCallback(async (id, start, end) => {
   await pb.collection('ReserveCalendar')
-  .update(idRef,{"start": startRef, "end": endRef});
+  .update(id,{"start": start.toISOString().slice(0, 16), "end": end.toISOString().slice(0, 16)});
   }, []);
 
-  const del = useCallback(async (idRef) => {
+  const del = useCallback(async (id) => {
     await pb.collection('ReserveCalendar')
-    .delete(idRef);
+    .delete(id);
   }, []);
 
   const update = useCallback(async (id, title, sala, start, end, backgroundColor) => {
@@ -94,9 +98,8 @@ export const PocketProvider = ({ children }) => {
   useInterval(refreshSession, token ? twoMinutesInMs : null);
 
   return (
-    //{queryFn: update, queryKey: ["up",id]},
     <PocketContext.Provider
-      value={{ register, login, logout, drag, records, show, del, update, registerReserve, user, token, pb }}
+      value={{ register, login, logout, retrive, drag, records, show, del, update, registerReserve, user, token, pb }}
       >
       {children}
     </PocketContext.Provider>

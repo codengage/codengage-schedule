@@ -6,7 +6,6 @@ export default function ModalCalendar(props){
   const {modalInfo} = props;
   const {setShowModal} = props;
   const {setCurrentEvents} = props;
-  console.log(modalInfo.startStr);
 
   return(
     <div className="modal__wrapper">
