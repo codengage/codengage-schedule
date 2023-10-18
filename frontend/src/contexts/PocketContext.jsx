@@ -10,6 +10,7 @@ import PocketBase from "pocketbase";
 import { useInterval } from "usehooks-ts";
 import jwtDecode from "jwt-decode";
 import ms from "ms";
+import { useQuery } from "@tanstack/react-query";
 
 const BASE_URL = "http://192.168.1.184:8090";
 const fiveMinutesInMs = ms("5 minutes");
@@ -74,6 +75,14 @@ export const PocketProvider = ({ children }) => {
   .update(id,{"start": start.toISOString().slice(0, 16), "end": end.toISOString().slice(0, 16)});
   }, []);
 
+  const criador = useCallback(async (id) => {
+    const {data} = useQuery(['creator'], async () => {
+    const record = await pb.collection('users').getOne(id, {expand: 'username',
+  });
+  return(record);
+});
+  }, []);
+
   const del = useCallback(async (id) => {
     await pb.collection('ReserveCalendar')
     .delete(id);
@@ -99,7 +108,7 @@ export const PocketProvider = ({ children }) => {
 
   return (
     <PocketContext.Provider
-      value={{ register, login, logout, retrive, drag, records, show, del, update, registerReserve, user, token, pb }}
+      value={{ register, login, logout, retrive, criador, drag, records, show, del, update, registerReserve, user, token, pb }}
       >
       {children}
     </PocketContext.Provider>
