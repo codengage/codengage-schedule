@@ -18,6 +18,7 @@ The project is coded using a simple and intuitive structure presented below:
  ┃ ┃ ┣ 📜Delet.jsx		# Update/Delete events
  ┃ ┃ ┣ 📜Drag.jsx		# Function to update when events are dragged
  ┃ ┃ ┣ 📜FormModal.jsx		# Create events
+ ┃ ┃ ┣ 📜Pop.jsx		# Popover modal to show more event infos
  ┃ ┣ 📂ui
  ┃ ┃ ┣ 📂alerts
  ┃ ┃ ┃ ┣ 📜AlertDanger.jsx	# Called when error in SignIn/SignUp occur
