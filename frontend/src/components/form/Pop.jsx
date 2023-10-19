@@ -7,6 +7,7 @@ export default function Pop(props) {
     const { criador } = usePocket();
     const title = (props.modalInfo.event.title);
     const creator = (props.modalInfo.event.extendedProps.creator);
+    const sala = (props.modalInfo.event.extendedProps.sala);
     
     const dono = useCallback(
         async (evt) => {
@@ -33,7 +34,7 @@ export default function Pop(props) {
                     <Form.Control asChild>
                         <input className="box-border w-full bg-[#e2e8f0] dark:bg-black  shadow-blackA9 inline-flex h-10 focus:border-[2px] focus:border-purple-600 appearance-none items-center justify-center rounded-lg px-[10px] text-[15px] leading-none outline-none hover:shadow-[0_0_0_1px_black] focus:shadow-md focus:shadow-purple-900"
                         type="text"
-                        defaultValue={creator}
+                        defaultValue={sala}
                         />
                     </Form.Control>
                 </Form.Field>

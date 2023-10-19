@@ -11,7 +11,7 @@ export default function Drag(props) {
         async (evt) => {
             evt?.preventDefault();
             await drag(id, sta, end);
-            //location.reload(false);
+            location.reload(false);
         },
         [drag]
     )

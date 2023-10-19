@@ -10,18 +10,12 @@ import PocketBase from "pocketbase";
 import { useInterval } from "usehooks-ts";
 import jwtDecode from "jwt-decode";
 import ms from "ms";
-import { QueryClient, useQuery } from "@tanstack/react-query";
-import { PersistQueryClientProvider } from "@tanstack/react-query-persist-client";
-import { createSyncStoragePersister } from "@tanstack/query-sync-storage-persister";
+import { useQuery } from "@tanstack/react-query";
 
 const BASE_URL = "http://192.168.1.184:8090";
 const fiveMinutesInMs = ms("5 minutes");
 const twoMinutesInMs = ms("2 minutes");
 const PocketContext = createContext({});
-
-const persister = createSyncStoragePersister({
-  storage: window.localStorage,
-})
 
 export const PocketProvider = ({ children }) => {
   const pb = useMemo(() => new PocketBase(BASE_URL), []);
@@ -82,18 +76,13 @@ export const PocketProvider = ({ children }) => {
   }, []);
 
   const criador = useCallback(async (id) => {
-    <PersistQueryClientProvider>
-      client={QueryClient}
-      persistOptions={{ persister }}
-    </PersistQueryClientProvider>
-    
     useQuery({
       queryKey: ['creator', id],
       queryFn: async () => {
         return(await pb.collection('users').getOne(id, {expand: 'username',
-        })
+          })
         );
-    }
+      }
     });
   }, []);
 

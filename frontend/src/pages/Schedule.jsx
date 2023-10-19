@@ -14,6 +14,9 @@ import Sidebar from "../components/ui/Sidebar";
 import { usePocket } from "../contexts/PocketContext";
 import { useNavigate } from "react-router-dom";
 import { records } from "../utils/event-utils";
+import { QueryClient } from '@tanstack/react-query'
+import { PersistQueryClientProvider } from "@tanstack/react-query-persist-client";
+import { createSyncStoragePersister } from "@tanstack/query-sync-storage-persister";
 
 export default function Schedule(){
   const {user} = usePocket();
@@ -21,7 +24,20 @@ export default function Schedule(){
   if(!user){
     navigate('/')
   }
-  
+
+  const persister = createSyncStoragePersister({
+    storage: window.localStorage,
+    key: ('creator'),
+    throttleTime : 1000,
+    serialize : JSON.stringify,
+    deserialize : JSON.parse,
+  });
+
+  <PersistQueryClientProvider>
+  client={QueryClient}
+  persistOptions={{ persister }}
+  </PersistQueryClientProvider>
+
   const [ weekendsVisible, setWeekendsVisible] = useState(false)
   const [ showModal, setShowModal] = useState(false)
   const [ showDelet, setShowDelet] = useState(false)
