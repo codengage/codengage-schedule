@@ -121,7 +121,7 @@ function renderEventContent(eventInfo) {
     return (
      <>
         <b >{eventInfo.timeText}</b>
-        <b> {eventInfo.event.extendedProps.sala}</b>
+        <b>/ {eventInfo.event.extendedProps.sala}</b>
         <>{eventInfo.eventColor}</>
       </>
     )
