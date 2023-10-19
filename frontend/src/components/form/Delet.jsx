@@ -54,6 +54,9 @@ export default function Delet(props){
                     }}/> 
                 </span>
                 <Form.Root className="grid justify-items-center" onSubmit={updateOnSubmit}>
+                <Form.Field className="grid mb-[10px]" name="head">
+                    <Form.Label className="mx-20 text-[35px] ">Dados do Evento</Form.Label>
+                </Form.Field>
                     <Form.Field className="grid mb-[10px]" name="title">
                         <div className="flex items-baseline justify-between">
                             <Form.Label className="mx-20 text-[15px] font-medium leading-[35px] ">Título</Form.Label>
@@ -198,15 +201,15 @@ export default function Delet(props){
                         </RadioGroup.Root>
                     </Form.Field>
                     <Form.Submit asChild>
-                        <button className='dark:bg-dark-900 my-2 box-border w-full dark:text-white shadow-blackA7 hover:dark:shadow-slate-500  inline-flex h-[35px] items-center justify-center rounded-lg bg-white px-[15px] font-medium leading-none shadow-[0_2px_10px] focus:shadow-[0_0_0_2px] focus:shadow-black focus:outline-none' >
-                            Atualizar
+                        <button className='mt-3 dark:bg-dark-900 my-2 box-border w-full dark:text-white shadow-blackA7 dark:shadow-slate-500 hover:bg-mauve3 inline-flex h-[35px] items-center justify-center rounded-[4px] bg-white px-[15px] font-medium leading-none shadow-[0_2px_10px] focus:shadow-[0_0_0_2px] focus:shadow-black focus:outline-none' >
+                            Atualizar Evento
                         </button>
                     </Form.Submit>
                 </Form.Root>
                 <button className='bg-red-600 my-2 box-border w-full text-white shadow-blackA7 hover:dark:shadow-slate-500  inline-flex h-[35px] items-center justify-center rounded-lg px-[15px] font-medium leading-none shadow-[0_2px_10px] focus:shadow-[0_0_0_2px] focus:shadow-black focus:outline-none' 
                 onClick={() => {
                     if(window.confirm('Delete the Event?')){deleteEvent()};}}>
-                    Deletar
+                    Deletar Evento
                 </button>
                 <button onClick={() => {
                     setShowDelet(false)

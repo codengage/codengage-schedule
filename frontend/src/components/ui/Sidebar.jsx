@@ -8,6 +8,7 @@ import PopoverUser from './popover/PopoverUser';
 import { useState } from 'react';
 import ModalList from './modal/ModalList';
 import { formatDate } from '@fullcalendar/core';
+import Delet from "../form/Delet";
 
 export default function Sidebar(props){
   const {currentEvents} = props;
@@ -46,12 +47,34 @@ export default function Sidebar(props){
 }
 
 function renderSidebarEvent(event) {
+  const [ showDelet, setShowDelet] = useState(false)
+  const [modalInfo, setModalInfo] = useState({})
+
   return (
     <li key={event.id}>
-      <b>{ 
+      <div>
+      <i>In: {event.extendedProps.sala} - Event:</i>
+      <i> {event.title}  </i>
+      <button onClick={() => {
+                    console.log("go to delet modal")
+                    //setShowDelet(true);
+                    //setModalInfo(currentEvents);
+                    }}className='mt-3 dark:bg-dark-900 my-2 box-border dark:text-white shadow-blackA7 dark:shadow-slate-500 hover:bg-mauve3 inline-flex h-[35px] items-center justify-center rounded-[4px] bg-white px-[15px] font-medium leading-none shadow-[0_2px_10px] focus:shadow-[0_0_0_2px] focus:shadow-black focus:outline-none' >
+                        Update
+                </button>
+          {showDelet && <Delet 
+          modalInfo={modalInfo}
+          setShowDelet={setShowDelet}
+          />}
+      </div>
+      <b>From: { 
         formatDate(event.start,{timeZone: 'UTC',locale:"pt-br", hour: 'numeric', month: 'short',minute: '2-digit', day: 'numeric', meridiem: 'short'}
+      )}</b> until: 
+      <b> { 
+        formatDate(event.end,{timeZone: 'UTC',locale:"pt-br", hour: 'numeric', month: 'short',minute: '2-digit', day: 'numeric', meridiem: 'short'}
       )}</b>
-      <i> {event.title}</i>
+      <br></br>
+      <label>-------------------------------------------------------</label>
     </li>
   )
 }

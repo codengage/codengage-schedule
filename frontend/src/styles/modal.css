@@ -8,6 +8,16 @@
     z-index: 4444444;
   }
 
+  .list__wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #14141f8a;
+    z-index: 4444444;
+  }
+
   .pop__wrapper {
     position: absolute;
     display: initial;
@@ -27,6 +37,21 @@
     left: 50%;
     width: 500px;
     height: auto;
+    transform: translate(-50%, -50%);
+    background: #fff;
+    border: 2px solid  !important;
+    border-radius: 5px;
+    padding: 30px;
+    z-index: 5555555 !important;
+    cursor: pointer;
+  }
+
+  .list__modal {
+    position: relative;
+    top: 50%;
+    left: 27%;
+    width: 500px;
+    height: 300px;
     transform: translate(-50%, -50%);
     background: #fff;
     border: 2px solid  !important;

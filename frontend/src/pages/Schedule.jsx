@@ -95,20 +95,23 @@ export default function Schedule(){
               setModalInfo(clickInfo);
             }}
             eventsSet={(events)=>setCurrentEvents(events)} 
-            eventDrop={(eventInfo)=>{
-              setShowDrag(true);
-              setModalInfo(eventInfo);
-            }}
             eventMouseEnter={(eventInfo)=>{
               setShowPop(true);
               setModalInfo(eventInfo);
             }}
-            eventMouseLeave={(eventInfo)=>{
+            eventMouseLeave={()=>{
               setShowPop(false);
+            }}
+            eventChange={(eventInfo)=>{
+              setShowDrag(true);
+              setModalInfo(eventInfo);
             }}
             /*
             eventAdd={function(){}} 
-            eventChange={function(){}}
+            eventDrop={(eventInfo)=>{
+              setShowDrag(true);
+              setModalInfo(eventInfo);
+            }}
             eventRemove={function(){}}
             */
           />
