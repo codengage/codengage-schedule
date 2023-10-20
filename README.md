@@ -24,7 +24,7 @@ The project is coded using a simple and intuitive structure presented below:
  ┃ ┃ ┃ ┣ 📜AlertDanger.jsx	# Called when error in SignIn/SignUp occur
  ┃ ┃ ┃ ┗ 📜AlertSuccess.jsx	# Called on sucefull SignUp
  ┃ ┃ ┣ 📂modal
- ┃ ┃ ┃ ┣ 📜Delet.jsx		# Modal for Delet
+ ┃ ┃ ┃ ┣ 📜Upmod.jsx		# Modal for apdate on list
  ┃ ┃ ┃ ┣ 📜ModalCalendar.jsx	# Modal for the Calendar
  ┃ ┃ ┃ ┣ 📜ModalList.jsx	# Modal for SideList
  ┃ ┃ ┃ ┗ 📜ModalReserve.jsx	# Modal for Reserve
