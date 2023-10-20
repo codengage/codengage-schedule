@@ -22,9 +22,9 @@ export default function ModalCalendar(props){
           </h6>
           <div className='flex justify-center '>
             <FormModal 
-            modalInfo={modalInfo} 
-            setShowModal={setShowModal}
-            setCurrentEvents={setCurrentEvents}
+              modalInfo={modalInfo} 
+              setShowModal={setShowModal}
+              setCurrentEvents={setCurrentEvents}
             />
           </div>
         </div>
