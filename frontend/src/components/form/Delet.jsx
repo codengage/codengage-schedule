@@ -33,7 +33,7 @@ export default function Delet(props){
                 salaRef.current.value,
                 startRef.current.value,
                 endRef.current.value,
-                backgroundColor
+                backgroundColor,
             );
             location.reload(false);
         }catch(e){
@@ -103,7 +103,7 @@ export default function Delet(props){
                         <Form.Control asChild>
                             <input 
                             type="datetime-local" 
-                            defaultValue={modalInfo.el.fcSeg.start.toISOString().slice(0, 16)}
+                            defaultValue={modalInfo.el.fcSeg.eventRange.range.start?.toISOString().slice(0, 16)}
                             className="box-border w-full bg-[#e2e8f0] dark:bg-blackA6  shadow-blackA9 inline-flex h-10 focus:border-[2px] focus:border-purple-600 appearance-none items-center justify-center rounded-lg px-[10px] text-[15px] leading-none outline-none hover:shadow-[0_0_0_1px_black] focus:shadow-md focus:shadow-purple-900"
                             required
                             ref={startRef}
@@ -122,7 +122,7 @@ export default function Delet(props){
                         <Form.Control asChild>
                             <input 
                             type="datetime-local" 
-                            defaultValue={modalInfo.el.fcSeg.end.toISOString().slice(0, 16)}
+                            defaultValue={modalInfo.el.fcSeg.eventRange.range.end?.toISOString().slice(0, 16)}
                             className="box-border w-full bg-[#e2e8f0] dark:bg-blackA6  shadow-blackA9 inline-flex h-10 focus:border-[2px] focus:border-purple-600 appearance-none items-center justify-center rounded-lg px-[10px] text-[15px] leading-none outline-none hover:shadow-[0_0_0_1px_black] focus:shadow-md focus:shadow-purple-900"
                             required
                             ref={endRef}
@@ -136,8 +136,8 @@ export default function Delet(props){
                         <RadioGroup.Root className="flex pt-1 gap-2.5 my-2 justify-center align-middle outline-none cursor-default"
                             aria-label="View density"
                             defaultValue={backgroundColor}
-                            onValueChange={(value)=>{
-                                if(value){
+                            onValueChange={(value)=>{     
+                                if(value){                   
                                     backgroundColor = value;
                                 }
                             }}

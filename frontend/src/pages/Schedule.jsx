@@ -71,7 +71,9 @@ export default function Schedule(){
               day: "Dia",
               list: "Lista",
             }}
-                
+            navLinks={true}
+            nowIndicator={true}
+            allDayMaintainDuration={true}
             locale={"pt-br"}
             timeZone={"UTF"}
             titleFormat={{ year: "2-digit", month: 'short'}}
