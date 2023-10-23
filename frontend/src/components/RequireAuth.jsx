@@ -7,7 +7,7 @@ export const RequireAuth = () => {
 
   if (!user) {
     return (
-    <Navigate to={{ pathname: "/schedule" }} state={{ location }} replace />
+    <Navigate to={{ pathname: "/" }} state={{ location }} replace />
     );
   }
 

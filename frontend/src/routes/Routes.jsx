@@ -3,6 +3,7 @@ import { Protected } from "../pages/Protected";
 import { RequireAuth } from "../components/RequireAuth";
 import Schedule from "../pages/Schedule";
 import Sign from "../pages/Sign";
+import Userspace from "../pages/Userspace"
 
 
 
@@ -14,6 +15,7 @@ export default function Router(){
           <Route exact  path="/schedule" element={<Schedule/>} />
           <Route element={<RequireAuth />}>
             <Route path="/protected" element={<Protected />} />
+            <Route path="/Userspace" element={<Userspace />} />
           </Route>
         </Routes>
       </BrowserRouter>

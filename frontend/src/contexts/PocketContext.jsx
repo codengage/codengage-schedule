@@ -70,9 +70,9 @@ export const PocketProvider = ({ children }) => {
     .then((res) => console.log(res));
   }, []);
 
- const drag = useCallback(async (id, start, end) => {
-  await pb.collection('ReserveCalendar')
-  .update(id,{"start": start.toISOString().slice(0, 16), "end": end.toISOString().slice(0, 16)});
+  const drag = useCallback(async (id, start, end) => {
+    await pb.collection('ReserveCalendar')
+    .update(id,{"start": start.toISOString().slice(0, 16), "end": end.toISOString().slice(0, 16)});
   }, []);
 
   const criador = useCallback(async (id) => {

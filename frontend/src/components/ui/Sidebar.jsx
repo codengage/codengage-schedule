@@ -53,13 +53,12 @@ function renderSidebarEvent(event) {
   return (
     <li key={event.id}>
       <div>
-      <i>In: {event.extendedProps.sala} - Event:</i>
-      <i> {event.title}  </i>
+      <i>In: {event.extendedProps.sala} - Event: {event.title}</i>
       </div>
       <b>From: { 
         formatDate(event.start,{timeZone: 'UTC',locale:"pt-br", hour: 'numeric', month: 'short',minute: '2-digit', day: 'numeric', meridiem: 'short'}
-      )}</b> until: 
-      <b> { 
+      )}</b> 
+      <b> Until: { 
         formatDate(event.end,{timeZone: 'UTC',locale:"pt-br", hour: 'numeric', month: 'short',minute: '2-digit', day: 'numeric', meridiem: 'short'}
       )}</b>
       <div>

@@ -1,4 +1,4 @@
-import React, { useCallback, useRef } from "react";
+import React, { useCallback, useRef, useState } from "react";
 import { usePocket } from "../../contexts/PocketContext";
 import * as Form from '@radix-ui/react-form';
 import * as RadioGroup from '@radix-ui/react-radio-group';
@@ -11,8 +11,8 @@ export default function Delet(props){
     const salaRef = useRef();
     const startRef = useRef();
     const endRef = useRef();
-    let backgroundColor = modalInfo.event._def.ui.backgroundColor
     const { del, update } = usePocket();
+    let backgroundColor = ('');
     
     const deleteEvent = useCallback(
         async (evt) => {
@@ -23,26 +23,23 @@ export default function Delet(props){
         [del]
     )
 
-    const updateOnSubmit =  useCallback(
-      async (evt) => {
-        try{
-            evt?.preventDefault();
-            await update(
-                props.modalInfo.event.id,
-                titleRef.current.value, 
-                salaRef.current.value,
-                startRef.current.value,
-                endRef.current.value,
-                backgroundColor,
-            );
-            location.reload(false);
-        }catch(e){
-            console.log(e.message)
-        }
+    const handleOnSubmit =  useCallback(
+      async (evt) => { 
+        console.log(backgroundColor);
+        evt?.preventDefault();
+        await update(
+            props.modalInfo.event.id,
+            titleRef.current.value, 
+            salaRef.current.value,
+            startRef.current.value,
+            endRef.current.value,
+            backgroundColor,
+        );
+        location.reload(false);
       },
       [update]
     );
-       
+
     return(
         <div className="modal__wrapper">
             <div className="single__modal  dark:bg-dark-400 border-2 border-[#712cf9] dark:border-white">
@@ -53,13 +50,13 @@ export default function Delet(props){
                         setShowDelet(false)
                     }}/> 
                 </span>
-                <Form.Root className="grid justify-items-center" onSubmit={updateOnSubmit}>
+                <Form.Root className="grid justify-items-center" onSubmit={handleOnSubmit}>
                 <Form.Field className="grid mb-[10px]" name="head">
                     <Form.Label className="mx-20 text-[35px] ">Dados do Evento</Form.Label>
                 </Form.Field>
                     <Form.Field className="grid mb-[10px]" name="title">
                         <div className="flex items-baseline justify-between">
-                            <Form.Label className="mx-20 text-[15px] font-medium leading-[35px] ">Título</Form.Label>
+                            <Form.Label className="mx-20 text-[15px] font-medium leading-[35px] ">Evento</Form.Label>
                             <Form.Message className="text-[13px]  opacity-[0.8]" match="valueMissing">
                                 adicione um Título
                             </Form.Message>
@@ -135,10 +132,10 @@ export default function Delet(props){
                         </Form.Label>
                         <RadioGroup.Root className="flex pt-1 gap-2.5 my-2 justify-center align-middle outline-none cursor-default"
                             aria-label="View density"
-                            defaultValue={backgroundColor}
+                            defaultValue={modalInfo.event._def.ui.backgroundColor}
                             onValueChange={(value)=>{     
-                                if(value){                   
-                                    backgroundColor = value;
+                                if(value){               
+                                    backgroundColor = value;  
                                 }
                             }}
                             >
@@ -206,11 +203,15 @@ export default function Delet(props){
                         </button>
                     </Form.Submit>
                 </Form.Root>
-                <button className='bg-red-600 my-2 box-border w-full text-white shadow-blackA7 hover:dark:shadow-slate-500  inline-flex h-[35px] items-center justify-center rounded-lg px-[15px] font-medium leading-none shadow-[0_2px_10px] focus:shadow-[0_0_0_2px] focus:shadow-black focus:outline-none' 
-                onClick={() => {
-                    if(window.confirm('Delete the Event?')){deleteEvent()};}}>
-                    Deletar Evento
-                </button>
+                <Popover.Root>
+                    <Popover.Trigger asChild>
+                        <button className='bg-red-600 my-2 box-border w-full text-white shadow-blackA7 hover:dark:shadow-slate-500  inline-flex h-[35px] items-center justify-center rounded-lg px-[15px] font-medium leading-none shadow-[0_2px_10px] focus:shadow-[0_0_0_2px] focus:shadow-black focus:outline-none' 
+                        onClick={() => {
+                            if(window.confirm('Delete the Event?')){deleteEvent()};}}>
+                            Deletar Evento
+                        </button>
+                    </Popover.Trigger>
+                </Popover.Root>
                 <button onClick={() => {
                     setShowDelet(false)
                     }}className='mt-3 dark:bg-dark-900 my-2 box-border w-full dark:text-white shadow-blackA7 dark:shadow-slate-500 hover:bg-mauve3 inline-flex h-[35px] items-center justify-center rounded-[4px] bg-white px-[15px] font-medium leading-none shadow-[0_2px_10px] focus:shadow-[0_0_0_2px] focus:shadow-black focus:outline-none' >
