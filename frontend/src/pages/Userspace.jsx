@@ -8,6 +8,7 @@ import * as Toggle from '@radix-ui/react-toggle';
 import AlertDanger from "../components/ui/alerts/AlertDanger";
 import { ClientResponseError } from "pocketbase";
 import { useNavigate } from "react-router-dom";
+import Userside from "../components/ui/Userside";
 
 export default function Userspace (props) {
   const {setShowSignUp} = props;
@@ -16,7 +17,7 @@ export default function Userspace (props) {
   const emailRef = useRef();
   const passwordRef = useRef();
   const passwordConfirmRef = useRef();
-  const { register } = usePocket();
+  const { upuser } = usePocket();
   const { logout, user } = usePocket();
   const navigate = useNavigate();
 
@@ -26,14 +27,12 @@ export default function Userspace (props) {
     async (evt) => {
       evt?.preventDefault();
       try{
-      await register(
+      await upuser(
+        user.id,
         usernameRef.current.value,
         emailRef.current.value, 
-        passwordRef.current.value, 
-        passwordConfirmRef.current.value
         );
       setShowSuccessAlert(true);
-      setShowSignUp(false);
     }
       catch(e){
         setShowAlert(true)
@@ -45,23 +44,20 @@ export default function Userspace (props) {
       }
      
     },
-    [register]
+    [upuser]
   );
 
   const [messageAlert, setMessageAlert] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [showAlert, setShowAlert] = useState(false);
   return (
-    console.log(user),
-    <div>
-      <div className="xl:hidden absolute ml-[90%] mt-[3%]  ">
-        <SwitchTheme/>
-      </div>
-      <div className=" mx-4 mt-[10%] xl:mt-[10%] xl:mx-[6%] ">
+    <div className='flex flex-bold '>
+      <Userside/>
+      <div className='w-[100%] border-l-2 border-black dark:border-white rounded-l-3xl font-light px-[2%] pt-[6%] shadow-xl shadow-black dark:shadow-white'>
         <Logo/> 
         {showAlert && <AlertDanger message={messageAlert} signIn={false}/>}
         <main className="flex flex-col mt-3 gap-10 w-full ">
-          <header className="flex flex-col gap-4 w-full ">
+          <header className="text-center flex flex-col gap-4 w-full ">
             <h1 className="font-sans text-4xl font-bol ">
               Alterar dados do Usuário
             </h1>

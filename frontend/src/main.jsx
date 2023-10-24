@@ -19,7 +19,6 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         persistOptions={{ persister }}
       >
         <App />
-        <ReactQueryDevtools/>
       </PersistQueryClientProvider>
   </React.StrictMode>,
 )

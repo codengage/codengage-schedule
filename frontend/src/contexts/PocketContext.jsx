@@ -44,7 +44,6 @@ export const PocketProvider = ({ children }) => {
   }, []);
   
   const retrive = useCallback(async (email) => {
-    console.log(email);
     return await pb.collection("users").requestPasswordReset(email);
   }, []);
 
@@ -73,6 +72,11 @@ export const PocketProvider = ({ children }) => {
   const drag = useCallback(async (id, start, end) => {
     await pb.collection('ReserveCalendar')
     .update(id,{"start": start.toISOString().slice(0, 16), "end": end.toISOString().slice(0, 16)});
+  }, []);
+
+  const upuser = useCallback(async (id, username, email) => {
+    await pb.collection('users')
+    .update(id,{"username": username, "email": email});
   }, []);
 
   const criador = useCallback(async (id) => {
@@ -111,7 +115,7 @@ export const PocketProvider = ({ children }) => {
 
   return (
     <PocketContext.Provider
-      value={{ register, login, logout, retrive, criador, drag, records, show, del, update, registerReserve, user, token, pb }}
+      value={{ register, login, logout, retrive, criador, drag, records, upuser, show, del, update, registerReserve, user, token, pb }}
       >
       {children}
     </PocketContext.Provider>

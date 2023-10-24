@@ -25,7 +25,6 @@ export default function PopoverUser(){
           <div className="flex flex-col gap-2.5">
             <p className="text-[15px] leading-[19px] font-medium mb-1 border-b">
               <label>{username}</label>
-              <label>src={user.avatar}</label>
             </p>
             <fieldset className="flex justify-end">
             <button className='bg-blue-400 w-[60%] text-white rounded shadow-sm hover:shadow-red-500'
@@ -35,7 +34,7 @@ export default function PopoverUser(){
               </button>
               <button className='bg-red-500 w-[60%] text-white rounded shadow-sm hover:shadow-red-500'
                 onClick={logout}>
-                Sair
+                Deslogar
               </button>
             </fieldset>
           </div>
