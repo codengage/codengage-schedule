@@ -27,11 +27,13 @@ The project is coded using a simple and intuitive structure presented below:
  ┃ ┃ ┃ ┣ 📜Upmod.jsx		# Modal for apdate on list
  ┃ ┃ ┃ ┣ 📜ModalCalendar.jsx	# Modal for the Calendar
  ┃ ┃ ┃ ┣ 📜ModalList.jsx	# Modal for SideList
+ ┃ ┃ ┃ ┣ 📜ModalUser.jsx	# Modal for Userside
  ┃ ┃ ┃ ┗ 📜ModalReserve.jsx	# Modal for Reserve
  ┃ ┃ ┣ 📂popover
  ┃ ┃ ┃ ┗ 📜PopoverUser.jsx	# PopUp icon to see user and logout
  ┃ ┃ ┣ 📜Panel.jsx		# Sidebar Element
- ┃ ┃ ┣ 📜Sidebar.jsx		# Sidebar Element
+ ┃ ┃ ┣ 📜Sidebar.jsx		# Sidebar Element for Schedule page
+ ┃ ┃ ┣ 📜Userside.jsx		# Sidebar Element for Userspace page
  ┃ ┃ ┗ 📜SwitchTheme.jsx	# Change between Dark/Light mode
  ┃ ┣ 📜ForgotPassword.jsx	# Remenber the user password
  ┃ ┣ 📜RequireAuth.jsx		# Require SignIn to call Schedule
