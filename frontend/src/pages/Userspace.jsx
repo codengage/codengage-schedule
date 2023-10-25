@@ -12,7 +12,7 @@ export default function Userspace (props) {
   const {setShowSuccessAlert} = props;
   const usernameRef = useRef();
   const emailRef = useRef();
-  const { upuser } = usePocket();
+  const { upuser, pb } = usePocket();
   const { logout, user } = usePocket();
   const navigate = useNavigate();
 
@@ -52,12 +52,20 @@ export default function Userspace (props) {
         <Logo/> 
         {showAlert && <AlertDanger message={messageAlert} signIn={false}/>}
         <main className="flex flex-col mt-3 gap-10 w-full ">
-          <header className="text-center flex flex-col gap-4 w-full ">
+          <header className="text-center flex flex-col gap-4 w-full">
             <h1 className="font-sans text-4xl font-bol ">
               Alterar dados do Usuário
             </h1>
           </header>
           <Form.Root onSubmit={handleOnSubmit} className="rounded-xl relative p-[30px]">
+            <Form.Field className="grid mb-[5%]" name="avatar">
+              <Form.Control asChild >
+                <Form.Label className="text-[15px] font-medium leading-[35px] dark:text-white custum-file-upload" for="file">Avatar
+                  <img className="" src={pb.files.getUrl(user, user.avatar)} alt="Avatar" style={{ width: '200px', }}/>
+                  <input type="file" id="file"/>
+                </Form.Label>
+              </Form.Control>
+            </Form.Field>
             <Form.Field className="grid mb-[5%]" name="email">
               <div className="flex items-baseline justify-between">
                 <Form.Label className="text-[15px] font-medium leading-[35px] dark:text-white">Nome de usuário</Form.Label>

@@ -4,7 +4,7 @@ import { usePocket } from "../../../contexts/PocketContext";
 import { useNavigate } from "react-router-dom";
 
 export default function PopoverUser(){
-    const { logout, user } = usePocket();
+    const { logout, user, pb } = usePocket();
     const username = user.username;
     const navigate = useNavigate();
 
@@ -14,7 +14,7 @@ export default function PopoverUser(){
     <Popover.Root>
       <Popover.Trigger asChild>
         <button className="mt-[20%] items-center">
-        <RxAvatar size={40}/>
+        <img src={pb.files.getUrl(user, user.avatar)} alt="Avatar" style={{ width: '200px', }}/>
         </button>
       </Popover.Trigger>
       <Popover.Portal>
