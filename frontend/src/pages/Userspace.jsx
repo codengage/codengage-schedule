@@ -3,20 +3,15 @@ import { usePocket } from "../contexts/PocketContext";
 import SwitchTheme from "../components/ui/SwitchTheme";
 import * as Form from '@radix-ui/react-form';
 import { Logo } from "../assets/Logo";
-import { EyeClosedIcon, EyeOpenIcon } from "@radix-ui/react-icons";
-import * as Toggle from '@radix-ui/react-toggle';
 import AlertDanger from "../components/ui/alerts/AlertDanger";
 import { ClientResponseError } from "pocketbase";
 import { useNavigate } from "react-router-dom";
 import Userside from "../components/ui/Userside";
 
 export default function Userspace (props) {
-  const {setShowSignUp} = props;
   const {setShowSuccessAlert} = props;
   const usernameRef = useRef();
   const emailRef = useRef();
-  const passwordRef = useRef();
-  const passwordConfirmRef = useRef();
   const { upuser } = usePocket();
   const { logout, user } = usePocket();
   const navigate = useNavigate();
@@ -48,8 +43,8 @@ export default function Userspace (props) {
   );
 
   const [messageAlert, setMessageAlert] = useState("");
-  const [showPassword, setShowPassword] = useState(false);
   const [showAlert, setShowAlert] = useState(false);
+
   return (
     <div className='flex flex-bold '>
       <Userside/>

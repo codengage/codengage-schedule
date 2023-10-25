@@ -1,14 +1,10 @@
 import SwitchTheme from './SwitchTheme';
-import * as Toggle from '@radix-ui/react-toggle';
-import { Link } from 'react-router-dom';
-import { BsCalendar } from '@react-icons/all-files/bs/BsCalendar'
-import { BsCalendarFill } from '@react-icons/all-files/bs/BsCalendarFill'
 import { RxListBullet } from 'react-icons/rx';
 import PopoverUser from './popover/PopoverUser';
 import { useState } from 'react';
 import ModalUser from './modal/ModalUser';
 import { formatDate } from '@fullcalendar/core';
-import Upmod from './modal/Upmod';
+import { records } from '../../utils/event-use';
 
 export default function Userside(props){
     const [ShowModalUser,  setShowModalUser] = useState()
@@ -35,15 +31,22 @@ export default function Userside(props){
 }
 
 function renderSidebarEvent(event) {
-    const [modalInfo, setModalInfo] = useState({});
   
-    return (
-        console.log(event),
-      <li key={event}>
-        <div>
-        <i>Id: {event.reserva}</i>
-        </div>
-        <label>-------------------------------------------------------</label>
-      </li>
-    )
-  }
+  return (
+    <li key={event.id}>
+      <div>
+      <i>In: {event.sala} - Event: {event.title}</i>
+      </div>
+      <b>From: { 
+        formatDate(event.start,{timeZone: 'UTC',locale:"pt-br", hour: 'numeric', month: 'short',minute: '2-digit', day: 'numeric', meridiem: 'short'}
+      )}</b> 
+      <b> Until: { 
+        formatDate(event.end,{timeZone: 'UTC',locale:"pt-br", hour: 'numeric', month: 'short',minute: '2-digit', day: 'numeric', meridiem: 'short'}
+      )}</b>
+      <div>
+
+      </div>
+      <label>-------------------------------------------------------</label>
+    </li>
+  )
+}
