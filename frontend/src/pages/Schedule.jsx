@@ -58,7 +58,7 @@ export default function Schedule(){
             plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
             slotMinTime={'06:00:00'}
             slotMaxTime={'19:00:00'}
-            height='90%'
+            height='98%'
             headerToolbar={{
               left: 'prev,next today',
               center: 'title',

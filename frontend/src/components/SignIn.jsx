@@ -43,7 +43,7 @@ export default function SignIn(props) {
 
   return (
     <div>
-      <div className="xl:hidden absolute ml-[90%] mt-[3%] ">
+      <div className="absolute ml-[90%] mt-[3%] ">
         <SwitchTheme/>
       </div>
       <div className="mt-[20%] mx-4 xl:mt-[26%] xl:mx-[6%] ">

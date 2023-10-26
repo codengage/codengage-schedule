@@ -48,7 +48,7 @@ export default function SignUp (props) {
   const [showAlert, setShowAlert] = useState(false);
   return (
     <div>
-      <div className="xl:hidden absolute ml-[90%] mt-[3%]  ">
+      <div className="absolute ml-[90%] mt-[3%]  ">
         <SwitchTheme/>
       </div>
       <div className=" mx-4 mt-[10%] xl:mt-[10%] xl:mx-[6%] ">

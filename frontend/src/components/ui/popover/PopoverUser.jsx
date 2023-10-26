@@ -2,19 +2,23 @@ import * as Popover from '@radix-ui/react-popover';
 import { RxAvatar, RxCrossCircled} from 'react-icons/rx'
 import { usePocket } from "../../../contexts/PocketContext"; 
 import { useNavigate } from "react-router-dom";
+import { useLocation } from 'react-router-dom'
 
 export default function PopoverUser(){
     const { logout, user, pb } = usePocket();
     const username = user.username;
     const navigate = useNavigate();
+    const location = useLocation();
 
-    const handleClick = () => navigate("/Userspace")
+    const handleClick = () => {if(location.pathname == '/schedule')
+    {navigate("/Userspace")}
+    else{navigate("/schedule")}};
 
   return(
     <Popover.Root>
       <Popover.Trigger asChild>
         <button className="mt-[20%] items-center">
-        <img src={pb.files.getUrl(user, user.avatar)} alt="Avatar" style={{ width: '200px', }}/>
+        <img className="rounded-full" src={pb.files.getUrl(user, user.avatar)} alt="Avatar" style={{ width: '200px', }}/>
         </button>
       </Popover.Trigger>
       <Popover.Portal>

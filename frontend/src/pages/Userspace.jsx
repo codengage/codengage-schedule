@@ -1,20 +1,20 @@
-import React, { useCallback, useRef, useState} from "react";
+import React, { useCallback, useRef, useState } from "react";
 import { usePocket } from "../contexts/PocketContext"; 
-import SwitchTheme from "../components/ui/SwitchTheme";
 import * as Form from '@radix-ui/react-form';
 import { Logo } from "../assets/Logo";
-import AlertDanger from "../components/ui/alerts/AlertDanger";
 import { ClientResponseError } from "pocketbase";
 import { useNavigate } from "react-router-dom";
 import Userside from "../components/ui/Userside";
+import AlertSuccess from "../components/ui/alerts/AlertSuccess";
+import Panel from "../components/ui/Panel";
 
 export default function Userspace (props) {
-  const {setShowSuccessAlert} = props;
   const usernameRef = useRef();
   const emailRef = useRef();
   const { upuser, pb } = usePocket();
   const { logout, user } = usePocket();
   const navigate = useNavigate();
+  const {setShowSuccessAlert, showSuccessAlert} = props;
 
   const handleClick = () => navigate("/Schedule")
 
@@ -30,27 +30,25 @@ export default function Userspace (props) {
       setShowSuccessAlert(true);
     }
       catch(e){
-        setShowAlert(true)
+        //setShowAlert(true)
         if(e instanceof ClientResponseError){
         setMessageAlert('Nome de usuário ou Email ja cadastrado')
       }else{
         setMessageAlert(e.message)
       }
       }
-     
     },
     [upuser]
   );
 
   const [messageAlert, setMessageAlert] = useState("");
-  const [showAlert, setShowAlert] = useState(false);
 
   return (
-    <div className='flex flex-bold '>
+    <div className='flex'>
       <Userside/>
-      <div className='w-[100%] border-l-2 border-black dark:border-white rounded-l-3xl font-light px-[2%] pt-[6%] shadow-xl shadow-black dark:shadow-white'>
+      <div className='border-l-2 border-black dark:border-white rounded-3xl font-light px-[2%] pt-[6%] shadow-xl shadow-black dark:shadow-white'>
         <Logo/> 
-        {showAlert && <AlertDanger message={messageAlert} signIn={false}/>}
+        {showSuccessAlert && <AlertSuccess message="Usuário cadastrado"/>}
         <main className="flex flex-col mt-3 gap-10 w-full ">
           <header className="text-center flex flex-col gap-4 w-full">
             <h1 className="font-sans text-4xl font-bol ">
@@ -61,7 +59,7 @@ export default function Userspace (props) {
             <Form.Field className="grid mb-[5%]" name="avatar">
               <Form.Control asChild >
                 <Form.Label className="text-[15px] font-medium leading-[35px] dark:text-white custum-file-upload" for="file">Avatar
-                  <img className="" src={pb.files.getUrl(user, user.avatar)} alt="Avatar" style={{ width: '200px', }}/>
+                  <img className="rounded-full" src={pb.files.getUrl(user, user.avatar)} alt="Avatar" style={{ width: '200px', }}/>
                   <input type="file" id="file"/>
                 </Form.Label>
               </Form.Control>
@@ -118,6 +116,9 @@ export default function Userspace (props) {
             </div>
           </Form.Root>
         </main>
+      </div>
+      <div className="flex-auto max-xl:hidden col-span-2 bg-gradient-to-br from-purple-600 via-purple-500 to-purple-300 dark:via-purple-800 dark:to-purple-950 bg-cover bg-no-repeat">
+        <Panel />
       </div>
     </div>
   );

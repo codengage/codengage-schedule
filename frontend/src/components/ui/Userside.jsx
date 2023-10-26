@@ -44,7 +44,6 @@ function renderSidebarEvent(event) {
         formatDate(event.end,{timeZone: 'UTC',locale:"pt-br", hour: 'numeric', month: 'short',minute: '2-digit', day: 'numeric', meridiem: 'short'}
       )}</b>
       <div>
-
       </div>
       <label>-------------------------------------------------------</label>
     </li>

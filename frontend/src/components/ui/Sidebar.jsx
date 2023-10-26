@@ -18,7 +18,7 @@ export default function Sidebar(props){
   
   return( 
     <div className='w-[5%] block dark:text-white'>   
-      <div className='mt-[2%] flex flex-col items-center justify-between h-screen'>
+      <div className='flex flex-col items-center justify-between h-screen'>
         <PopoverUser/>
         <Toggle.Root
           defaultPressed={weekendsVisible}
