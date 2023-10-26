@@ -11,10 +11,12 @@ import Panel from "../components/ui/Panel";
 export default function Userspace (props) {
   const usernameRef = useRef();
   const emailRef = useRef();
+  const avatarRef = useRef();
   const { upuser, pb } = usePocket();
-  const { logout, user } = usePocket();
+  const { logout, user, upavat } = usePocket();
   const navigate = useNavigate();
   const {setShowSuccessAlert, showSuccessAlert} = props;
+  const [file, setFile] = useState();
 
   const handleClick = () => navigate("/Schedule")
 
@@ -41,6 +43,22 @@ export default function Userspace (props) {
     [upuser]
   );
 
+  function handleChange(e) {
+    setFile(e.target.files[0])
+    //blob = setFile(URL.createObjectURL(e.target.files[0]))
+  }
+
+  const faz= useCallback(
+    async (evt) => {
+      evt?.preventDefault();
+      await upavat(
+        user.id,
+        file
+        );
+    [upavat]
+    })
+  
+
   const [messageAlert, setMessageAlert] = useState("");
 
   return (
@@ -54,16 +72,13 @@ export default function Userspace (props) {
             <h1 className="font-sans text-4xl font-bol ">
               Alterar dados do Usuário
             </h1>
-          </header>
+          </header>             
           <Form.Root onSubmit={handleOnSubmit} className="rounded-xl relative p-[30px]">
-            <Form.Field className="grid mb-[5%]" name="avatar">
-              <Form.Control asChild >
-                <Form.Label className="text-[15px] font-medium leading-[35px] dark:text-white custum-file-upload" for="file">Avatar
-                  <img className="rounded-full" src={pb.files.getUrl(user, user.avatar)} alt="Avatar" style={{ width: '200px', }}/>
-                  <input type="file" id="file"/>
-                </Form.Label>
-              </Form.Control>
-            </Form.Field>
+            <label className=" text-[15px] font-medium dark:text-white custum-file-upload" for="file">Avatar Atual
+                <img className="rounded-full" src={pb.files.getUrl(user, user.avatar)} alt="Avatar" style={{ width: '200px', }}/>
+                <input type="file" onChange={handleChange}/>
+                <button className='mb-[5%] h-12 bg-purple-500 dark:bg-purple-700 dark:hover:bg-purple-900 text-white hover:bg-purple-900 my-2 box-border w-full shadow-blackA7 dark:shadow-slate-500 inline-flex items-center justify-center rounded-lg px-[15px] font-medium leading-none shadow-[0_2px_10px] focus:shadow-[0_0_0_2px] focus:shadow-black focus:outline-none' onClick={faz}>Mudar Avatar</button>
+            </label>
             <Form.Field className="grid mb-[5%]" name="email">
               <div className="flex items-baseline justify-between">
                 <Form.Label className="text-[15px] font-medium leading-[35px] dark:text-white">Nome de usuário</Form.Label>
@@ -104,7 +119,7 @@ export default function Userspace (props) {
             </Form.Field>
             <div className="text-center grid">
               <button type="submit" className='mb-[5%] h-12 bg-purple-500 dark:bg-purple-700 dark:hover:bg-purple-900 text-white hover:bg-purple-900 my-2 box-border w-full shadow-blackA7 dark:shadow-slate-500 inline-flex items-center justify-center rounded-lg px-[15px] font-medium leading-none shadow-[0_2px_10px] focus:shadow-[0_0_0_2px] focus:shadow-black focus:outline-none' >
-                Alterar Usuário
+                Alterar Usuário/Email
               </button>
               <button className='mb-[5%] h-12 bg-purple-500 dark:bg-purple-700 dark:hover:bg-purple-900 text-white hover:bg-purple-900 my-2 box-border w-full shadow-blackA7 dark:shadow-slate-500 inline-flex items-center justify-center rounded-lg px-[15px] font-medium leading-none shadow-[0_2px_10px] focus:shadow-[0_0_0_2px] focus:shadow-black focus:outline-none' 
               onClick={handleClick}>

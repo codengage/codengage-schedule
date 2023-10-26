@@ -63,6 +63,12 @@ export const PocketProvider = ({ children }) => {
   });
   }, []);
 
+  const upavat = useCallback(async (id, avatar) => {
+    let formData = new FormData();  
+    formData.append('avatar', avatar);
+    await pb.collection('users').update(id, formData);
+  }, []);
+
   const drag = useCallback(async (id, start, end) => {
     await pb.collection('ReserveCalendar')
     .update(id,{"start": start.toISOString().slice(0, 16), "end": end.toISOString().slice(0, 16)});
@@ -109,7 +115,7 @@ export const PocketProvider = ({ children }) => {
 
   return (
     <PocketContext.Provider
-      value={{ register, login, logout, retrive, criador, drag, records, upuser, del, update, registerReserve, user, token, pb }}
+      value={{ register, login, logout, retrive, criador, drag, records, upavat, upuser, del, update, registerReserve, user, token, pb }}
       >
       {children}
     </PocketContext.Provider>
