@@ -11,7 +11,7 @@ export default function Delet(props){
     const salaRef = useRef();
     const startRef = useRef();
     const endRef = useRef();
-    const { del, update } = usePocket();
+    const { del, update, color } = usePocket();
     let backgroundColor = (modalInfo.event._def.ui.backgroundColor);
     
     const deleteEvent = useCallback(
@@ -26,7 +26,7 @@ export default function Delet(props){
     const handleOnSubmit =  useCallback(
       async (evt) => { 
         evt?.preventDefault();
-        if(startRef.current.value.slice(14,16) >= endRef.current.value.slice(14,16) && startRef.current.value.slice(11,13) >= endRef.current.value.slice(11,13)){
+        if(startRef.current.value.slice(11,13)+startRef.current.value.slice(14,16) >= endRef.current.value.slice(11,13)+endRef.current.value.slice(14,16)){
             alert("Data inicial não pode ser maior que a final")
         }else{
         await update(
@@ -35,13 +35,17 @@ export default function Delet(props){
             salaRef.current.value,
             startRef.current.value,
             endRef.current.value,
-            backgroundColor,
         );
         location.reload(false);
         }
       },
       [update]
     );
+
+    function handleChange(value) {
+        color(props.modalInfo.event.id, value);
+        [color]
+    }
 
     return(
         <div className="modal__wrapper">
@@ -136,11 +140,7 @@ export default function Delet(props){
                         <RadioGroup.Root className="flex pt-1 gap-2.5 my-2 justify-center align-middle outline-none cursor-default"
                             aria-label="View density"
                             defaultValue={backgroundColor}
-                            onValueChange={(value)=>{     
-                                if(value){               
-                                    backgroundColor = value;  
-                                }
-                            }}
+                            onValueChange={handleChange}
                             >
                             <div className="flex items-center">
                                 <RadioGroup.Item className="bg-[#ff4f00] w-[25px] h-[25px] rounded-full shadow-[0_2px_10px] shadow-blackA7 focus:shadow-[0_0_0_2px] focus:shadow-black outline-none cursor-default"

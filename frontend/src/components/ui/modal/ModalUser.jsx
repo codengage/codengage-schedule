@@ -7,8 +7,14 @@ export default function ModalUser(props){
   const {setShowModalUser} = props;
   const { user } = usePocket();
   const {renderSidebarEvent} = props;
-    
+  
+  if (records[0].reserva <= 0) {
+    alert("Reservas do Usuário Vazia");
+    setShowModalUser(false);
+  }
+
   return (
+    console.log(records[0].reserva),
     <div className="modal__wrapper">
       <div className="list__modal overflow-y-auto overflow-hidden dark:bg-dark-400 border-2 border-[#712cf9] dark:border-white">
         <span className="close__modal bg-white dark:bg-dark-400 rounded-full">

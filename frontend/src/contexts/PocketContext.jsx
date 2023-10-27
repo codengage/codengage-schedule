@@ -51,7 +51,7 @@ export const PocketProvider = ({ children }) => {
     const id = Array(15+1).join((Math.random().toString(36)+'00000000000000000').slice(2, 18)).slice(0, 15)
     return await pb
       .collection('ReserveCalendar')
-      .create({id, title, creator, sala, start, end, backgroundColor, textColor: '#fff', borderColor: backgroundColor})
+      .create({id, title, creator, sala, start, end, backgroundColor, borderColor:backgroundColor})
       .then (pb
         .collection("users")
         .update(creator, {"reserva+": id}))
@@ -72,6 +72,12 @@ export const PocketProvider = ({ children }) => {
   const drag = useCallback(async (id, start, end) => {
     await pb.collection('ReserveCalendar')
     .update(id,{"start": start.toISOString().slice(0, 16), "end": end.toISOString().slice(0, 16)});
+  }, []);
+
+  const color = useCallback(async (id, backgroundColor) => {
+    console.log(backgroundColor)
+    await pb.collection('ReserveCalendar')
+    .update(id,{"backgroundColor": backgroundColor,"borderColor": backgroundColor});
   }, []);
 
   const upuser = useCallback(async (id, username, email) => {
@@ -115,7 +121,7 @@ export const PocketProvider = ({ children }) => {
 
   return (
     <PocketContext.Provider
-      value={{ register, login, logout, retrive, criador, drag, records, upavat, upuser, del, update, registerReserve, user, token, pb }}
+      value={{ register, login, logout, retrive, criador, drag, records, upavat, color, upuser, del, update, registerReserve, user, token, pb }}
       >
       {children}
     </PocketContext.Provider>

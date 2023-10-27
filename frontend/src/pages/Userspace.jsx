@@ -11,7 +11,6 @@ import Panel from "../components/ui/Panel";
 export default function Userspace (props) {
   const usernameRef = useRef();
   const emailRef = useRef();
-  const avatarRef = useRef();
   const { upuser, pb } = usePocket();
   const { logout, user, upavat } = usePocket();
   const navigate = useNavigate();
@@ -57,7 +56,6 @@ export default function Userspace (props) {
         );
     [upavat]
     })
-  
 
   const [messageAlert, setMessageAlert] = useState("");
 

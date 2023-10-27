@@ -31,7 +31,6 @@ export default function Userside(props){
 }
 
 function renderSidebarEvent(event) {
-  
   return (
     <li key={event.id}>
       <div>
