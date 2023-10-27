@@ -2,7 +2,7 @@ import * as Popover from '@radix-ui/react-popover';
 import { RxAvatar, RxCrossCircled} from 'react-icons/rx'
 import { usePocket } from "../../../contexts/PocketContext"; 
 import { useNavigate } from "react-router-dom";
-import { useLocation } from 'react-router-dom'
+import { useLocation } from 'react-router-dom';
 
 export default function PopoverUser(){
     const { logout, user, pb } = usePocket();
@@ -18,7 +18,12 @@ export default function PopoverUser(){
     <Popover.Root>
       <Popover.Trigger asChild>
         <button className="mt-[20%] items-center">
-        <img className="rounded-full" src={pb.files.getUrl(user, user.avatar)} alt="Avatar" style={{ width: '200px', }}/>
+        <img className="rounded-full" src={pb.files.getUrl(user, user.avatar)} onError={(e) =>
+          (
+            (e.target.src =
+              "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ee/Oxygen480-apps-preferences-contact-list.svg/128px-Oxygen480-apps-preferences-contact-list.svg.png")
+          )
+        } style={{ width: '200px', }}/>
         </button>
       </Popover.Trigger>
       <Popover.Portal>
@@ -34,7 +39,7 @@ export default function PopoverUser(){
             <button className='bg-blue-400 w-[60%] text-white rounded shadow-sm hover:shadow-red-500'
                 onClick={handleClick}
                 >
-                UserArea
+                User/Calendar
               </button>
               <button className='bg-red-500 w-[60%] text-white rounded shadow-sm hover:shadow-red-500'
                 onClick={logout}>
