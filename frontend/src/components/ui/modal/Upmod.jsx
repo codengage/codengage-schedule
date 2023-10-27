@@ -25,6 +25,10 @@ export default function Upmod(props){
       async (evt) => {
         try{
             evt?.preventDefault();
+            if(startRef.current.value.slice(14,16) >= endRef.current.value.slice(14,16) && startRef.current.value.slice(11,13) >= endRef.current.value.slice(11,13)){
+                alert("Data inicial não pode ser maior que a final")
+                console.log(startRef.current.value.slice(11,13))
+            }else{
             await update(
                 props.modalInfo.id,
                 titleRef.current.value, 
@@ -33,6 +37,7 @@ export default function Upmod(props){
                 endRef.current.value,
             );
             location.reload(false);
+            }
         }catch(e){
             console.log(e.message)
         }

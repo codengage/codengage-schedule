@@ -85,6 +85,9 @@ export default function Schedule(){
             selectable={true}
             selectMirror={true}
             dayMaxEvents={true}
+            eventOverlap={function(stillEvent, movingEvent){
+              return stillEvent._def.extendedProps.sala != movingEvent._def.extendedProps.sala;
+            }}
             weekends={weekendsVisible}
             initialEvents={currentEvents} 
             select={(selectInfo)=>{
@@ -106,7 +109,7 @@ export default function Schedule(){
             }}
             eventChange={(eventInfo)=>{
               setShowDrag(true);
-              setModalInfo(eventInfo);
+              setModalInfo(eventInfo);              
             }}
             /*
             eventAdd={function(){}} 

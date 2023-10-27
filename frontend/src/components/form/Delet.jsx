@@ -26,6 +26,9 @@ export default function Delet(props){
     const handleOnSubmit =  useCallback(
       async (evt) => { 
         evt?.preventDefault();
+        if(startRef.current.value.slice(14,16) >= endRef.current.value.slice(14,16) && startRef.current.value.slice(11,13) >= endRef.current.value.slice(11,13)){
+            alert("Data inicial não pode ser maior que a final")
+        }else{
         await update(
             props.modalInfo.event.id,
             titleRef.current.value, 
@@ -35,6 +38,7 @@ export default function Delet(props){
             backgroundColor,
         );
         location.reload(false);
+        }
       },
       [update]
     );

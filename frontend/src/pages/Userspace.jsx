@@ -132,7 +132,7 @@ export default function Userspace (props) {
           </Form.Root>
         </main>
       </div>
-      <div className="flex-auto max-xl:hidden col-span-2 bg-gradient-to-br from-purple-600 via-purple-500 to-purple-300 dark:via-purple-800 dark:to-purple-950 bg-cover bg-no-repeat">
+      <div className="flex-auto translate-x-0.5 max-xl:hidden col-span-2 bg-gradient-to-br from-purple-600 via-purple-500 to-purple-300 dark:via-purple-800 dark:to-purple-950 bg-cover bg-no-repeat">
         <Panel />
       </div>
     </div>
