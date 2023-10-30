@@ -102,9 +102,12 @@ export const PocketProvider = ({ children }) => {
   }, []);
 
   const update = useCallback(async (id, title, sala, start, end, backgroundColor) => {
-    return await pb
+    try{return await pb
       .collection('ReserveCalendar')
       .update(id, {title, sala, start, end, backgroundColor, borderColor: backgroundColor}) 
+    }catch(e){
+      alert('Sala ocupada nesse horário')
+    }
   }, []);
 
   const refreshSession = useCallback(async () => {
