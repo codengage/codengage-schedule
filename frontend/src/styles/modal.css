@@ -33,8 +33,8 @@
     display: initial;
     top: 8%;
     left: 47.5%;
-    width: 12.5%;
-    height: 23%;
+    width: auto;
+    height: auto;
     background: #000000;
     border: 2px solid  !important;
     border-radius: 5px;

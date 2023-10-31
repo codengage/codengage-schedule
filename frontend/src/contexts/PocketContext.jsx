@@ -87,9 +87,9 @@ export const PocketProvider = ({ children }) => {
 
   const criador = useCallback(async (id) => {
     useQuery({
-      queryKey: ['creator', id],
+      queryKey: [id],
       queryFn: async () => {
-        return(await pb.collection('users').getOne(id, {expand: 'username',
+        return(await pb.collection('users').getOne(id, {
           })
         );
       }
