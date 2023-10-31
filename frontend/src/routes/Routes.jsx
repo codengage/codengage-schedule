@@ -1,5 +1,4 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { Protected } from "../pages/Protected";
 import { RequireAuth } from "../components/RequireAuth";
 import Schedule from "../pages/Schedule";
 import Sign from "../pages/Sign";
