@@ -42,8 +42,8 @@ The project is coded using a simple and intuitive structure presented below:
  ┣ 📂contexts
  ┃ ┗ 📜PocketContext.jsx	# Peform the pockbase operations
  ┣ 📂pages
- ┃ ┣ 📜Protected.jsx		# Demand User Logged to enter pages
  ┃ ┣ 📜Schedule.jsx		# Calendar view and operations calls
+ ┃ ┣ 📜UserSpace.jsx		# Page for user operations 
  ┃ ┗ 📜Sign.jsx			# SignIn function
  ┣ 📂routes
  ┃ ┗ 📜Routes.jsx		# Define Pages routes and protected pages
@@ -51,6 +51,7 @@ The project is coded using a simple and intuitive structure presented below:
  ┃ ┣ 📜modal.css		# Style for the modals
  ┃ ┗ 📜schedule.css		# Style for the calendar
  ┣ 📂utils
+ ┃ ┣ 📜event-use.js		# Colect User from pockbase
  ┃ ┣ 📜event-utils.js		# Colect Events from pockbase 
  ┃ ┗ 📜useDarkSide.js		# SwitchTheme component
  ┣ 📜App.jsx			# Start the routes
