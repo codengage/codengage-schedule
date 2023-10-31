@@ -1,5 +1,5 @@
 import * as Popover from '@radix-ui/react-popover';
-import { RxAvatar, RxCrossCircled} from 'react-icons/rx'
+import { RxCrossCircled} from 'react-icons/rx'
 import { usePocket } from "../../../contexts/PocketContext"; 
 import { useNavigate } from "react-router-dom";
 import { useLocation } from 'react-router-dom';

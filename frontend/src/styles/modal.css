@@ -107,9 +107,7 @@
     right: -2px;
     z-index: 6666666;
   }
-  
  
-  
   @media only screen and (max-width: 992px) {
     .single__modal {
       width: 300px;

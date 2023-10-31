@@ -19,28 +19,40 @@ export default function Sidebar(props){
   return( 
     <div className='w-[5%] block dark:text-white'>   
       <div className='flex flex-col items-center justify-between h-screen'>
-        <PopoverUser/>
+        <div class="group flex relative">
+          <span class="group-hover:opacity-100 transition-opacity bg-gray-800 px-1 text-sm text-gray-100 rounded-md absolute opacity-0">UserSpace</span>
+          <PopoverUser/> 
+        </div>
         <Toggle.Root
           defaultPressed={weekendsVisible}
           onPressedChange={(pressed)=>{
           setWeekendsVisible(!pressed);
           }}
         >
-        {weekendsVisible ? <BsCalendarFill size={30}/>:<BsCalendar size={30}/>}
+        <div class="group flex relative">
+          <span class="group-hover:opacity-100 transition-opacity bg-gray-800 px-1 text-sm text-gray-100 rounded-md absolute opacity-0 m-4">Mostrar Fim de Semana</span>
+          {weekendsVisible ? <BsCalendarFill size={30}/>:<BsCalendar size={30}/>}
+        </div>
         </Toggle.Root>
           <button
           onClick={()=>{
           setShowModalList(true);
           }}
-        >
-        <RxListBullet size={30}/>
+        > 
+        <div class="group flex relative">
+          <span class="group-hover:opacity-100 transition-opacity bg-gray-800 px-1 text-sm text-gray-100 rounded-md absolute opacity-0 m-4">Lista Reservas</span>
+          <RxListBullet size={30}/>
+        </div>
         </button>
           {showModalList && <ModalList 
           setShowModalList={setShowModalList}
           currentEvents={currentEvents}
           renderSidebarEvent={renderSidebarEvent}
         />}
+        <div class="group flex relative">
+          <span class="group-hover:opacity-100 transition-opacity bg-gray-800 px-1 text-sm text-gray-100 rounded-md absolute opacity-0 m-4">Dark/Light</span>
         <SwitchTheme/>
+        </div>
       </div>
     </div>
   )

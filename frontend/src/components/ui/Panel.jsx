@@ -1,5 +1,4 @@
 import React from "react";
-import SwitchTheme from './SwitchTheme'
 import PanelLogo from '../../assets/panel-logo.svg';
 
 export default function Panel () {

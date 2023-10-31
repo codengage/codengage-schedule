@@ -14,7 +14,6 @@ export default function Router(){
           <Route index element={<Sign />} /> 
           <Route exact  path="/schedule" element={<Schedule/>} />
           <Route element={<RequireAuth />}>
-            <Route path="/protected" element={<Protected />} />
             <Route path="/Userspace" element={<Userspace />} />
           </Route>
         </Routes>

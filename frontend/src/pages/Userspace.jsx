@@ -73,14 +73,15 @@ export default function Userspace (props) {
           </header>             
           <Form.Root onSubmit={handleOnSubmit} className="rounded-xl relative p-[30px]">
             <label className=" text-[15px] font-medium dark:text-white custum-file-upload" for="file">Avatar Atual
-                <img className="rounded-full" src={pb.files.getUrl(user, user.avatar)} onError={(e) =>
-                  (
-                    (e.target.src =
-                      "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ee/Oxygen480-apps-preferences-contact-list.svg/128px-Oxygen480-apps-preferences-contact-list.svg.png")
-                  )
-                } style={{ width: '200px', }}/>
-                <input type="file" onChange={handleChange}/>
-                <button className='mb-[5%] h-12 bg-purple-500 dark:bg-purple-700 dark:hover:bg-purple-900 text-white hover:bg-purple-900 my-2 box-border w-full shadow-blackA7 dark:shadow-slate-500 inline-flex items-center justify-center rounded-lg px-[15px] font-medium leading-none shadow-[0_2px_10px] focus:shadow-[0_0_0_2px] focus:shadow-black focus:outline-none' onClick={faz}>Mudar Avatar</button>
+              <img className="rounded-full" src={pb.files.getUrl(user, user.avatar)} onError={(e) =>
+                (
+                  (e.target.src =
+                  "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ee/Oxygen480-apps-preferences-contact-list.svg/128px-Oxygen480-apps-preferences-contact-list.svg.png")
+                )
+              } 
+              style={{ width: '200px', }}/>
+              <input type="file" onChange={handleChange}/>
+              <button className='mb-[5%] h-12 bg-purple-500 dark:bg-purple-700 dark:hover:bg-purple-900 text-white hover:bg-purple-900 my-2 box-border w-full shadow-blackA7 dark:shadow-slate-500 inline-flex items-center justify-center rounded-lg px-[15px] font-medium leading-none shadow-[0_2px_10px] focus:shadow-[0_0_0_2px] focus:shadow-black focus:outline-none' onClick={faz}>Mudar Avatar</button>
             </label>
             <Form.Field className="grid mb-[5%]" name="email">
               <div className="flex items-baseline justify-between">

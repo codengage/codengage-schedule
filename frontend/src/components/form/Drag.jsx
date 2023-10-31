@@ -1,4 +1,4 @@
-import React, { useCallback, useRef } from "react";
+import React, { useCallback } from "react";
 import { usePocket } from "../../contexts/PocketContext";
 
 export default function Drag(props) {

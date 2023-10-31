@@ -10,6 +10,5 @@ export const RequireAuth = () => {
     <Navigate to={{ pathname: "/" }} state={{ location }} replace />
     );
   }
-
   return <Outlet  />;
   };

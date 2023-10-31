@@ -111,14 +111,6 @@ export default function Schedule(){
               setShowDrag(true);
               setModalInfo(eventInfo);              
             }}
-            /*
-            eventAdd={function(){}} 
-            eventDrop={(eventInfo)=>{
-              setShowDrag(true);
-              setModalInfo(eventInfo);
-            }}
-            eventRemove={function(){}}
-            */
           />
           {showModal && <ModalCalendar 
           modalInfo={modalInfo} 

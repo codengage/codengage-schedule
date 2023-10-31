@@ -4,7 +4,6 @@ import PopoverUser from './popover/PopoverUser';
 import { useState } from 'react';
 import ModalUser from './modal/ModalUser';
 import { formatDate } from '@fullcalendar/core';
-import { records } from '../../utils/event-use';
 
 export default function Userside(props){
     const [ShowModalUser,  setShowModalUser] = useState()
@@ -12,19 +11,28 @@ export default function Userside(props){
   return( 
     <div className='w-[5%] block dark:text-white'>   
       <div className='mt-[2%] flex flex-col items-center justify-between h-screen'>
-        <PopoverUser/>
+        <div class="group flex relative">
+          <span class="group-hover:opacity-100 transition-opacity bg-gray-800 px-1 text-sm text-gray-100 rounded-md absolute opacity-0">UserSpace</span>
+          <PopoverUser/>
+        </div>
         <button
           onClick={()=>{
           setShowModalUser(true);
           }}
         >
-        <RxListBullet size={30}/>
+        <div class="group flex relative">
+          <span class="group-hover:opacity-100 transition-opacity bg-gray-800 px-1 text-sm text-gray-100 rounded-md absolute opacity-0 m-4">Lista Reservas</span>
+          <RxListBullet size={30}/>
+        </div>
         </button>
           {ShowModalUser && <ModalUser 
           setShowModalUser={setShowModalUser}
           renderSidebarEvent={renderSidebarEvent}
         />}
-        <SwitchTheme/>
+        <div class="group flex relative">
+          <span class="group-hover:opacity-100 transition-opacity bg-gray-800 px-1 text-sm text-gray-100 rounded-md absolute opacity-0 m-4">Dark/Light</span>
+          <SwitchTheme/>
+        </div>
       </div>
     </div>
   )

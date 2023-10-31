@@ -1,7 +1,6 @@
 import React, { useCallback, useRef } from "react";
 import { usePocket } from "../../../contexts/PocketContext";
 import * as Form from '@radix-ui/react-form';
-import * as RadioGroup from '@radix-ui/react-radio-group';
 
 export default function Upmod(props){
     const {setShowUpmod} = props;

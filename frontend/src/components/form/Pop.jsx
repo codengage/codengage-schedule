@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from "react";
+import React, { useState } from "react";
 import { usePocket } from "../../contexts/PocketContext";
 import * as Form from '@radix-ui/react-form';
 import { useQuery, useQueryClient } from "@tanstack/react-query";
@@ -24,10 +24,10 @@ export default function Pop(props) {
     return(     
         <div className="pop__wrapper">
             <Form.Root>
-                <Form.Field className="grid mb-[10px]" name="title">
+                <Form.Field className="" name="title">
                 <Form.Label className="text-[15px] font-medium leading-[35px] text-white ">Title: {title}</Form.Label>
                 </Form.Field>
-                <Form.Field className="grid mb-[10px]" name="creator">
+                <Form.Field className="" name="creator">
                 <Form.Label className="text-[15px] font-medium leading-[35px] text-white " >Criador: {data && data.username ? data.username : "..."}</Form.Label>
                 </Form.Field>
             </Form.Root>   

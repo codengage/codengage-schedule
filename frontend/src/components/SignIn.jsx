@@ -1,5 +1,5 @@
 import React, { useRef, useCallback, useState } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { usePocket } from "../contexts/PocketContext";
 import * as Form from '@radix-ui/react-form';
 import * as Toggle from '@radix-ui/react-toggle';
