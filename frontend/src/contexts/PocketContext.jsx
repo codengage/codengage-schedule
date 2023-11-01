@@ -51,7 +51,7 @@ export const PocketProvider = ({ children }) => {
     return await pb
       .collection('ReserveCalendar')
       .create({id, title, creator, sala, start, end, backgroundColor, borderColor:backgroundColor})
-      .then (pb
+      .then (await pb
         .collection("users")
         .update(creator, {"reserva+": id}))
   }, []);
@@ -85,8 +85,11 @@ export const PocketProvider = ({ children }) => {
   }, []);
 
   const del = useCallback(async (id) => {
-    await pb.collection('ReserveCalendar')
-    .delete(id);
+    try{await pb.collection('ReserveCalendar')
+      .delete(id);
+    }catch(e){
+      alert('Reserva não e sua')
+    }
   }, []);
 
   const update = useCallback(async (id, title, sala, start, end, backgroundColor) => {

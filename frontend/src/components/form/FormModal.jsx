@@ -17,7 +17,6 @@ export default function FormModal(props){
   const handleOnSubmit =  useCallback(
       async (evt) => {
         evt?.preventDefault();
-        console.log(backgroundColor),
         await registerReserve(
           titleRef.current.value,
           creator, 
