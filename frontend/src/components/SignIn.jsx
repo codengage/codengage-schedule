@@ -69,10 +69,10 @@ export default function SignIn(props) {
               <div className="flex items-baseline justify-between">
                 <Form.Label className="text-[15px] font-medium leading-[35px] dark:text-white">Email</Form.Label>
                 <Form.Message className="text-[13px] text-red-500 opacity-[0.8]" match="valueMissing">
-                  * Please enter your email
+                  * Insira seu email
                 </Form.Message>
                 <Form.Message className="text-[13px] text-red-500 opacity-[0.8]" match="typeMismatch">
-                  * Please provide a valid email
+                  * Email Inválido
                 </Form.Message>
               </div>
               <Form.Control asChild >
@@ -87,7 +87,7 @@ export default function SignIn(props) {
               <div className="flex items-baseline justify-between">
                 <Form.Label className="text-[15px] font-medium leading-[35px] dark:text-white">Senha</Form.Label>
                 <Form.Message className="text-[13px] text-red-500 opacity-[0.8]" match="valueMissing">
-                  * Please enter your password
+                  * Insira sua senha
                 </Form.Message>
               </div>
               <div className="flex items-baseline justify-between">

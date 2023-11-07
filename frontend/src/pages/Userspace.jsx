@@ -83,14 +83,14 @@ export default function Userspace (props) {
               <input type="file" onChange={handleChange}/>
               <button className='mb-[5%] h-12 bg-purple-500 dark:bg-purple-700 dark:hover:bg-purple-900 text-white hover:bg-purple-900 my-2 box-border w-full shadow-blackA7 dark:shadow-slate-500 inline-flex items-center justify-center rounded-lg px-[15px] font-medium leading-none shadow-[0_2px_10px] focus:shadow-[0_0_0_2px] focus:shadow-black focus:outline-none' onClick={faz}>Mudar Avatar</button>
             </label>
-            <Form.Field className="grid mb-[5%]" name="email">
+            <Form.Field className="FormField grid mb-[5%]" name="email">
               <div className="flex items-baseline justify-between">
                 <Form.Label className="text-[15px] font-medium leading-[35px] dark:text-white">Nome de usuário</Form.Label>
                 <Form.Message className="text-[13px] text-red-500 opacity-[0.8]" match="valueMissing">
-                  * Please enter your Username
+                  * Insira o nome do usuário
                 </Form.Message>
                 <Form.Message className="text-[13px] text-red-500 opacity-[0.8]" match="typeMismatch">
-                  * This Username is invalid
+                  * Nome de usuário invalido
                 </Form.Message>
               </div>
               <Form.Control asChild >
@@ -102,14 +102,14 @@ export default function Userspace (props) {
                 />
               </Form.Control>
             </Form.Field>
-            <Form.Field className="grid mb-[5%]" name="email">
+            <Form.Field className="FormField grid mb-[5%]" name="email">
               <div className="flex items-baseline justify-between">
                 <Form.Label className="text-[15px] font-medium leading-[35px] dark:text-white">Email</Form.Label>
                 <Form.Message className="text-[13px] text-red-500 opacity-[0.8]" match="valueMissing">
-                  * Please enter your email
+                  * Insira seu email
                 </Form.Message>
                 <Form.Message className="text-[13px] text-red-500 opacity-[0.8]" match="typeMismatch">
-                  * Please provide a valid email
+                  * Email inválido
                 </Form.Message>
               </div>
               <Form.Control asChild >
@@ -123,7 +123,7 @@ export default function Userspace (props) {
             </Form.Field>
             <div className="text-center grid">
               <button type="submit" className='mb-[5%] h-12 bg-purple-500 dark:bg-purple-700 dark:hover:bg-purple-900 text-white hover:bg-purple-900 my-2 box-border w-full shadow-blackA7 dark:shadow-slate-500 inline-flex items-center justify-center rounded-lg px-[15px] font-medium leading-none shadow-[0_2px_10px] focus:shadow-[0_0_0_2px] focus:shadow-black focus:outline-none' >
-                Alterar Usuário/Email
+                Update Usuário
               </button>
               <button className='mb-[5%] h-12 bg-purple-500 dark:bg-purple-700 dark:hover:bg-purple-900 text-white hover:bg-purple-900 my-2 box-border w-full shadow-blackA7 dark:shadow-slate-500 inline-flex items-center justify-center rounded-lg px-[15px] font-medium leading-none shadow-[0_2px_10px] focus:shadow-[0_0_0_2px] focus:shadow-black focus:outline-none' 
               onClick={handleClick}>

@@ -12,6 +12,7 @@ export default function ForgotPassword(props){
     async (evt) => {
         evt?.preventDefault();
         await retrive(emailRef.current.value,);
+        setShowForgotPassword(false);
     },
     [retrive]
   )
@@ -32,10 +33,10 @@ export default function ForgotPassword(props){
             <div className="flex items-baseline justify-between">
               <Form.Label className="text-[15px] font-medium leading-[35px] dark:text-white">Email</Form.Label>
               <Form.Message className="text-[13px] text-red-500 opacity-[0.8]" match="valueMissing">
-                * Please enter your email
+                * Insira seu email
               </Form.Message>
               <Form.Message className="text-[13px] text-red-500 opacity-[0.8]" match="typeMismatch">
-                * Please provide a valid email
+                * Email inválido
               </Form.Message>
             </div>
             <Form.Control asChild >

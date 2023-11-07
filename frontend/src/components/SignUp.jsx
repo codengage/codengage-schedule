@@ -68,10 +68,10 @@ export default function SignUp (props) {
               <div className="flex items-baseline justify-between">
                 <Form.Label className="text-[15px] font-medium leading-[35px] dark:text-white">Nome de usuário</Form.Label>
                 <Form.Message className="text-[13px] text-red-500 opacity-[0.8]" match="valueMissing">
-                  * Please enter your Username
+                  * Insira o nome do usuário
                 </Form.Message>
                 <Form.Message className="text-[13px] text-red-500 opacity-[0.8]" match="typeMismatch">
-                  * This Username is invalid
+                  * Nome de usuário invalido
                 </Form.Message>
               </div>
               <Form.Control asChild >
@@ -86,10 +86,10 @@ export default function SignUp (props) {
               <div className="flex items-baseline justify-between">
                 <Form.Label className="text-[15px] font-medium leading-[35px] dark:text-white">Email</Form.Label>
                 <Form.Message className="text-[13px] text-red-500 opacity-[0.8]" match="valueMissing">
-                  * Please enter your email
+                  * Insira seu email
                 </Form.Message>
                 <Form.Message className="text-[13px] text-red-500 opacity-[0.8]" match="typeMismatch">
-                  * Please provide a valid email
+                  * Email inválido
                 </Form.Message>
               </div>
               <Form.Control asChild >
@@ -104,10 +104,10 @@ export default function SignUp (props) {
               <div className="flex items-baseline justify-between">
                 <Form.Label className="text-[15px] font-medium leading-[35px] dark:text-white">Senha</Form.Label>
                 <Form.Message className="text-[13px] text-red-500 opacity-[0.8]" match="valueMissing">
-                  * Please enter your password.
+                  * Insira sua senha.
                 </Form.Message>
                 <Form.Message className="text-[13px] text-red-500 opacity-[0.8]" match={(value, formData)=> value.length < 8 || value.length > 72}>
-                  * The length must be between 8 and 72.
+                  * Tamanho entre 8 e 72.
                 </Form.Message>
               </div>
               <div className="flex items-baseline justify-between">
@@ -131,10 +131,10 @@ export default function SignUp (props) {
               <div className="flex items-baseline justify-between">
                 <Form.Label className="text-[15px] font-medium leading-[35px] dark:text-white">Confirmar senha</Form.Label>
                 <Form.Message className="text-[13px] text-red-500 opacity-[0.8]" match="valueMissing">
-                  * Please confirm your password.
+                  * Confirme sua senha.
                 </Form.Message>
                 <Form.Message className="text-[13px] text-red-500 opacity-[0.8]" match={(value, formData)=> value !== passwordRef.current.value}>
-                  * Values don't match.
+                  * Senhas diferentes.
                 </Form.Message>
                 {}
               </div>

@@ -36,7 +36,7 @@ export default function FormModal(props){
         <div className="flex items-baseline justify-between">
           <Form.Label className="text-[15px] font-medium leading-[35px] ">Evento</Form.Label>
           <Form.Message className="text-[13px]  opacity-[0.8]" match="valueMissing">
-            adicione um Título
+            Adicione um Título
           </Form.Message>
           <Form.Message className="text-[13px]  opacity-[0.8]"  match={(value, formData)=> value.length > 25}>
             o Título deve ser curto  
@@ -53,9 +53,6 @@ export default function FormModal(props){
       <Form.Field className="grid mb-[10px]" name="title">
         <div className="flex items-baseline justify-between">
           <Form.Label className="text-[15px] font-medium leading-[35px] ">Sala</Form.Label>
-          <Form.Message className="text-[13px]  opacity-[0.8]" match="valueMissing">
-            adicione uma sala
-          </Form.Message>
         </div>
         <Form.Control asChild>
           <select ref = {salaRef} className="box-border w-full bg-[#e2e8f0] dark:bg-blackA6  shadow-blackA9 inline-flex h-10 focus:border-[2px] focus:border-purple-600 appearance-none items-center justify-center rounded-lg px-[10px] text-[15px] leading-none outline-none hover:shadow-[0_0_0_1px_black] focus:shadow-md focus:shadow-purple-900">
