@@ -12,6 +12,7 @@ export default function ForgotPassword(props){
     async (evt) => {
         evt?.preventDefault();
         await retrive(emailRef.current.value,);
+        alert("email para recuperar a senha será enviado")
         setShowForgotPassword(false);
     },
     [retrive]
@@ -42,6 +43,7 @@ export default function ForgotPassword(props){
             <Form.Control asChild >
               <input className="box-border w-full bg-blackA5 shadow-blackA9 inline-flex h-12 focus:border-[2px] focus:border-purple-600 appearance-none items-center justify-center rounded-lg px-[10px] text-[15px] leading-none outline-none hover:shadow-[0_0_0_1px_black] focus:shadow-md focus:shadow-purple-900 selection:color-white selection:bg-blackA9"
                 type="email"
+                minLength="7"
                 required
                 ref={emailRef}
               />

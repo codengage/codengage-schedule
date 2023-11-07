@@ -48,6 +48,7 @@ export const PocketProvider = ({ children }) => {
 
   const registerReserve = useCallback(async (title, creator, sala, start, end, backgroundColor) => {
     const id = Array(15+1).join((Math.random().toString(36)+'00000000000000000').slice(2, 18)).slice(0, 15)
+    console.log(id)
     return await pb
       .collection('ReserveCalendar')
       .create({id, title, creator, sala, start, end, backgroundColor, borderColor:backgroundColor})

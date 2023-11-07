@@ -109,7 +109,7 @@ export default function Schedule(){
             }}
             eventChange={(eventInfo)=>{
               setShowDrag(true);
-              setModalInfo(eventInfo);              
+              setModalInfo(eventInfo);            
             }}
           />
           {showModal && <ModalCalendar 

@@ -64,7 +64,7 @@ export default function SignUp (props) {
             </p>
           </header>
           <Form.Root onSubmit={handleOnSubmit} className="rounded-xl relative p-[30px]">
-            <Form.Field className="grid mb-[5%]" name="email">
+            <Form.Field className="FormName grid mb-[5%]" name="Username">
               <div className="flex items-baseline justify-between">
                 <Form.Label className="text-[15px] font-medium leading-[35px] dark:text-white">Nome de usuário</Form.Label>
                 <Form.Message className="text-[13px] text-red-500 opacity-[0.8]" match="valueMissing">
@@ -77,12 +77,13 @@ export default function SignUp (props) {
               <Form.Control asChild >
                 <input className="box-border w-full bg-[#e2e8f0] dark:bg-blackA6  shadow-blackA9 inline-flex h-12 focus:border-[2px] focus:border-purple-600 appearance-none items-center justify-center rounded-lg px-[10px] text-[15px] leading-none outline-none hover:shadow-[0_0_0_1px_black] focus:shadow-md focus:shadow-purple-900"
                 type="text"
+                minLength="3"
                 required
                 ref={usernameRef}
                 />
               </Form.Control>
             </Form.Field>
-            <Form.Field className="grid mb-[5%]" name="email">
+            <Form.Field className="FormEmail grid mb-[5%]" name="email">
               <div className="flex items-baseline justify-between">
                 <Form.Label className="text-[15px] font-medium leading-[35px] dark:text-white">Email</Form.Label>
                 <Form.Message className="text-[13px] text-red-500 opacity-[0.8]" match="valueMissing">
@@ -95,6 +96,7 @@ export default function SignUp (props) {
               <Form.Control asChild >
                 <input className="box-border w-full bg-[#e2e8f0] dark:bg-blackA6  shadow-blackA9 inline-flex h-12 focus:border-[2px] focus:border-purple-600 appearance-none items-center justify-center rounded-lg px-[10px] text-[15px] leading-none outline-none hover:shadow-[0_0_0_1px_black] focus:shadow-md focus:shadow-purple-900"
                   type="email"
+                  minLength="7"
                   required
                   ref={emailRef}
                 />
@@ -116,6 +118,7 @@ export default function SignUp (props) {
                     name="password"
                     className="box-border w-full bg-[#e2e8f0] dark:bg-blackA6  shadow-blackA9 inline-flex h-12 focus:border-[2px] focus:border-purple-600 appearance-none items-center justify-center rounded-lg px-[10px] text-[15px] leading-none outline-none hover:shadow-[0_0_0_1px_black] focus:shadow-md focus:shadow-purple-900"
                     type={showPassword ? 'text' : 'password'}
+                    minLength="8"
                     required
                     ref={passwordRef}
                   />
@@ -143,6 +146,7 @@ export default function SignUp (props) {
                   <input
                     name="passwordConfirm" className="box-border w-full bg-[#e2e8f0] dark:bg-blackA6  shadow-blackA9 inline-flex h-12 focus:border-[2px] focus:border-purple-600 appearance-none items-center justify-center rounded-lg px-[10px] text-[15px] leading-none outline-none hover:shadow-[0_0_0_1px_black] focus:shadow-md focus:shadow-purple-900"
                     type={showPassword ? 'text' : 'password'}
+                    minLength="8"
                     required
                     ref={passwordConfirmRef}
                   />

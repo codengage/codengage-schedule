@@ -25,7 +25,7 @@ export default function Pop(props) {
         <div className="pop__wrapper">
             <Form.Root>
                 <Form.Field className="" name="title">
-                <Form.Label className="text-[15px] font-medium leading-[35px] text-white ">Evento: {title}</Form.Label>
+                <Form.Label className="text-[15px] font-medium leading-[35px] text-white " >Evento: {title}</Form.Label>
                 </Form.Field>
                 <Form.Field className="" name="creator">
                 <Form.Label className="text-[15px] font-medium leading-[35px] text-white " >Criador: {data && data.username ? data.username : "..."}</Form.Label>

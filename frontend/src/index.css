@@ -1,3 +1,10 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+input {
+    border: 2px solid currentcolor;
+  }
+  input:invalid:focus{
+    border: 1px dashed purple;
+  }

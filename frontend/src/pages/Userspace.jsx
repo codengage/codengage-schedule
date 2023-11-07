@@ -23,15 +23,17 @@ export default function Userspace (props) {
     async (evt) => {
       evt?.preventDefault();
       try{
-      await upuser(
-        user.id,
-        usernameRef.current.value,
-        emailRef.current.value, 
-        );
-      setShowSuccessAlert(true);
-    }
-      catch(e){
-        //setShowAlert(true)
+      if(usernameRef.current.value.length > 2){
+        await upuser(
+          user.id,
+          usernameRef.current.value,
+          emailRef.current.value, 
+          );
+        alert('Usuário Atualizado')
+        }else{
+          alert('Nome de Usuario precisa de 3 caracteres')
+        }
+    } catch(e) {
         if(e instanceof ClientResponseError){
         setMessageAlert('Nome de usuário ou Email ja cadastrado')
       }else{
@@ -50,10 +52,13 @@ export default function Userspace (props) {
   const faz= useCallback(
     async (evt) => {
       evt?.preventDefault();
-      await upavat(
+      try{
+        await upavat(
         user.id,
         file
-        );
+        )}catch(e){
+          alert("Imagem invalida")
+        }
     [upavat]
     })
 
@@ -83,7 +88,7 @@ export default function Userspace (props) {
               <input type="file" onChange={handleChange}/>
               <button className='mb-[5%] h-12 bg-purple-500 dark:bg-purple-700 dark:hover:bg-purple-900 text-white hover:bg-purple-900 my-2 box-border w-full shadow-blackA7 dark:shadow-slate-500 inline-flex items-center justify-center rounded-lg px-[15px] font-medium leading-none shadow-[0_2px_10px] focus:shadow-[0_0_0_2px] focus:shadow-black focus:outline-none' onClick={faz}>Mudar Avatar</button>
             </label>
-            <Form.Field className="FormField grid mb-[5%]" name="email">
+            <Form.Field className="FormField grid mb-[5%]" name="name">
               <div className="flex items-baseline justify-between">
                 <Form.Label className="text-[15px] font-medium leading-[35px] dark:text-white">Nome de usuário</Form.Label>
                 <Form.Message className="text-[13px] text-red-500 opacity-[0.8]" match="valueMissing">
@@ -97,6 +102,7 @@ export default function Userspace (props) {
                 <input className="box-border w-full bg-[#e2e8f0] dark:bg-blackA6  shadow-blackA9 inline-flex h-12 focus:border-[2px] focus:border-purple-600 appearance-none items-center justify-center rounded-lg px-[10px] text-[15px] leading-none outline-none hover:shadow-[0_0_0_1px_black] focus:shadow-md focus:shadow-purple-900"
                 defaultValue={user.username}
                 type="text"
+                minLength="3"
                 required
                 ref={usernameRef}
                 />
@@ -116,6 +122,7 @@ export default function Userspace (props) {
                 <input className="box-border w-full bg-[#e2e8f0] dark:bg-blackA6  shadow-blackA9 inline-flex h-12 focus:border-[2px] focus:border-purple-600 appearance-none items-center justify-center rounded-lg px-[10px] text-[15px] leading-none outline-none hover:shadow-[0_0_0_1px_black] focus:shadow-md focus:shadow-purple-900"
                   defaultValue={user.email}
                   type="email"
+                  minLength="7"
                   required
                   ref={emailRef}
                 />

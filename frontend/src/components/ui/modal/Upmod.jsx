@@ -10,12 +10,13 @@ export default function Upmod(props){
     const startRef = useRef();
     const endRef = useRef();
     const { del, update } = usePocket();
+    let calendar = this.$parent.$parent.$refs.calsession.getApi();
     
     const deleteEvent = useCallback(
         async (evt) => {
             evt?.preventDefault();
             await del(props.modalInfo.id);
-            location.reload(false);
+            calendar.refetchEvents();
         },
         [del]
     )
@@ -34,7 +35,7 @@ export default function Upmod(props){
                 startRef.current.value,
                 endRef.current.value,
             );
-            location.reload(false);
+            calendar.refetchEvents()
             }
         }catch(e){
             console.log(e.message)
@@ -50,7 +51,7 @@ export default function Upmod(props){
                     <div className="flex items-baseline justify-between">
                         <Form.Label className="mx-20 text-[15px] font-medium leading-[35px] ">Evento</Form.Label>
                         <Form.Message className="text-[13px]  opacity-[0.8]" match="valueMissing">
-                            adicione um Título
+                            Adicione um Título
                         </Form.Message>
                         <Form.Message className="text-[13px]  opacity-[0.8]"  match={(value, formData)=> value.length > 25}>
                             o Título deve ser curto  
@@ -60,16 +61,17 @@ export default function Upmod(props){
                         <input className="box-border w-full bg-[#e2e8f0] dark:bg-blackA6  shadow-blackA9 inline-flex h-10 focus:border-[2px] focus:border-purple-600 appearance-none items-center justify-center rounded-lg px-[10px] text-[15px] leading-none outline-none hover:shadow-[0_0_0_1px_black] focus:shadow-md focus:shadow-purple-900"
                         type="text"
                         defaultValue={modalInfo.title}
+                        minLength="3"
                         required
                         ref={titleRef}
                         />
                     </Form.Control>
                 </Form.Field>
-                <Form.Field className="grid mb-[10px]" name="title">
+                <Form.Field className="grid mb-[10px]" name="sala">
                     <div className="flex items-baseline justify-between">
                         <Form.Label className="mx-6 text-[15px] font-medium leading-[35px] ">Sala</Form.Label>
                         <Form.Message className="text-[13px]  opacity-[0.8]" match="valueMissing">
-                            adicione uma sala
+                            Adicione uma sala
                         </Form.Message>
                     </div>
                     <Form.Control asChild>
