@@ -2,6 +2,7 @@ import React, { useCallback, useRef } from "react";
 import { usePocket } from "../contexts/PocketContext";
 import { RxChevronLeft } from "react-icons/rx";
 import * as Form from '@radix-ui/react-form';
+import { toast } from "react-toastify";
 
 export default function ForgotPassword(props){
   const {setShowForgotPassword} = props;
@@ -12,7 +13,16 @@ export default function ForgotPassword(props){
     async (evt) => {
         evt?.preventDefault();
         await retrive(emailRef.current.value,);
-        alert("email para recuperar a senha será enviado")
+        toast.success('Email enviado!', {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+          });
         setShowForgotPassword(false);
     },
     [retrive]

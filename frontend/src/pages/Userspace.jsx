@@ -5,8 +5,8 @@ import { Logo } from "../assets/Logo";
 import { ClientResponseError } from "pocketbase";
 import { useNavigate } from "react-router-dom";
 import Userside from "../components/ui/Userside";
-import AlertSuccess from "../components/ui/alerts/AlertSuccess";
 import Panel from "../components/ui/Panel";
+import { toast } from "react-toastify";
 
 export default function Userspace (props) {
   const usernameRef = useRef();
@@ -14,7 +14,6 @@ export default function Userspace (props) {
   const { upuser, pb } = usePocket();
   const { logout, user, upavat } = usePocket();
   const navigate = useNavigate();
-  const {setShowSuccessAlert, showSuccessAlert} = props;
   const [file, setFile] = useState();
 
   const handleClick = () => navigate("/Schedule")
@@ -29,7 +28,16 @@ export default function Userspace (props) {
           usernameRef.current.value,
           emailRef.current.value, 
           );
-        alert('Usuário Atualizado')
+          toast.success('Dados Atualizados!', {
+            position: "top-center",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "dark",
+            });
         }else{
           alert('Nome de Usuario precisa de 3 caracteres')
         }
@@ -56,7 +64,18 @@ export default function Userspace (props) {
         await upavat(
         user.id,
         file
-        )}catch(e){
+        )
+        toast.success('Avatar Atualizado!', {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+          });
+        }catch(e){
           alert("Imagem invalida")
         }
     [upavat]
@@ -69,7 +88,6 @@ export default function Userspace (props) {
       <Userside/>
       <div className='border-l-2 border-black dark:border-white rounded-3xl font-light px-[2%] pt-[6%] shadow-xl shadow-black dark:shadow-white'>
         <Logo/> 
-        {showSuccessAlert && <AlertSuccess message="Usuário cadastrado"/>}
         <main className="flex flex-col mt-3 gap-10 w-full ">
           <header className="text-center flex flex-col gap-4 w-full">
             <h1 className="font-sans text-4xl font-bol ">

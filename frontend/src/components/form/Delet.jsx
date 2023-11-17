@@ -3,6 +3,7 @@ import { usePocket } from "../../contexts/PocketContext";
 import * as Form from '@radix-ui/react-form';
 import * as RadioGroup from '@radix-ui/react-radio-group';
 import {AiOutlineClose} from '@react-icons/all-files/ai/AiOutlineClose.esm';
+import { toast } from "react-toastify";
 
 export default function Delet(props){
     const {modalInfo} = props;
@@ -27,7 +28,16 @@ export default function Delet(props){
       async (evt) => { 
         evt?.preventDefault();
         if(startRef.current.value.slice(11,13)+startRef.current.value.slice(14,16) >= endRef.current.value.slice(11,13)+endRef.current.value.slice(14,16)){
-            alert("Data inicial não pode ser maior que a final")
+            toast.warn('Data inicial não pode ser maior que a final!', {
+                position: "top-left",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "dark",
+                });
         }else{
         await update(
             props.modalInfo.event.id,

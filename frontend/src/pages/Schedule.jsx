@@ -72,6 +72,10 @@ export default function Schedule(){
               list: "Lista",
             }}
             navLinks={true}
+            /*datesSet={(arg) => {
+              console.log(arg.start);
+            }}*/
+            
             nowIndicator={true}
             allDayMaintainDuration={true}
             locale={"pt-br"}

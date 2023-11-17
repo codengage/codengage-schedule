@@ -1,6 +1,7 @@
 import React, { useCallback, useRef } from "react";
 import { usePocket } from "../../../contexts/PocketContext";
 import * as Form from '@radix-ui/react-form';
+import { toast } from "react-toastify";
 
 export default function Upmod(props){
     const {setShowUpmod} = props;
@@ -10,13 +11,13 @@ export default function Upmod(props){
     const startRef = useRef();
     const endRef = useRef();
     const { del, update } = usePocket();
-    let calendar = this.$parent.$parent.$refs.calsession.getApi();
+
     
     const deleteEvent = useCallback(
         async (evt) => {
             evt?.preventDefault();
             await del(props.modalInfo.id);
-            calendar.refetchEvents();
+            location.reload(false);
         },
         [del]
     )
@@ -26,7 +27,16 @@ export default function Upmod(props){
         try{
             evt?.preventDefault();
             if(startRef.current.value.slice(11,13)+startRef.current.value.slice(14,16) >= endRef.current.value.slice(11,13)+endRef.current.value.slice(14,16)){
-                alert("Data inicial não pode ser maior que a final")
+                toast.warn('Data inicial não pode ser maior que a final!', {
+                    position: "top-left",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "dark",
+                    });
             }else{
             await update(
                 props.modalInfo.id,
@@ -35,7 +45,7 @@ export default function Upmod(props){
                 startRef.current.value,
                 endRef.current.value,
             );
-            calendar.refetchEvents()
+            location.reload(false);
             }
         }catch(e){
             console.log(e.message)

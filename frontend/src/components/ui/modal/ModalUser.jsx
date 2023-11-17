@@ -2,6 +2,7 @@ import "../../../styles/modal.css";
 import { RxCrossCircled } from "react-icons/rx";
 import { usePocket } from "../../../contexts/PocketContext"; 
 import { records } from "../../../utils/event-use";
+import { toast } from "react-toastify";
 
 export default function ModalUser(props){
   const {setShowModalUser} = props;
@@ -9,7 +10,16 @@ export default function ModalUser(props){
   const {renderSidebarEvent} = props;
   
   if (records[0].reserva <= 0) {
-    alert("Reservas do Usuário Vazia");
+    toast.warn('Lista de reservas vazia!', {
+      position: "top-left",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+      });
     setShowModalUser(false);
   }
 

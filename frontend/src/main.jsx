@@ -6,6 +6,8 @@ import { QueryClient } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools"
 import { createSyncStoragePersister } from "@tanstack/query-sync-storage-persister"
 import { PersistQueryClientProvider } from "@tanstack/react-query-persist-client"
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const queryClient = new QueryClient();
 const persister = createSyncStoragePersister({
@@ -19,6 +21,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         persistOptions={{ persister }}
       >
         <App />
+        <ToastContainer/>
       </PersistQueryClientProvider>
   </React.StrictMode>,
 )
