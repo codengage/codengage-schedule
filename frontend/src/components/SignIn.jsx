@@ -16,7 +16,7 @@ export default function SignIn(props) {
   const {setShowForgotPassword} = props;
   const emailRef = useRef();
   const passwordRef = useRef();
-  const { login } = usePocket();
+  const { login, pb } = usePocket();
   const navigate = useNavigate();
 
   const handleOnSubmit = useCallback(
@@ -36,6 +36,12 @@ export default function SignIn(props) {
     },
     [login]
   );
+
+  const authData = useCallback(
+    async () => {
+      await pb.collection('users').authWithOAuth2({ provider: 'google' });
+    }
+  ) 
 
   const [messageAlert, setMessageAlert] = useState("");
   const [showPassword, setShowPassword] = useState(false);
@@ -119,6 +125,11 @@ export default function SignIn(props) {
               </button>
             </div>
           </Form.Root>
+          <button className="text-purple-700 hover:text-purple-500"
+            onClick={authData}
+            >
+            Login with google
+          </button>
           <button className="text-purple-700 hover:text-purple-500"
             onClick={()=>{setShowForgotPassword(true)}}
             >

@@ -89,7 +89,7 @@ export const PocketProvider = ({ children }) => {
     try{await pb.collection('ReserveCalendar')
       .delete(id);
     }catch(e){
-      alert('Reserva não e sua')
+      alert('Não é possível deletar reservas de outros usuários')
     }
   }, []);
 

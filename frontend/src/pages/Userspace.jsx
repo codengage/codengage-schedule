@@ -39,11 +39,29 @@ export default function Userspace (props) {
             theme: "dark",
             });
         }else{
-          alert('Nome de Usuario precisa de 3 caracteres')
+          toast.warn('Nome de usuário inválido', {
+            position: "top-center",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "dark",
+            });
         }
     } catch(e) {
         if(e instanceof ClientResponseError){
-        setMessageAlert('Nome de usuário ou Email ja cadastrado')
+        toast.error('Nome de usuário ou Email ja cadastrado', {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+          });
       }else{
         setMessageAlert(e.message)
       }
@@ -120,7 +138,6 @@ export default function Userspace (props) {
                 <input className="box-border w-full bg-[#e2e8f0] dark:bg-blackA6  shadow-blackA9 inline-flex h-12 focus:border-[2px] focus:border-purple-600 appearance-none items-center justify-center rounded-lg px-[10px] text-[15px] leading-none outline-none hover:shadow-[0_0_0_1px_black] focus:shadow-md focus:shadow-purple-900"
                 defaultValue={user.username}
                 type="text"
-                minLength="3"
                 required
                 ref={usernameRef}
                 />
