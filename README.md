@@ -59,8 +59,3 @@ The project is coded using a simple and intuitive structure presented below:
  ┗ 📜main.jsx			# Main
 ```
 
-### Default development server:
-
-The project will be available at [198.168.1.184:8090](http://198.168.1.184:8090). Can navigate to http://198.168.1.184:8090/admin/.
-
-Change in /src/contexts/PocketContex.jsx and src/utils/event-utils.js in case of server changes.
