@@ -1,7 +1,6 @@
 # codengage-schedule
 The intern project using open source stack
 
-# [Careers Codengage](https://carrers.codengage.com/)
 
 ## ✨ Code-base structure
 
